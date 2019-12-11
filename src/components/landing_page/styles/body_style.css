@@ -1,0 +1,114 @@
+
+.banner {
+  text-align: center;
+  margin: 0px;
+  padding: 10px;
+  background-color: #f037a5;
+  background: linear-gradient(#f037a5 -60%, #fae62d 140%);
+  height: 660px;
+}
+
+
+.banner_item{
+    margin: 50% auto;
+    position: relative;
+}
+
+.banner h1 {
+  color: rgb(255, 255, 255);
+  display: inline-block;
+  font-weight: 900;
+  font-size: 80px;
+  line-height: 92px;
+  text-align: center;
+  margin-bottom: 8%;
+}
+
+.button_banner {
+  background-color: rgb(29, 185, 84);
+  color: #fff;
+  display: inline-block;
+  font-size: 20px;
+  font-weight: 800;
+  text-align: center;
+  border: 1px solid transparent;
+  line-height: 1;
+  border-radius: 500px;
+  padding: 25px 80px 25px;
+  letter-spacing: 2px;
+  min-width: 160px;
+  text-transform: uppercase;
+  text-decoration: none;
+  font-size: 24px;
+}
+
+.button_banner:hover {
+  font-size: 22px;
+  font-weight: 800;
+}
+
+.content {
+  width: 100%;
+  padding: 40px 150px;
+  padding-bottom: 300px;
+  background-color: white;
+  text-align: center;
+  font-family: "Trebuchet MS", "Lucida Sans Unicode", "Lucida Grande",
+    "Lucida Sans", Arial, sans-serif;
+  font-size: 40px;
+  font-weight: 900;
+}
+
+.image_contents {
+  width: 33.33%;
+  text-align: center;
+  float: left;
+  padding: 20px 30px;
+}
+
+.image_contents h5 {
+  padding: 10px 10px;
+}
+
+.image_contents img {
+  height: 200px;
+  width: 300px;
+  border: 2px solid;
+  size: inherit;
+}
+
+.intro-section{
+  margin: 5%;
+  padding: 5%;
+  display: flex;
+}
+
+.intro-section-right{
+  flex: 0;
+} 
+.intro-section-left{
+  flex: 1;
+  font-family: cursive;
+  padding: 10px;
+}
+/* Larger devices (landscape phones, 576px and up) */
+@media (min-width: 576px) {
+  .banner_item{
+    margin: 16% auto;
+    position: relative;
+  }
+  
+  .banner h1 {
+    margin-bottom: 1%;
+  }
+
+  .intro-section-right{
+    flex: 1;
+  }
+  
+  .card{
+    margin-left:20px;
+    margin-right:20px;
+    text-align: center;
+  }
+}

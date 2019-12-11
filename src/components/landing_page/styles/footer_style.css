@@ -1,0 +1,46 @@
+.footer_part {
+  min-height:150px;
+  color: white;
+  background-color: black;
+  padding: 10px;
+  text-align: center;
+}
+
+.contents,.logo{
+  float: left;
+}
+
+li {
+  padding-left: 15px;
+}
+
+.contents a {
+  color: white;
+  text-decoration: none;
+  transition-duration: 0.3s;
+}
+
+.contents a:hover {
+  color: #1db954;
+  text-decoration: none;
+}
+
+
+
+
+/* Larger devices (landscape phones, 576px and up) */
+@media (min-width: 576px) {
+  .footer_part {
+    min-height:100px;
+    color: white;
+    background-color: black;
+    padding: 10px;
+    text-align: center;
+  }
+
+  .contents{
+    float: right;
+    margin-right: 80px;
+  }
+  
+}

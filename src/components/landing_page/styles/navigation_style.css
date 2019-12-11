@@ -1,0 +1,40 @@
+.logopic {
+  left: 0;
+  padding: 0px 100px;
+
+  width: 65%;
+  background-color: rgba(0, 0, 0, 0.575);
+  position: fixed;
+  overflow: hidden;
+}
+
+.navigations {
+  right: 0;
+  padding: 0px 10px;
+  width: 35%;
+  background-color: rgba(0, 0, 0, 0.575);
+  position: fixed;
+  overflow: hidden;
+}
+
+li {
+  float: left;
+
+  padding: 20px 0px;
+  list-style: none;
+  font-family: Verdana, Geneva, Tahoma, sans-serif;
+  font-size: 16px;
+  font-weight: 500;
+  color: white;
+}
+
+.navigations a {
+  color: white;
+  text-decoration: none;
+  transition-duration: 0.3s;
+}
+
+.navigations a:hover {
+  color: #1db954;
+  text-decoration: none;
+}

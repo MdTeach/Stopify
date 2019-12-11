@@ -1,0 +1,45 @@
+
+.navbar {
+  background-color: rgba(0, 0, 0, 0.75);
+}
+
+.navbar-dark {
+  color: white;
+}
+
+/* .navbar-nav > li {
+  font-size: 18px;
+  padding-top: 0px;
+  padding-bottom: 0px;
+} */
+
+.navbar-nav > li > a {
+  font-size: 18px;
+  font-weight: 800;
+  color: white;
+}
+
+
+/* nav .navbar-nav li > a:hover {
+  font-size: 20px;
+  font-weight: 700;
+  color: #1db954;
+} */
+
+.navbar-brand {
+  padding-top: 0px;
+  padding-bottom: 0px;
+  padding-left: 40px;
+}
+
+.navbar {
+  min-height: 32px;
+}
+
+/* Larger devices (landscape phones, 576px and up) */
+@media (min-width: 576px) {
+  .navbar-nav{
+    float:right;
+  }
+}
+

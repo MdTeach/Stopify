@@ -1,6 +1,13 @@
 import React, { Component } from "react"
 import firebase from "firebase"
 import StyledFirebaseAuth from "react-firebaseui/StyledFirebaseAuth"
+import SignedIn from "./signedIn";
+import {
+  BrowserRouter as Router,
+  Switch,
+  Route,
+  Link
+} from "react-router-dom";
 
 
 
@@ -10,7 +17,7 @@ firebase.initializeApp({
   })
   
   class Auth extends Component {
-    state = { isSignedIn: false }
+     state = { isSignedIn: false }
     uiConfig = {
       signInFlow: "popup",
       signInOptions: [
@@ -31,26 +38,33 @@ firebase.initializeApp({
   
     render() {
       return (
+        <Router>
         <div className="App">
           {this.state.isSignedIn ? (
-            <span>
-              <div>Signed In!</div>
-              <button onClick={() => firebase.auth().signOut()}>Sign out!</button>
-              <h1>Welcome {firebase.auth().currentUser.displayName}</h1>
-              <img
-                alt="profile picture"
-                src={firebase.auth().currentUser.photoURL}
-              />
-            </span>
-          ) : (
+           //<Link to='/signedIn'></Link>
+          
+           <span>
+           console.clear()
+      <div>hello</div>
+       <div>Signed In!</div>
+       <button onClick={() => firebase.auth().signOut()}>Sign out!</button>
+       <h1>Welcome {firebase.auth().currentUser.displayName}</h1>
+       <img
+         alt="profile picture"
+         src={firebase.auth().currentUser.photoURL}
+       />
+     </span>           ) : (
             <StyledFirebaseAuth
               uiConfig={this.uiConfig}
               firebaseAuth={firebase.auth()}
             />
           )}
+          
         </div>
+        </Router>
       )
     }
+   
   }
   
   export default Auth;

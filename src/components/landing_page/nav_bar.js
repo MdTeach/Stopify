@@ -9,6 +9,7 @@ import {
   Link
 } from "react-router-dom";
 
+
 const NavBar = ()=>{
   
   return (
@@ -55,7 +56,7 @@ const NavBar = ()=>{
       </div>
       <Switch>
           <Route path="/login">
-            <Auth/>
+              <Auth/>
           </Route>
         </Switch>
     </nav>

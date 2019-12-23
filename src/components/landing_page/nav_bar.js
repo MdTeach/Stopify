@@ -3,9 +3,7 @@ import logo from "./images/logo2.png";
 import "./styles/navbar_style.css";
 
 import {
-  BrowserRouter as Router,
-  Switch,
-  Route,
+  NavLink,
   Link
 } from "react-router-dom";
 
@@ -13,13 +11,12 @@ import {
 const NavBar = ()=>{
   
   return (
-    <Router>
     <nav className="navbar navbar-expand-lg fixed-top navbar-dark">
-      <a className="navbar-brand" href="#">
+      <Link className="navbar-brand" to="/">
         <div className="col-6">
           <img src={logo} height="64" width="200" alt="Stopify" />
         </div>
-      </a>
+      </Link>
       <button
         className="navbar-toggler"
         data-toggle="collapse"
@@ -32,30 +29,29 @@ const NavBar = ()=>{
         <div className="col-12">
           <ul className="navbar-nav">
             <li className="nav-item">
-              <a className="nav-link" href="#">
+              <NavLink className="nav-link" to="/contact">
                 Contact
-              </a>
+              </NavLink>
             </li>
             <li className="nav-item">
-              <a className="nav-link" href="#">
+              <NavLink className="nav-link" to="/help">
                 Help
-              </a>
+              </NavLink>
             </li>
             <li className="nav-item">
-              <Link to="/login" className="nav-link" >
+              <NavLink to="/login" className="nav-link" >
                 Login
-              </Link>
+              </NavLink>
             </li>
             <li className="nav-item">
-              <a className="nav-link" href="#">
+              <NavLink className="nav-link" to="/register">
                 Sign Up
-              </a>
+              </NavLink>
             </li>
           </ul>
         </div>
       </div>
     </nav>
-    </Router>
   );
 }
 

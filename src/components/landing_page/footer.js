@@ -10,7 +10,7 @@ class Footer extends Component {
         <div className="logo">
           <img src={logo} height="64" width="200" alt="Stopify" />
         </div>
-        <div className="contents">
+        {/* <div className="contents">
           <ul>
             <li>
               <h4>
@@ -28,7 +28,7 @@ class Footer extends Component {
               </h4>
             </li>
           </ul>
-        </div>
+        </div> */}
       </div>
     );
   }

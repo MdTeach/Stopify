@@ -1,0 +1,72 @@
+
+.login-logo{
+  width: 50;
+  height: 50;
+}
+
+.login-wrapper{
+  text-align: center;
+  margin-top: 100px;
+  padding: 5%;
+}
+
+
+.button{
+  color: whitesmoke;
+  font-family: sans-serif;
+  font-size:  20px;
+  background-color:#3b5998;
+  padding: 25px;
+  border-radius:35px;
+  font-weight: 600;
+}
+
+
+.upass{
+  width:100%;  
+  font-size: 22px;
+}
+.button_log{
+  color: whitesmoke;
+  font-family: sans-serif;
+  font-size:  24px;
+  font-weight: 600;
+  padding: 10px;
+  width: 60%;
+  background-color:rgb(61, 158, 61);
+  border-radius:30px;
+
+}
+
+
+.button_signUp{
+  background-color: white;
+  border-color: black;
+  border-radius:40px;
+  font-family:sans-serif;
+  font-size:30px;
+  width:100%;
+}
+
+/* Larger devices (landscape phones, 576px and up) */
+@media (min-width: 576px) {
+  .login-wrapper{
+    width: 40%;
+    margin: auto;
+    margin-top:30px;
+    padding: 10;
+  }
+
+  .login-logo{
+    width: 150px;
+    height: 100px;
+    display: none;
+  }
+
+  .login-text1{
+    font-size: 20px;
+    font-weight: bold;
+    font-family: cursive;
+  }
+}
+

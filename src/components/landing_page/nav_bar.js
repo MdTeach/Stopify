@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import logo from "./images/logo2.png";
 import "./styles/navbar_style.css";
-import Auth from "./auth.js";
+
 import {
   BrowserRouter as Router,
   Switch,
@@ -54,11 +54,6 @@ const NavBar = ()=>{
           </ul>
         </div>
       </div>
-      <Switch>
-          <Route path="/login">
-              <Auth/>
-          </Route>
-        </Switch>
     </nav>
     </Router>
   );

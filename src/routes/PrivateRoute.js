@@ -6,7 +6,6 @@ import LandingPage from "../components/landing_page/landing_page"
 
 const PrivateRoute = ({ component: RouteComponent, ...rest }) => {
   const {currentUser} = useContext(AuthContext);
-  console.log("current user is "+currentUser);
   return (
     <Route
       {...rest}

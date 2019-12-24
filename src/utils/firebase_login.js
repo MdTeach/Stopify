@@ -18,9 +18,42 @@ const handleFacebookLogin = async()=>{
         });
 }
 
+const registerWithEmail = (data)=>{
+    console.log(data.email)
+    app.auth()
+        .createUserWithEmailAndPassword(data.email, data.pass)
+        .then(()=>{
+            console.log("Registered new user")
+            //success
+        })
+        .catch((err)=>{
+            console.log(err);
+            alert(err.message);
+        })
+}
+
+const loginWithEmail = (data)=>{
+    console.log(data.email)
+    app.auth()
+        .signInWithEmailAndPassword(data.email, data.pass)
+        .then(()=>{
+            console.log("Registered new user")
+            //success
+        })
+        .catch((err)=>{
+            console.log(err);
+            alert(err.message);
+        })
+}
 
 const handleLogout = ()=>{
     app.auth().signOut();
 }
 
-export {handleGoogleLogin,handleLogout,handleFacebookLogin};
+export {
+    handleGoogleLogin,
+    handleLogout,
+    handleFacebookLogin,
+    registerWithEmail,
+    loginWithEmail
+};

@@ -1,5 +1,4 @@
 import React, { Component } from "react";
-import Banner from "./images/banner2.jpg";
 import image1 from "./images/image1.jpg";
 import image2 from "./images/image2.jpg";
 import image3 from "./images/image3.jpg";
@@ -44,26 +43,26 @@ class Body extends Component {
               </h6> */}
             </div>
             <div className="intro-section-right">
-              <img src={image1} class="img-fluid" alt="Responsive image"/>
+              <img alt="img" src={image1} className="img-fluid"/>
             </div>
           </div>
         </div>
 
         <div className="card-group">
           <div className="card">
-            <img className="card-img-top" src={image3} alt="Card image cap"/>
+            <img className="card-img-top" src={image3} alt="img"/>
             <div className="card-body">
               <h5 className="card-title">Listen everywhere</h5>
             </div>
           </div>
           <div className="card">
-            <img className="card-img-top"src={image2} alt="Card image cap"/>
+            <img className="card-img-top"src={image2} alt="img"/>
             <div className="card-body">
               <h5 className="card-title">Unlimited, ad-free music</h5>
             </div>
           </div>
           <div className="card">
-            <img className="card-img-top" src={image3} alt="Card image cap"/>
+            <img className="card-img-top" src={image3} alt="img" />
             <div className="card-body">
               <h5 className="card-title">Download music & listen offline</h5>
             </div>

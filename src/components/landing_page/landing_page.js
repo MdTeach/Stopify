@@ -1,6 +1,7 @@
-import React from 'react'
+import React,{useContext} from 'react'
 
-import {Route} from 'react-router';
+import {Route,Redirect} from 'react-router';
+import {AuthContext} from '../../auth/Auth';
 
 import Body from "./body";
 import Footer from "./footer";
@@ -9,7 +10,11 @@ import NavBar from "./nav_bar";
 import Login from "./logins/login";
 import Register from "./logins/register";
 
-const App = ()=>{  
+const LandingPage = ()=>{  
+    const { currentUser } = useContext(AuthContext);
+    if (currentUser) {
+        return <Redirect to="/" />;
+    }
     return (        
         <React.Fragment >
             <NavBar/>
@@ -24,4 +29,4 @@ const App = ()=>{
     );
 }
 
-export default App;
+export default LandingPage;

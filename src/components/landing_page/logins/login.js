@@ -9,7 +9,7 @@ import logo from "./logo2.png";
 
 import GoogleButton from "./social_buttons/googel"
 import FacebookButton from "./social_buttons/facebook"
-
+ 
 const Login = ()=>{
     //defining the refrence to the input fileds
     let email = React.createRef();
@@ -41,7 +41,7 @@ const Login = ()=>{
                 <hr/>
                 
             </form>
-            <h1 className='center'><b>Don't have an account?</b></h1>
+            <h3 className='center'><b>Don't have an account?</b></h3>
             <br/>
             <Link to="/register"><button className="button_signUp">SIGN UP FOR SPOTIFY</button></Link>
             

@@ -1,9 +1,15 @@
-import React from 'react'
+import React,{useContext} from 'react'
 
 import {handleLogout} from '../../utils/firebase_login'
-export default ()=>(
-    <>
-    <h1>Home</h1>
-    <button onClick={handleLogout}>Log out</button>
-    </>
-)
+import {AuthContext} from '../../auth/Auth';
+
+export default ()=>{
+    const { currentUser } = useContext(AuthContext);
+    return(
+        <div>
+            <hr/>
+            <p>Log in as {currentUser.email} by {currentUser.displayName}</p>
+            <button onClick={handleLogout}>Log out</button>
+        </div>
+    );
+}

@@ -1,4 +1,6 @@
 import React, { Component } from "react";
+import {Link} from 'react-router-dom';
+
 import logo from "./images/logo2.png";
 import "./styles/footer_style.css";
 
@@ -7,28 +9,14 @@ class Footer extends Component {
   render() {
     return (
       <div className="container-fluid footer_part">
-        <div className="logo">
-          <img src={logo} height="64" width="200" alt="Stopify" />
+        <div className="contents">
+            <div className="logo">
+              <img src={logo} height="64" width="200" alt="Stopify" />
+            </div>
+              <Link to="/">About</Link>
+              <Link to="/">Help</Link>
+              <Link to="/">Developers</Link>
         </div>
-        {/* <div className="contents">
-          <ul>
-            <li>
-              <h4>
-                <a href="#">About</a>
-              </h4>
-            </li>
-            <li>
-              <h4>
-                <a href="#">Help</a>
-              </h4>
-            </li>
-            <li>
-              <h4>
-                <a href="#">Developers</a>
-              </h4>
-            </li>
-          </ul>
-        </div> */}
       </div>
     );
   }

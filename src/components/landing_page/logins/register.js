@@ -19,7 +19,7 @@ const Register = ()=>{
 
     const handleRegister = (event)=>{
         event.preventDefault();
-        if(email1.current.value !== email1.current.value){
+        if(email1.current.value !== email2.current.value){
             alert("Email did't match")
         }else{
             const data = {email:email1.current.value,pass:pass.current.value} //data to be registered

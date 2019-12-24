@@ -5,7 +5,7 @@
   padding: 10px;
   background-color: #f037a5;
   background: linear-gradient(#f037a5 -60%, #fae62d 140%);
-  height: 660px;
+  height: 550px;
 }
 
 
@@ -18,10 +18,8 @@
   color: rgb(255, 255, 255);
   display: inline-block;
   font-weight: 900;
-  font-size: 80px;
-  line-height: 92px;
+  font-size: 4em;
   text-align: center;
-  margin-bottom: 8%;
 }
 
 .button_banner {
@@ -33,6 +31,7 @@
   text-align: center;
   border: 1px solid transparent;
   line-height: 1;
+  margin-top: 15px;
   border-radius: 500px;
   padding: 25px 80px 25px;
   letter-spacing: 2px;
@@ -93,6 +92,10 @@
 }
 /* Larger devices (landscape phones, 576px and up) */
 @media (min-width: 576px) {
+  .banner{
+    height: 660px;
+  }
+
   .banner_item{
     margin: 16% auto;
     position: relative;
@@ -111,4 +114,5 @@
     margin-right:20px;
     text-align: center;
   }
+
 }

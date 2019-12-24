@@ -1,23 +1,23 @@
 .footer_part {
-  min-height:150px;
+  min-height:120px;
   color: white;
   background-color: black;
   padding: 10px;
   text-align: center;
 }
 
-.contents,.logo{
-  float: left;
+.contents{
+  text-align: center;
+  width: 100%;
 }
 
-li {
-  padding-left: 15px;
-}
 
 .contents a {
   color: white;
   text-decoration: none;
   transition-duration: 0.3s;
+  margin: 20px;
+  font-size: 20px;
 }
 
 .contents a:hover {
@@ -38,9 +38,5 @@ li {
     text-align: center;
   }
 
-  .contents{
-    float: right;
-    margin-right: 80px;
-  }
   
 }

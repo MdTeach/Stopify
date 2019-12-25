@@ -8,7 +8,7 @@ export default ()=>{
     return(
         <div>
             <hr/>
-            <p>Log in as {currentUser.email} by {currentUser.displayName}</p>
+            <p>Welcome {currentUser.email} by {currentUser.displayName}</p>
             <button onClick={handleLogout}>Log out</button>
         </div>
     );

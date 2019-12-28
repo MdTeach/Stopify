@@ -108,8 +108,14 @@ h2 {
     font-size: 18px;
     transition-duration: 0.4s;
     padding: 10px;
-    padding-right: 50px;
-    padding-left: 50px;
+    padding-right: 75px;
+    padding-left: 75px;
     float: right;
+  }
+
+  .ques {
+    padding-top: 10px;
+    padding-left: 10px;
+    float: left;
   }
 }

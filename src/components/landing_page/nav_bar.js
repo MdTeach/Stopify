@@ -2,19 +2,14 @@ import React from "react";
 import logo from "./images/logo2.png";
 import "./styles/navbar_style.css";
 
-import {
-  NavLink,
-  Link
-} from "react-router-dom";
+import { NavLink, Link } from "react-router-dom";
 
-
-const NavBar = ()=>{
-  
+const NavBar = () => {
   return (
     <nav className="navbar navbar-expand-lg fixed-top navbar-dark">
       <Link className="navbar-brand" to="/">
         <div className="col-6">
-          <img src={logo} height="64" width="200" alt="Stopify" />
+          <img className="logo1" src={logo} alt="Stopify" />
         </div>
       </Link>
       <button
@@ -39,7 +34,7 @@ const NavBar = ()=>{
               </NavLink>
             </li>
             <li className="nav-item">
-              <NavLink to="/login" className="nav-link" >
+              <NavLink to="/login" className="nav-link">
                 Login
               </NavLink>
             </li>
@@ -53,6 +48,6 @@ const NavBar = ()=>{
       </div>
     </nav>
   );
-}
+};
 
 export default NavBar;

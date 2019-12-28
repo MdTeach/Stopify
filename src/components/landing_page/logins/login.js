@@ -1,52 +1,71 @@
-import React from 'react'
-import {Link} from 'react-router-dom'
+import React from "react";
+import { Link } from "react-router-dom";
 
-import {loginWithEmail} from '../../../utils/firebase_login'
+import { loginWithEmail } from "../../../utils/firebase_login";
 
-
-import './login.css'
+import "./login.css";
 import logo from "./logo2.png";
 
-import GoogleButton from "./social_buttons/googel"
-import FacebookButton from "./social_buttons/facebook"
- 
-const Login = ()=>{
-    //defining the refrence to the input fileds
-    let email = React.createRef();
-    let pass = React.createRef();
+import GoogleButton from "./social_buttons/googel";
+import FacebookButton from "./social_buttons/facebook";
 
-    const handleLogin = (event)=>{
-        event.preventDefault();
-        const data = {email:email.current.value,pass:pass.current.value} //data to be registered
-        loginWithEmail(data)
-    }
+const Login = () => {
+  //defining the refrence to the input fileds
+  let email = React.createRef();
+  let pass = React.createRef();
 
-    return (
-        <div className="login-wrapper">
-            <div className="login-logo"><img src={logo} width="100%" height="100%" alt="img"/></div>
-            <h3 className="login-text1">To continue, log in to Stopify</h3>
-            <hr/>
-            <br/>
-            <FacebookButton/>
-            <GoogleButton/>
-            <hr/>
-            <h5>OR</h5>
-            <form className="input-form" onSubmit={handleLogin}>
-                <input type="email" ref={email} required placeholder="E-mail address" className="upass"/><br/><br/>
-                <input type="password" ref={pass} required placeholder="Password" className="upass"/>
-                <br/><br/>
-                <button className='button_log'>
-                    LOG IN
-                </button>
-                <hr/>
-                
-            </form>
-            <h3 className='center'><b>Don't have an account?</b></h3>
-            <br/>
-            <Link to="/register"><button className="button_signUp">SIGN UP FOR SPOTIFY</button></Link>
-            
-        </div>
-    );
-}
+  const handleLogin = event => {
+    event.preventDefault();
+    const data = { email: email.current.value, pass: pass.current.value }; //data to be registered
+    loginWithEmail(data);
+  };
 
-export default Login
+  return (
+    <div className="login-wrapper">
+      <div className="center">
+        {" "}
+        <img src={logo} width="60%" height="60%" alt="Stopify" />
+      </div>
+      <hr />
+      <div className="login-text1">To continue, log in to Stopify</div>
+
+      <FacebookButton />
+      <GoogleButton />
+      <br />
+      <br />
+      <div class="separator">OR</div>
+      <br />
+      <form className="input-form" onSubmit={handleLogin}>
+        <input
+          type="email"
+          ref={email}
+          required
+          placeholder="E-mail address"
+          className="upass"
+        />
+        <br />
+        <br />
+        <input
+          type="password"
+          ref={pass}
+          required
+          placeholder="Password"
+          className="upass"
+        />
+        <br />
+        <br />
+        <button className="button_log">LOG IN</button>
+      </form>
+      <hr />
+      <h5 className="center_para">
+        <b>Don't have an account?</b>
+      </h5>
+      <br />
+      <Link to="/register">
+        <button className="button_signUp">SIGN UP FOR SPOTIFY</button>
+      </Link>
+    </div>
+  );
+};
+
+export default Login;

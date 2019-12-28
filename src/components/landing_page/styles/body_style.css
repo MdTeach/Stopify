@@ -87,7 +87,7 @@
 }
 
 .intro-text {
-  padding-right: 50px;
+  font-size: 20px;
   text-align: justify;
 }
 
@@ -136,6 +136,12 @@
 
   .intro-section-right {
     flex: 1;
+  }
+
+  .intro-text {
+    padding-right: 50px;
+    text-align: justify;
+    font-size: 36px;
   }
 
   .card {

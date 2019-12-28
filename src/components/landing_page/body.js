@@ -21,13 +21,11 @@ class Body extends Component {
         <div className="container-fluid">
           <div className="intro-section">
             <div className="intro-section-left">
-              <h1>
-                <p className="intro-text">
-                  Stopify gives you instant access to millions of songs from old
-                  favorites to the latest hits. Just hit play to stream anything
-                  you like.
-                </p>
-              </h1>
+              <p className="intro-text">
+                Stopify gives you instant access to millions of songs from old
+                favorites to the latest hits. Just hit play to stream anything
+                you like.
+              </p>
               <br />
 
               {/* <h3>Music</h3>

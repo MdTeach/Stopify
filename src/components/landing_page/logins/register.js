@@ -97,7 +97,7 @@ const Register = () => {
       </form>
       <br />
       <h4 className="last">
-        Already have account?
+        <p>Already have account?</p>
         <Link to="/login" className="already">
           <input type="submit" className="log_in" value="Log in" />
         </Link>

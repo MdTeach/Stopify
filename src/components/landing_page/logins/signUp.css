@@ -77,10 +77,9 @@ h2 {
   border-style: none;
   font-size: 18px;
   transition-duration: 0.4s;
-  float: right;
   padding: 10px;
-  padding-right: 75px;
-  padding-left: 75px;
+  padding-right: 50px;
+  padding-left: 50px;
 }
 
 .log_in:hover {
@@ -100,5 +99,17 @@ h2 {
     width: 150px;
     height: 100px;
     display: none;
+  }
+  .log_in {
+    background-color: #007fba;
+    color: white;
+    border-radius: 500px;
+    border-style: none;
+    font-size: 18px;
+    transition-duration: 0.4s;
+    padding: 10px;
+    padding-right: 50px;
+    padding-left: 50px;
+    float: right;
   }
 }

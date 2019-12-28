@@ -1,18 +1,19 @@
 import React, { Component } from "react";
 import image1 from "./images/image1.jpg";
-import image2 from "./images/image2.jpg";
 import image3 from "./images/image3.jpg";
+import image4 from "./images/image4.jpg";
+import image5 from "./images/image5.jpg";
 import "./styles/body_style.css";
 
 class Body extends Component {
   state = {};
   render() {
     return (
-      <div className="container-fluid" style={{margin:"auto",padding:"0"}}>
+      <div className="container-fluid" style={{ margin: "auto", padding: "0" }}>
         <div className="banner">
           <div className="banner_item">
             <h1>Music for everyone</h1>
-            <br/>
+            <br />
             <button className="button_banner">Get Started</button>
           </div>
         </div>
@@ -21,11 +22,13 @@ class Body extends Component {
           <div className="intro-section">
             <div className="intro-section-left">
               <h1>
-                Stopify gives you instant access to millions of songs  from old
-                favorites to the latest hits. Just hit play to stream anything you
-                like.
+                <p className="intro-text">
+                  Stopify gives you instant access to millions of songs from old
+                  favorites to the latest hits. Just hit play to stream anything
+                  you like.
+                </p>
               </h1>
-              <br/>
+              <br />
 
               {/* <h3>Music</h3>
               <h6>
@@ -43,20 +46,20 @@ class Body extends Component {
               </h6> */}
             </div>
             <div className="intro-section-right">
-              <img alt="img" src={image1} className="img-fluid"/>
+              <img alt="img" src={image1} className="img-fluid" />
             </div>
           </div>
         </div>
 
         <div className="card-group">
           <div className="card">
-            <img className="card-img-top" src={image3} alt="img"/>
+            <img className="card-img-top" src={image5} alt="img" />
             <div className="card-body">
               <h5 className="card-title">Listen everywhere</h5>
             </div>
           </div>
           <div className="card">
-            <img className="card-img-top"src={image2} alt="img"/>
+            <img className="card-img-top" src={image4} alt="img" />
             <div className="card-body">
               <h5 className="card-title">Unlimited, ad-free music</h5>
             </div>
@@ -68,8 +71,7 @@ class Body extends Component {
             </div>
           </div>
         </div>
-        <br/>
-        
+        <br />
       </div>
     );
   }

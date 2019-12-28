@@ -1,17 +1,15 @@
-
 .banner {
   text-align: center;
   margin: 0px;
   padding: 10px;
   background-color: #f037a5;
   background: linear-gradient(#f037a5 -60%, #fae62d 140%);
-  height: 550px;
+  height: 720px;
 }
 
-
-.banner_item{
-    margin: 50% auto;
-    position: relative;
+.banner_item {
+  margin: 50% auto;
+  position: relative;
 }
 
 .banner h1 {
@@ -33,17 +31,18 @@
   line-height: 1;
   margin-top: 15px;
   border-radius: 500px;
-  padding: 25px 80px 25px;
+  padding: 25px 40px 25px;
   letter-spacing: 2px;
   min-width: 160px;
   text-transform: uppercase;
   text-decoration: none;
   font-size: 24px;
+  transition-duration: 0.4s;
 }
 
 .button_banner:hover {
-  font-size: 22px;
-  font-weight: 800;
+  background-color: rgb(0, 145, 51);
+  color: #fff;
 }
 
 .content {
@@ -69,6 +68,11 @@
   padding: 10px 10px;
 }
 
+.img-fluid {
+  border: 2px double;
+  border-radius: 10px;
+}
+
 .image_contents img {
   height: 200px;
   width: 300px;
@@ -76,43 +80,67 @@
   size: inherit;
 }
 
-.intro-section{
-  margin: 5%;
-  padding: 5%;
+.intro-section {
+  margin: 25px;
+  padding: 25px;
   display: flex;
 }
 
-.intro-section-right{
+.intro-text {
+  padding-right: 50px;
+  text-align: justify;
+}
+
+.intro-section-right {
   flex: 0;
-} 
-.intro-section-left{
+}
+.intro-section-left {
   flex: 1;
-  font-family: cursive;
+  font-family: Cambria, Cochin, Georgia, Times, "Times New Roman", serif;
   padding: 10px;
 }
 /* Larger devices (landscape phones, 576px and up) */
 @media (min-width: 576px) {
-  .banner{
+  .banner {
     height: 660px;
   }
 
-  .banner_item{
+  .banner_item {
     margin: 16% auto;
     position: relative;
   }
-  
+
+  .button_banner {
+    background-color: rgb(29, 185, 84);
+    color: #fff;
+    display: inline-block;
+    font-size: 20px;
+    font-weight: 800;
+    text-align: center;
+    border: 1px solid transparent;
+    line-height: 1;
+    margin-top: 15px;
+    border-radius: 500px;
+    padding: 25px 80px 25px;
+    letter-spacing: 2px;
+    min-width: 160px;
+    text-transform: uppercase;
+    text-decoration: none;
+    font-size: 24px;
+    transition-duration: 0.4s;
+  }
+
   .banner h1 {
     margin-bottom: 1%;
   }
 
-  .intro-section-right{
+  .intro-section-right {
     flex: 1;
   }
-  
-  .card{
-    margin-left:20px;
-    margin-right:20px;
+
+  .card {
+    margin-left: 20px;
+    margin-right: 20px;
     text-align: center;
   }
-
 }

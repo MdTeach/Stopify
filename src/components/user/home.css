@@ -1,7 +1,7 @@
 .top {
   background-color: rgba(0, 0, 0, 0.75);
-  height: 84px;
-  width: auto;
+  height: 58px;
+  overflow: visible;
 }
 
 .logoimg {
@@ -10,7 +10,7 @@
 }
 
 .logo_content {
-  padding-top: 10px;
+  padding-top: 5px;
   width: 50%;
   float: left;
   padding-right: 0px;
@@ -23,30 +23,18 @@
   float: left;
 }
 
-.logout {
-  background-color: #437ce6;
-  color: white;
-  padding: 3px 20px 3px 20px;
-  border-radius: 250px;
-  border-style: none;
-  transition-duration: 0.4s;
-}
-
-.logout:hover {
-  background-color: #125be3;
-}
-
 .welcome {
-  width: 90%;
+  width: 82%;
   text-align: right;
   float: right;
-  font-size: 20px;
+  font-size: 14px;
   padding-right: 5px;
   color: white;
 }
 
 .dropdown {
-  width: 10%;
+  padding-top: opx;
+  width: 18%;
   float: right;
 }
 
@@ -55,17 +43,36 @@
   left: 0;
 }
 
-@media (min-width: 720px) {
+@media (min-width: 720) and (max-width: 920) {
+  .welcome {
+    width: 90%;
+    text-align: right;
+    vertical-align: middle;
+    float: right;
+    font-size: 20px;
+    padding-right: 20px;
+    color: white;
+  }
+}
+
+@media (min-width: 920px) {
+  .top {
+    background-color: rgba(0, 0, 0, 0.75);
+    height: 74px;
+    overflow: visible;
+  }
+
   .profile_header {
     padding-top: 20px;
     padding-right: 0px;
-    width: 25%;
+    width: 30%;
     float: right;
+    overflow: visible;
   }
 
   .logo_content {
-    padding-top: 10px;
-    width: 75%;
+    padding-top: 5px;
+    width: 70%;
     float: left;
     padding-left: 10px;
   }
@@ -77,8 +84,9 @@
   .welcome {
     width: 90%;
     text-align: right;
+    vertical-align: middle;
     float: right;
-    font-size: 20px;
+    font-size: 24px;
     padding-right: 20px;
     color: white;
   }

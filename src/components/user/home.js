@@ -3,6 +3,9 @@ import React, { useContext } from "react";
 import { handleLogout } from "../../utils/firebase_login";
 import { AuthContext } from "../../auth/Auth";
 
+import {getTestAudio, playPauseAudio} from "../../utils/firebase_storage";
+
+
 import logo from "../landing_page/images/logo2.png";
 import "./home.css";
 
@@ -53,6 +56,11 @@ export default () => {
           </div>
         </div>
       </nav>
+
+      <br/>
+      <button onClick={getTestAudio}>Fetch audio</button>
+      <br/>
+      <button onClick={playPauseAudio}>Play/Pause</button>
     </div>
   );
 };

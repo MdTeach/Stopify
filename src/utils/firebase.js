@@ -1,4 +1,5 @@
 import * as firebase from "firebase/app";
+import "firebase/storage";
 
 const app = firebase.initializeApp({
   apiKey: process.env.REACT_APP_FIREBASE_KEY,
@@ -9,6 +10,9 @@ const app = firebase.initializeApp({
   messagingSenderId: process.env.REACT_APP_FIREBASE_SENDER_ID
 });
 
+// Get a reference to the storage service, which is used to create references in your storage bucket
+const Storage = app.storage();
 
+export {Storage}
     
 export default app;

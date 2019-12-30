@@ -30,7 +30,12 @@ export default () => {
               aria-labelledby="dropdownMenuButton"
             >
               <h5 className="dropdown-header" href="./">
-                <b>{currentUser.displayName}</b>
+                <img
+                  className="profilepic"
+                  src={currentUser.photoURL}
+                  alt="Pic"
+                />
+                <b> | {currentUser.displayName}</b>
                 <br />
                 {currentUser.email}
               </h5>

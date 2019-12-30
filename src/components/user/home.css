@@ -17,7 +17,7 @@
 }
 
 .profile_header {
-  padding-top: 20px;
+  padding-top: 15px;
   padding-right: 0px;
   width: 50%;
   float: left;
@@ -28,8 +28,15 @@
   text-align: right;
   float: right;
   font-size: 14px;
+  padding-top: 5px;
   padding-right: 5px;
   color: white;
+}
+
+.profilepic {
+  height: 30px;
+  width: 30px;
+  border-radius: 20px;
 }
 
 .dropdown {
@@ -40,19 +47,6 @@
 
 .dropdown-item {
   cursor: pointer;
-  left: 0;
-}
-
-@media (min-width: 720) and (max-width: 920) {
-  .welcome {
-    width: 90%;
-    text-align: right;
-    vertical-align: middle;
-    float: right;
-    font-size: 20px;
-    padding-right: 20px;
-    color: white;
-  }
 }
 
 @media (min-width: 920px) {
@@ -63,7 +57,7 @@
   }
 
   .profile_header {
-    padding-top: 20px;
+    padding-top: 10px;
     padding-right: 0px;
     width: 30%;
     float: right;
@@ -81,6 +75,12 @@
     width: 200px;
   }
 
+  .profilepic {
+    height: 40px;
+    width: 40px;
+    border-radius: 20px;
+  }
+
   .welcome {
     width: 90%;
     text-align: right;
@@ -94,5 +94,6 @@
   .dropdown {
     width: 10%;
     float: right;
+    padding-top: 10px;
   }
 }

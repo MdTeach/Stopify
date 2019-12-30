@@ -1,0 +1,90 @@
+.top {
+  background-color: rgba(0, 0, 0, 0.75);
+  height: 84px;
+  width: auto;
+}
+
+.logoimg {
+  height: 48px;
+  width: 150px;
+}
+
+.logo_content {
+  padding-top: 10px;
+  width: 50%;
+  float: left;
+  padding-right: 0px;
+}
+
+.profile_header {
+  padding-top: 20px;
+  padding-right: 0px;
+  width: 50%;
+  float: left;
+}
+
+.logout {
+  background-color: #437ce6;
+  color: white;
+  padding: 3px 20px 3px 20px;
+  border-radius: 250px;
+  border-style: none;
+  transition-duration: 0.4s;
+}
+
+.logout:hover {
+  background-color: #125be3;
+}
+
+.welcome {
+  width: 90%;
+  text-align: right;
+  float: right;
+  font-size: 20px;
+  padding-right: 5px;
+  color: white;
+}
+
+.dropdown {
+  width: 10%;
+  float: right;
+}
+
+.dropdown-item {
+  cursor: pointer;
+  left: 0;
+}
+
+@media (min-width: 720px) {
+  .profile_header {
+    padding-top: 20px;
+    padding-right: 0px;
+    width: 25%;
+    float: right;
+  }
+
+  .logo_content {
+    padding-top: 10px;
+    width: 75%;
+    float: left;
+    padding-left: 10px;
+  }
+  .logoimg {
+    height: 64px;
+    width: 200px;
+  }
+
+  .welcome {
+    width: 90%;
+    text-align: right;
+    float: right;
+    font-size: 20px;
+    padding-right: 20px;
+    color: white;
+  }
+
+  .dropdown {
+    width: 10%;
+    float: right;
+  }
+}

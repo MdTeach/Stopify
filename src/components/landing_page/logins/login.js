@@ -33,7 +33,7 @@ const Login = () => {
       <GoogleButton />
       <br />
       <br />
-      <div class="separator">OR</div>
+      <div className="separator">OR</div>
       <br />
       <form className="input-form" onSubmit={handleLogin}>
         <input

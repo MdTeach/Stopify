@@ -3,7 +3,7 @@ import React, { useContext } from "react";
 import { handleLogout } from "../../utils/firebase_login";
 import { AuthContext } from "../../auth/Auth";
 
-import {getTestAudio, playPauseAudio} from "../../utils/firebase_storage";
+import {getTestAudio, playPauseAudio, getAudioUrl} from "../../utils/firebase_storage";
 
 
 import logo from "../landing_page/images/logo2.png";
@@ -11,6 +11,13 @@ import "./home.css";
 
 export default () => {
   const { currentUser } = useContext(AuthContext);
+  const name = "01. Beatiful People.mp3"
+
+  getAudioUrl(name).then((url)=>{
+    console.log("Got "+url)
+  })
+  
+
   return (
     <div>
       <nav className="top">

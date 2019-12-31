@@ -45,5 +45,6 @@ const playPauseAudio = ()=>{
 
 export {
     getTestAudio,
+    getAudioUrl,
     playPauseAudio
 }

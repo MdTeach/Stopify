@@ -1,50 +1,48 @@
 import "firebase/storage";
-import {Storage} from './firebase'
-
+import { Storage } from "./firebase";
 
 //soring our bucket url
 const bucket_url = "gs://auth-a3c8b.appspot.com";
 
 //define the audio
-let audio = new Audio()
+let audio = new Audio();
 
 //get the music stored
-const getTestAudio = async()=>{
-    const songName = "01. Beatiful People.mp3";
-    console.log("Loading "+ songName);
-    const songUrl = await getAudioUrl(songName)
-    audio = new Audio(songUrl);
-    console.log("Now playing...")
+const getTestAudio = async () => {
+  const songName = "01. Beatiful People.mp3";
+  console.log("Loading " + songName);
+  const songUrl = await getAudioUrl(songName);
+  audio = new Audio(songUrl);
+  console.log("Now playing...");
+  audio.play();
+
+  // const songRef = Storage.ref().child(songName);
+  // songRef.getDownloadURL().then((url)=>{
+  //     console.log(url)
+  //     audio = new Audio(url);
+  //     console.log("Now playing...")
+  //     audio.play();
+  // }).catch((err)=>{
+  //     console.log(err)
+  // });
+};
+
+const getAudioUrl = async songName => {
+  const songRef = Storage.ref().child(songName);
+  return songRef.getDownloadURL();
+};
+
+const getPicture = async picture => {
+  const picRef = Storage.ref("album_pic/" + picture + ".png");
+  return picRef.getDownloadURL();
+};
+
+const playPauseAudio = () => {
+  if (audio.paused) {
     audio.play();
+  } else {
+    audio.pause();
+  }
+};
 
-    // const songRef = Storage.ref().child(songName);
-    // songRef.getDownloadURL().then((url)=>{
-    //     console.log(url)
-    //     audio = new Audio(url);
-    //     console.log("Now playing...")
-    //     audio.play();
-    // }).catch((err)=>{
-    //     console.log(err)
-    // }); 
-      
-}
-
-const getAudioUrl = (songName)=>{
-    const songRef = Storage.ref().child(songName);
-    return songRef.getDownloadURL()
-      
-}
-
-const playPauseAudio = ()=>{
-    if(audio.paused){
-        audio.play();
-    }else{
-        audio.pause();
-    }
-}
-
-export {
-    getTestAudio,
-    getAudioUrl,
-    playPauseAudio
-}
+export { getTestAudio, getAudioUrl, playPauseAudio, getPicture };

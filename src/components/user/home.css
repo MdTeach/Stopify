@@ -49,6 +49,10 @@
   cursor: pointer;
 }
 
+audio::-webkit-media-controls-play-button {
+  color: white;
+}
+
 @media (min-width: 920px) {
   .top {
     background-color: rgba(0, 0, 0, 0.75);

@@ -27,13 +27,18 @@ const getTestAudio = async () => {
   // });
 };
 
+const getAllFiles = async () => {
+  const listRef = Storage.ref().root.listAll();
+  return listRef;
+};
+
 const getAudioUrl = async songName => {
   const songRef = Storage.ref().child(songName);
   return songRef.getDownloadURL();
 };
 
 const getPicture = async picture => {
-  const picRef = Storage.ref("album_pic/" + picture + ".png");
+  const picRef = Storage.ref("album_pic/" + picture + ".jpg");
   return picRef.getDownloadURL();
 };
 
@@ -45,4 +50,4 @@ const playPauseAudio = () => {
   }
 };
 
-export { getTestAudio, getAudioUrl, playPauseAudio, getPicture };
+export { getTestAudio, getAudioUrl, playPauseAudio, getPicture, getAllFiles };

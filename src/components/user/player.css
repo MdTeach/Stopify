@@ -55,6 +55,15 @@
   transition-duration: 0.4s;
 }
 
+input[type="range"]::-webkit-slider-thumb {
+  -webkit-filter: hue-rotate(143deg) saturate(10);
+  filter: hue-rotate(143deg) saturate(10);
+}
+audio::-webkit-media-controls-timeline {
+  -webkit-filter: hue-rotate(143deg) saturate(10);
+  filter: hue-rotate(143deg) saturate(107);
+}
+
 .volume {
   visibility: hidden;
   width: 0%;

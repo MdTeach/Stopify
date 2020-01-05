@@ -30,7 +30,10 @@ const getUserSong = songName => {
     .catch(function(error) {
       console.error();
     });
-  document.getElementById("song_name").innerHTML = song_name;
+
+  var player_text = document.getElementById("song_name");
+  player_text.innerHTML = song_name;
+  player_text.style.color = "white";
 };
 
 export default () => {

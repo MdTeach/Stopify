@@ -68,7 +68,6 @@ export default () => {
 
         album_cover.style.width = "100%"; //styling image
         album_cover.style.borderBottom = "4px solid rgba(240, 234, 234, 0.9)";
-        album_cover.style.cursor = "pointer";
         album_cover.id = itemRef.name;
 
         gradient_div.style.position = "absolute";
@@ -76,6 +75,7 @@ export default () => {
         gradient_div.style.float = "left";
         gradient_div.style.top = "0";
         gradient_div.style.left = "0";
+        gradient_div.style.cursor = "pointer";
         gradient_div.style.width = "100%";
         gradient_div.style.height = "75%";
         gradient_div.style.backgroundColor = "rgba(0, 0, 0, 0.7)";
@@ -90,6 +90,9 @@ export default () => {
 
         album_cover.onmouseover = function() {
           gradient_div.style.visibility = "visible";
+        };
+
+        gradient_div.onmouseover = function() {
           var play = document.createElement("button");
 
           play.style.borderRadius = "50%";
@@ -113,13 +116,14 @@ export default () => {
           //new_div.appendChild(gradient_div);
           gradient_div.appendChild(play);
         };
-        album_cover.onmouseout = function() {
-          gradient_div.style.visibility = "hidden";
+
+        gradient_div.onmouseout = function() {
           var element = document.getElementById("play_button");
           element.parentNode.removeChild(element);
+          gradient_div.style.visibility = "hidden";
         };
 
-        album_cover.onmousedown = function() {
+        gradient_div.onmousedown = function() {
           getUserSong(album_cover.id);
         };
       });

@@ -151,6 +151,7 @@ audio::-webkit-media-controls-timeline {
     border: 2px solid;
     width: 55px;
     height: 55px;
+    border: 1.5px solid white;
   }
 
   .artist_des {
@@ -172,8 +173,9 @@ audio::-webkit-media-controls-timeline {
     float: left;
   }
 
-  .song_name {
+  #song_name {
     font-size: 16px;
+    color: white;
   }
   .artist_name {
     font-size: 12px;

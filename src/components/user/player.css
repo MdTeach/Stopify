@@ -1,7 +1,7 @@
 .total {
   position: fixed;
   bottom: 0;
-  background-color: gray;
+  background-image: linear-gradient(#000000 -10%, #263c78 180%);
   width: 100%;
   overflow: hidden;
 }
@@ -19,7 +19,7 @@
 }
 
 #pic {
-  border: 2px solid;
+  border: 1.5px solid white;
   border-radius: 10%;
   width: 48px;
   height: 48px;
@@ -116,7 +116,7 @@ audio::-webkit-media-controls-timeline {
     color: white;
   }
 
-  .song_name {
+  #song_name {
     font-size: 12px;
     color: white;
   }

@@ -4,8 +4,34 @@ import "./player.css";
 import {
   getAudioUrl,
   getPicture,
-  getAllFiles
+  getAllFiles,
+  playPauseAudio
 } from "../../utils/firebase_storage";
+
+const getUserSong = songName => {
+  console.log(songName);
+  getAudioUrl(songName)
+    .then(url => {
+      console.log(url);
+      var file = document.getElementById("mplayer");
+      file.src = url;
+      file.play();
+    })
+    .catch(function(error) {
+      console.error();
+    });
+  var song_name = songName.replace(".mp3", "");
+  getPicture(song_name)
+    .then(imgurl => {
+      var file = document.getElementById("pic");
+      file.src = imgurl;
+      //console.log(imgurl);
+    })
+    .catch(function(error) {
+      console.error();
+    });
+  document.getElementById("song_name").innerHTML = song_name;
+};
 
 export default () => {
   const artist_name = "Ed Sheeran";
@@ -31,7 +57,7 @@ export default () => {
           <img id="pic" alt="Artist" />
         </div>
         <div className="artist_des">
-          <p className="song_name">Beautiful People</p>
+          <p id="song_name">Beautiful People</p>
           <p className="artist_name">Ed Sheeran</p>
         </div>
       </div>
@@ -42,3 +68,5 @@ export default () => {
     </div>
   );
 };
+
+export { getUserSong };

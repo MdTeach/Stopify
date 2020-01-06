@@ -1,4 +1,7 @@
-import React, { useContext } from "react";
+import React, { 
+  useContext,
+  useEffect
+} from "react";
 
 import { handleLogout } from "../../utils/firebase_login";
 import { AuthContext } from "../../auth/Auth";
@@ -19,18 +22,30 @@ import "./home.css";
 export default () => {
   const { currentUser } = useContext(AuthContext);
 
-  getAllFiles() // this function creates grid for all the songs in the storage
+  useEffect(() => {
+    console.log("Loading")
+    loadSongs()
+  },[0]);
+
+  const loadSongs = ()=>{
+    // this function creates grid for all the songs in the storage
+    getAllFiles() 
     .then(function(res) {
       res.items.forEach(function(itemRef, index) {
-        var song_name = itemRef.name.replace(".mp3", ""); //removing .mp3 from file name
+        //removing .mp3 from file name
+        const song_name = itemRef.name.replace(".mp3", ""); 
         //console.log(song_name);
-        var new_div = document.createElement("div"); //making new div for every song in storage
-        var album_cover = document.createElement("img"); //getting cover pic of song from storage
-        var album = document.createElement("p"); //creating title of each song
-        var gradient_div = document.createElement("div");
-        var img_add;
+        const new_div = document.createElement("div"); 
+        //making new div for every song in storage
+        const album_cover = document.createElement("img"); 
+        //getting cover pic of song from storage
+        const album = document.createElement("p"); 
+        //creating title of each song
+        const gradient_div = document.createElement("div");
+        let img_add;
 
-        getPicture(song_name) //giving source/address to image element
+        getPicture(song_name) 
+        //giving source/address to image element
           .then(imgurl => {
             img_add = imgurl;
             album_cover.src = imgurl;
@@ -132,6 +147,9 @@ export default () => {
     .catch(function(error) {
       console.log("Some error");
     });
+
+  }
+  
 
   return (
     <div className="body">

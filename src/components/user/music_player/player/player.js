@@ -6,7 +6,7 @@ import {
   getPicture,
   getAllFiles,
   playPauseAudio
-} from "../../utils/firebase_storage";
+} from "../../../../utils/firebase_storage";
 
 const getUserSong = songName => {
   console.log(songName);

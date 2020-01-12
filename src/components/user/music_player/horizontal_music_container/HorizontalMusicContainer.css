@@ -1,0 +1,16 @@
+.horizontal-container{
+    background-color:#121212;
+    cursor: pointer;
+}
+
+.title{
+    color: white;
+    font-size: 2em;
+    font-weight: 700;
+    font-family: Georgia, 'Times New Roman', Times, serif;
+    margin-bottom: 20px;
+}
+
+.card-container{
+    display:flex;
+}

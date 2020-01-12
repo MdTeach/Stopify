@@ -1,0 +1,43 @@
+/*Starting with the big screen*/
+.song-card{
+    background-color: #282828;
+    width: 12em;
+    height: 17em;
+    padding: 1em;
+    margin-right:20px;
+    text-align: center;
+    border-radius: .5em;
+    cursor: pointer;
+}
+
+
+.song-card:hover .song-button{
+    display: block;
+}
+
+.song-image{
+    width: 9.5em;
+    height: 10em;
+}
+
+.song-name{
+    color: blanchedalmond;
+    font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
+    font-size: larger;
+}
+
+.song-author{
+    color: blanchedalmond;
+    font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
+    font-size: medium;
+}
+
+.song-button{
+    width: 2.3em;
+    height: 2.3em;
+    float: right;
+    border-radius: 100%;
+    border: none;
+    background-color: #60bb56;
+    display: none;
+}

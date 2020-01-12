@@ -8,7 +8,8 @@ import React,{
 import {getAllSongsInfo} from '../audio_utils/audio_utils'
 
 //components
-import SongCard from '../song_card/SongCard'
+//import SongCard from '../song_card/SongCard'
+import HorizontalMusicContainer from '../horizontal_music_container/HorizontalMusicContainer'
 import CircularLoading from '../../../extra/CircularLoading/CircularLoading'
 
 export default ()=>{
@@ -38,9 +39,7 @@ export default ()=>{
     },[]);
 
     return(
-        <div className="any" style={{background:"white"}}>
-            <h1>All songs</h1>
-            
+        <div className="any" style={{background:"white",display:"flex",backgroundColor:"#121212",padding:"1em"}}>
             {
                 //Loading data
                 (isfetchingSongs === true) ? 
@@ -49,7 +48,7 @@ export default ()=>{
                     (allSongs.length === 0) ?
                         <h4>No data</h4>
                     :
-                        allSongs.map((data)=> <SongCard key={data["audioUrl"]} data={data} /> )
+                        <HorizontalMusicContainer data={allSongs} title="All Songs"/>
             }
         </div>
     );

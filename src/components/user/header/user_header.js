@@ -40,7 +40,7 @@ export default (props)=>{
                 <Link className="dropdown-item " to="#">
                 Settings
                 </Link>
-                <Link className="dropdown-item " onClick={handleLogout}>
+                <Link to="/" className="dropdown-item " onClick={handleLogout}>
                 Log Out
                 </Link>
             </div>

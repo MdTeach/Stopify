@@ -1,0 +1,26 @@
+.song-wrapper{
+    background-color:#121212;
+}
+.sidebar-and-songs{
+    display: flex;
+}
+
+.side-bar{
+    flex: 1; 
+    color: aliceblue;
+    background-color: cadetblue;
+    /* background-color: #040404;    */
+}
+
+.music_lists{
+    flex: 6;
+    padding: 1em;
+}
+
+.music-controller {
+    position: fixed;
+    width: 100%;
+    left: 0;
+    bottom: 0;
+    text-align: center;
+  }

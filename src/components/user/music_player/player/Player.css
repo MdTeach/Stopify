@@ -2,5 +2,14 @@
   width: 100%;
   background-color: #181818;
   color: aliceblue;
-  height:80px;
+  height:100px;
+  display: flex;
+}
+
+.label{
+  flex:1
+}
+
+.controller{
+  flex:3
 }

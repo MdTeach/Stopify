@@ -20,7 +20,7 @@ export default ()=>{
 
     const [isfetchingSongs, setFetchingSongs] = useState(true);
     const [allSongs, setAllSongs] = useState([]);
-
+    
     const fetchSongs = async ()=>{
         //getting the songs as array
         const songs = await getAllSongsInfo();

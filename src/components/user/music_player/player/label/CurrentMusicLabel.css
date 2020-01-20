@@ -1,0 +1,44 @@
+.current-music-label{
+    display: flex;
+    text-align: center;
+    padding: 1em;
+    /*Vertical center*/
+    margin: 0;
+    position: absolute;
+    top: 50%;
+    -ms-transform: translateY(-50%);
+    transform: translateY(-50%);
+    cursor: pointer;
+}
+
+.muic-thumb-nail{
+    width: 4em;
+    height: 4em;
+    margin-right:1em;
+}
+
+.labels{
+    text-align: left;
+}
+
+.song_name{
+    margin-top: .5em;
+    font-family: 'Times New Roman', Times, serif;
+    font-size: larger;
+    color:honeydew;
+    font-weight: bold;
+}
+
+.song_name:hover{
+    text-decoration: underline;
+}
+
+.song_artist{
+    font-size: small;
+    color:gray;
+    font-weight: bold;
+}
+
+.song_artist:hover{
+    text-decoration: underline;
+}

@@ -6,5 +6,13 @@ import CircularProgress from '@material-ui/core/CircularProgress';
  * @param color color of the progress bar default secondary
 */
 export default (props)=>(
-    <CircularProgress color={(props.color) ? props.color : "secondary"  } />
+    <div style={{
+        width:"100%",
+        height:"100%",
+        textAlign:"center"
+    }}>
+        <CircularProgress 
+            color={(props.color) ? props.color : "secondary"  } 
+        />
+    </div>
 );

@@ -8,7 +8,7 @@ export default (props)=>{
         <div className="horizontal-container">
         <div className="title">{props.title}</div>
             <div className="card-container">
-            {props.data.map((data)=> <SongCard key={data["audioUrl"]} data={data} /> )}
+            {props.data.map((data)=> <SongCard key={data["audioUrl"]} data={data} changeMusic={props.changeMusic}/> )}
             </div>
         </div>
     )

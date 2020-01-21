@@ -11,11 +11,15 @@
     cursor: pointer;
 }
 
+
+
 .muic-thumb-nail{
     width: 4em;
     height: 4em;
     margin-right:1em;
 }
+
+
 
 .labels{
     text-align: left;

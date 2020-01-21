@@ -20,7 +20,9 @@ export default ()=>{
 
     const [isfetchingSongs, setFetchingSongs] = useState(true);
     const [allSongs, setAllSongs] = useState([]);
+    const [currentPlaying, setCurrentPlaying] = useState({});
     
+    //get all the song infos
     const fetchSongs = async ()=>{
         //getting the songs as array
         const songs = await getAllSongsInfo();
@@ -31,13 +33,19 @@ export default ()=>{
         //set our songs data
         setAllSongs(songs);
 
-        console.log(songs)
-    
+    }
+
+    //change the playing the song
+    const changeMusic = (newMusic)=>{
+        if(newMusic["audioUrl"] != currentPlaying["audioUrl"]){
+            //change the music
+            setCurrentPlaying(newMusic);
+        }
     }
 
 
     useEffect(() => {
-        console.log("Loading")
+        console.log("Calling..")
         fetchSongs()
         //loadSongs()
     },[]);
@@ -57,12 +65,12 @@ export default ()=>{
                         (allSongs.length === 0) ?
                             <h4>No data</h4>
                         :
-                            <HorizontalMusicContainer data={allSongs} title="All Songs"/>
+                            <HorizontalMusicContainer data={allSongs} changeMusic={changeMusic} title="All Songs"/>
                 }
                 </div>
             </div>
             <div className="music-controller">
-                <MusicPlayer/>
+                <MusicPlayer currentPlaying={currentPlaying}/>
             </div>
             
         </div>

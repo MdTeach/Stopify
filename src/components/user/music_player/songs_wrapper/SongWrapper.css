@@ -1,26 +1,60 @@
-.song-wrapper{
-    background-color:#121212;
+.song-wrapper {
+  background-image: linear-gradient(to right, rgb(20, 20, 20), rgb(12, 12, 12));
+  padding-top: 60px;
+  height: min-content;
 }
-.sidebar-and-songs{
-    display: flex;
-}
-
-.side-bar{
-    flex: 1; 
-    color: aliceblue;
-    background-color: cadetblue;
-    /* background-color: #040404;    */
+.sidebar-and-songs {
+  width: 100%;
+  display: flex;
+  position: relative;
 }
 
-.music_lists{
-    flex: 6;
-    padding: 1em;
+.side-bar {
+  width: 20%;
+  color: white;
+  color: aliceblue;
+  background-color: black;
+  /* background-color: #040404;    */
+}
+
+.music_lists {
+  display: block;
+  width: 80%;
+  flex: 6;
+  padding: 1em;
+}
+.settings {
+  top: 0;
+  right: 0;
+  z-index: 10;
+  padding-top: 80px;
+  position: absolute;
+  width: 80%;
+  display: none;
+  border-style: none;
 }
 
 .music-controller {
-    position: fixed;
-    width: 100%;
-    left: 0;
-    bottom: 0;
-    text-align: center;
+  position: fixed;
+  width: 100%;
+  left: 0;
+  bottom: 0;
+  text-align: center;
+}
+
+@media (min-width: 921px) {
+  .side-bar {
+    width: 15%;
   }
+  .music_lists {
+    width: 85%;
+  }
+
+  .song-wrapper {
+    padding-top: 80px;
+  }
+
+  .settings {
+    width: 85%;
+  }
+}

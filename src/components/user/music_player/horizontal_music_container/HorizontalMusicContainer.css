@@ -1,16 +1,18 @@
-.horizontal-container{
-    
-    cursor: pointer;
+.horizontal-container {
+  cursor: pointer;
+  display: block;
 }
 
-.title{
-    color: white;
-    font-size: 2em;
-    font-weight: 700;
-    font-family: Georgia, 'Times New Roman', Times, serif;
-    margin-bottom: 20px;
+.title {
+  color: white;
+  font-size: 2em;
+  font-weight: 500;
+  font-family: "Franklin Gothic Medium", "Arial Narrow", Arial, sans-serif;
+  margin-bottom: 10px;
+  margin-left: 10px;
 }
 
-.card-container{
-    display:flex;
+.card-container {
+  display: flex;
+  flex-wrap: wrap;
 }

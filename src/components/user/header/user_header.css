@@ -1,3 +1,121 @@
-/*
-    Your code here
-*/
+.welcome {
+  background-color: #282828;
+
+  padding: 5px 5px 5px 5px;
+  border-radius: 100%;
+  margin: 10px 20px 10px 20px;
+  align-items: center;
+  color: white;
+  font-size: 12px;
+  border-style: none;
+  float: right;
+  vertical-align: middle;
+  outline: none !important;
+  display: flex;
+  align-items: center;
+}
+
+.welcome:hover {
+  border: 1.5px #282828 solid;
+}
+
+.top {
+  position: fixed;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  background-image: linear-gradient(
+    to right,
+    rgba(20, 20, 20, 0.7),
+    rgba(12, 12, 12, 0.7)
+  );
+  height: 60px;
+  overflow: visible;
+}
+
+.logoimg {
+  width: 95%;
+  height: width / 3;
+  padding-left: 10px;
+}
+
+.logo_content {
+  display: inline-flex;
+  align-items: center;
+  background-color: black;
+  height: 100%;
+  width: 20%;
+  float: left;
+  padding-right: 0px;
+}
+
+.middle {
+  float: right;
+  width: 80%;
+}
+
+.profilepic {
+  height: 25px;
+  width: 25px;
+  border-radius: 200px;
+  padding-left: 0px;
+}
+
+#pp_username {
+  letter-spacing: 1px;
+  padding-right: 15px;
+  padding-left: 15px;
+  font-weight: 500;
+  display: none;
+}
+.back_buttons {
+  float: left;
+  width: max-content;
+}
+
+#backb {
+  height: 34px;
+  width: 34px;
+  border-radius: 500%;
+  color: white;
+  background-color: black;
+  border-style: none;
+  margin: 10px 5px 5px 10px;
+  justify-content: center;
+  align-items: center;
+  display: inline-flex;
+  outline: none !important;
+}
+
+@media (min-width: 921px) {
+  .logoimg {
+    width: 75%;
+    height: width / 3;
+    padding-left: 10px;
+  }
+  .logo_content {
+    width: 15%;
+  }
+  .middle {
+    width: 85%;
+  }
+
+  .back_buttons {
+    padding-left: 15px;
+  }
+
+  .top {
+    height: 80px;
+  }
+
+  #pp_username {
+    float: right;
+    display: block;
+  }
+
+  .welcome {
+    padding: 5px 10px 5px 10px;
+    border-radius: 200px;
+  }
+}

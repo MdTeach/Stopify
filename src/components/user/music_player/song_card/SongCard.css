@@ -1,43 +1,50 @@
 /*Starting with the big screen*/
-.song-card{
-    background-color: #282828;
-    width: 12em;
-    height: 17em;
-    padding: 1em;
-    margin-right:20px;
-    text-align: center;
-    border-radius: .5em;
-    cursor: pointer;
+.song-card {
+  background-color: #242323;
+  width: 12em;
+  height: 17em;
+  padding: 1.25em;
+  margin-right: 20px;
+  text-align: center;
+  border-radius: 0.5em;
+  cursor: pointer;
+  margin: 10px 10px 10px 10px;
 }
 
-
-.song-card:hover .song-button{
-    display: block;
+.song-card:hover .song-button {
+  display: block;
 }
 
-.song-image{
-    width: 9.5em;
-    height: 10em;
+.song-image {
+  width: 9.5em;
+  height: 10em;
 }
 
-.song-name{
-    color: blanchedalmond;
-    font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
-    font-size: larger;
+.song-name {
+  padding: 8px 0px 8px 0px;
+  text-align: left;
+  color: blanchedalmond;
+  font-family: Cambria, Cochin, Georgia, Times, "Times New Roman", serif;
+  font-size: 16px;
+  display: flex;
+  flex-wrap: wrap;
 }
 
-.song-author{
-    color: blanchedalmond;
-    font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
-    font-size: medium;
+.song-author {
+  color: blanchedalmond;
+  font-family: Cambria, Cochin, Georgia, Times, "Times New Roman", serif;
+  font-size: 14px;
+  float: left;
 }
 
-.song-button{
-    width: 2.3em;
-    height: 2.3em;
-    float: right;
-    border-radius: 100%;
-    border: none;
-    background-color: #60bb56;
-    display: none;
+.song-button {
+  width: 40px;
+  height: 40px;
+  float: right;
+  border-radius: 100%;
+  border: none;
+  background-color: #1db954;
+  display: none;
+  float: right;
+  outline: none !important;
 }

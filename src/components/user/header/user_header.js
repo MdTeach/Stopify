@@ -1,54 +1,44 @@
-import React from 'react'
+import React from "react";
 
 import logo from "../../landing_page/images/logo2.png";
 import { handleLogout } from "../../../utils/firebase_login";
-import {Link} from 'react-router-dom';
+import "./user_header.css";
 
-
-export default (props)=>{
-    return(
-        <nav className="top ">
-        <div className="logo_content">
-            <img src={logo} alt="logo" className="logoimg"></img>
+export default props => {
+  return (
+    <nav className="top ">
+      <div className="logo_content">
+        <img src={logo} alt="logo" className="logoimg"></img>
+      </div>
+      <div className="middle">
+        <div className="back_buttons">
+          <button id="backb">
+            <svg height="22" width="22" viewBox="0 0 24 24">
+              <path
+                fill="white"
+                d="M15.54 21.15L5.095 12.23 15.54 3.31l.65.76-9.555 8.16 9.555 8.16"
+              ></path>
+            </svg>
+          </button>
+          <button id="backb">
+            <svg height="22" width="22" viewBox="0 0 24 24">
+              <path
+                fill="white"
+                d="M7.96 21.15l-.65-.76 9.555-8.16L7.31 4.07l.65-.76 10.445 8.92"
+              ></path>
+            </svg>
+          </button>
         </div>
 
-        <div className="profile_header">
-            <div className="dropdown">
-            <button
-                className="btn btn-primary dropdown-toggle btn-sm"
-                type="button"
-                id="dropdownMenuButton"
-                data-toggle="dropdown"
-                aria-haspopup="true"
-                aria-expanded="false"
-            ></button>
-            <div
-                className="dropdown-menu pull-left"
-                aria-labelledby="dropdownMenuButton"
-            >
-                <h5 className="dropdown-header" to="./">
-                <img
-                    className="profilepic"
-                    src={props.currentUser.photoURL}
-                    alt="Pic"
-                />
-                <b> | {props.currentUser.displayName}</b>
-                <br />
-                {props.currentUser.email}
-                </h5>
-                <div className="dropdown-divider"></div>
-                <Link className="dropdown-item " to="#">
-                Settings
-                </Link>
-                <Link to="/" className="dropdown-item " onClick={handleLogout}>
-                Log Out
-                </Link>
-            </div>
-            </div>
-            <div className="welcome">
-            Welcome, <b>{props.currentUser.displayName}</b>
-            </div>
-        </div>
-        </nav>
-    );
-}
+        <button className="welcome">
+          <img
+            className="profilepic"
+            src={props.currentUser.photoURL}
+            alt="profile_pic"
+          />
+          <b id="pp_username">{props.currentUser.displayName}</b>
+        </button>
+      </div>
+    </nav>
+  );
+};

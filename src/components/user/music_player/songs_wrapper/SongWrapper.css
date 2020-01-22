@@ -1,27 +1,33 @@
 .song-wrapper {
   background-image: linear-gradient(to right, rgb(20, 20, 20), rgb(12, 12, 12));
   padding-top: 60px;
-  height: min-content;
+  width: 100%;
 }
 .sidebar-and-songs {
   width: 100%;
-  display: flex;
+  display: block;
   position: relative;
 }
 
 .side-bar {
-  width: 20%;
+  position: fixed;
+  display: flex;
+  flex-direction: column;
+  width: 30%;
+  height: 100%;
   color: white;
-  color: aliceblue;
   background-color: black;
   /* background-color: #040404;    */
 }
 
 .music_lists {
-  display: block;
-  width: 80%;
+  position: relative;
+  float: right;
+  display: flex;
+  width: 70%;
   flex: 6;
   padding: 1em;
+  background-image: linear-gradient(to right, rgb(20, 20, 20), rgb(12, 12, 12));
 }
 .settings {
   top: 0;

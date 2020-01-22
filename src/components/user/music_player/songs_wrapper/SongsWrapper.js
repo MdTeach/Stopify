@@ -33,7 +33,10 @@ export default () => {
 
   //change the playing the song
   const changeMusic = newMusic => {
-    if (newMusic["audioUrl"] != currentPlaying["audioUrl"]) {
+    if (newMusic["audioUrl"] == currentPlaying["audioUrl"]) {
+      //pause the music
+      //setCurrentPlaying({});
+    }else{
       //change the music
       setCurrentPlaying(newMusic);
     }
@@ -62,6 +65,7 @@ export default () => {
               data={allSongs}
               changeMusic={changeMusic}
               title="All Songs"
+              currentPlaying = {currentPlaying}
             />
           )}
         </div>

@@ -1,2 +1,31 @@
+.sidenav {
+  width: 100%;
+  color: white;
+}
 
-/*Your code here*/
+.items {
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  padding: 5px 15px 15px 0px;
+}
+
+li {
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  font-size: 10px;
+  font-weight: 500;
+  padding: 8px 0px 8px 0px;
+  transition-duration: 0.3s;
+}
+
+.nav-text {
+  padding-left: 10px;
+}
+
+@media (min-width: 921px) {
+  li {
+    font-size: 14px;
+  }
+}

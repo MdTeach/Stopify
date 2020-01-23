@@ -11,7 +11,7 @@
 
 .side-bar {
   position: fixed;
-  display: flex;
+  display: block;
   flex-direction: column;
   width: 30%;
   height: 100%;

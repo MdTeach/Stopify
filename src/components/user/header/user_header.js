@@ -2,6 +2,7 @@ import React from "react";
 
 import logo from "../../landing_page/images/logo2.png";
 import { handleLogout } from "../../../utils/firebase_login";
+import { Link } from "react-router-dom";
 import "./user_header.css";
 
 export default props => {
@@ -20,6 +21,7 @@ export default props => {
               ></path>
             </svg>
           </button>
+
           <button id="backb">
             <svg height="22" width="22" viewBox="0 0 24 24">
               <path
@@ -29,15 +31,16 @@ export default props => {
             </svg>
           </button>
         </div>
-
-        <button className="welcome">
-          <img
-            className="profilepic"
-            src={props.currentUser.photoURL}
-            alt="profile_pic"
-          />
-          <b id="pp_username">{props.currentUser.displayName}</b>
-        </button>
+        <Link to="/settings">
+          <button className="welcome">
+            <img
+              className="profilepic"
+              src={props.currentUser.photoURL}
+              alt="profile_pic"
+            />
+            <b id="pp_username">{props.currentUser.displayName}</b>
+          </button>
+        </Link>
       </div>
     </nav>
   );

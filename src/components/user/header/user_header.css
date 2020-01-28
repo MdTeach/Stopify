@@ -76,8 +76,8 @@
 }
 
 #backb {
-  height: 34px;
-  width: 34px;
+  height: 24px;
+  width: 24px;
   border-radius: 500%;
   color: white;
   background-color: black;
@@ -118,5 +118,9 @@
   .welcome {
     padding: 5px 10px 5px 10px;
     border-radius: 200px;
+  }
+  #backb {
+    height: 34px;
+    width: 34px;
   }
 }

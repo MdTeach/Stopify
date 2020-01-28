@@ -28,6 +28,7 @@
   flex: 6;
   padding: 1em;
   background-image: linear-gradient(to right, rgb(20, 20, 20), rgb(12, 12, 12));
+  height: 100%;
 }
 .settings {
   top: 0;

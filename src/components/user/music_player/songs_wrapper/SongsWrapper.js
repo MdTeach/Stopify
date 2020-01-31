@@ -68,6 +68,9 @@ export default props => {
     //loadSongs()
   }, []);
 
+  console.log("THis is home\n")
+  console.log(props)
+
   return (
     <div className="song-wrapper">
       <div className="sidebar-and-songs">

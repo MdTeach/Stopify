@@ -1,7 +1,5 @@
 import React, { useContext, useEffect } from "react";
 
-import { BrowserRouter } from "react-router-dom";
-
 import { AuthContext } from "../../auth/Auth";
 import "./home.css";
 
@@ -10,13 +8,11 @@ import SongsWrapper from "./music_player/songs_wrapper/SongsWrapper";
 
 export default () => {
   const { currentUser } = useContext(AuthContext);
-
+  
   return (
     <div className="body">
-      <BrowserRouter>
-        <UserNav currentUser={currentUser} />
-        <SongsWrapper currentUser={currentUser} />
-      </BrowserRouter>
+      <UserNav currentUser={currentUser} />
+      <SongsWrapper currentUser={currentUser} />
     </div>
   );
 };

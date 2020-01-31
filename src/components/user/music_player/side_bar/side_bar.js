@@ -17,17 +17,17 @@ export default () => {
     <nav className="sidenav">
       <div className="head">
         <ul className="items">
-          <li onClick={() => updatePage("Home")}>
+          <li>
             <Link to="/" className="side-link">
               <Home page={currentPage} />
             </Link>
           </li>
-          <li onClick={() => updatePage("Search")}>
+          <li>
             <Link to="/search" className="side-link">
               <Search page={currentPage} />
             </Link>
           </li>
-          <li onClick={() => updatePage("Library")}>
+          <li>
             <Link to="/library" className="side-link">
               <SongsLib page={currentPage} />
             </Link>

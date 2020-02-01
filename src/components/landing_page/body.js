@@ -1,4 +1,6 @@
 import React, { Component } from "react";
+import { Link } from "react-router-dom";
+
 import image1 from "./images/image1.jpg";
 import image3 from "./images/image3.jpg";
 import image4 from "./images/image4.jpg";
@@ -14,7 +16,9 @@ class Body extends Component {
           <div className="banner_item">
             <h1>Music for everyone</h1>
             <br />
-            <button className="button_banner">Get Started</button>
+            <Link to="/login">
+              <button className="button_banner">Get Started</button>
+            </Link>
           </div>
         </div>
 

@@ -8,7 +8,7 @@ import { getAllSongsInfo } from "../audio_utils/audio_utils";
 
 //components
 //import SongCard from '../song_card/SongCard'
-import SideBar from "../side_bar/side_bar";
+import SideBar from "../side_bar/check_sideBar";
 import MusicPlayer from "../player/MusicPlayer";
 import HorizontalMusicContainer from "../horizontal_music_container/HorizontalMusicContainer";
 import CircularLoading from "../../../extra/CircularLoading/CircularLoading";

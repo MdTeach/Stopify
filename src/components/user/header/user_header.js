@@ -9,7 +9,7 @@ export default props => {
   return (
     <nav className="top ">
       <div className="logo_content">
-        <img src={logo} alt="logo" className="logoimg"></img>
+        <img src={logo} alt="logo" className="logoimg"></img> 
       </div>
       <div className="middle">
         <div className="back_buttons">

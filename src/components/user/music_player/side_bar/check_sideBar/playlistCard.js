@@ -70,9 +70,10 @@ export default (props)=>{
             })
 
     }
+    
 
     return(
-        <Card variant="outlined" className={classes.card}>
+        <Card variant="outlined" className={classes.card} >
             <CardContent>
                 <div className={classes.details}>
                 <Typography className={classes.name} >{props.data["playlistName"]}</Typography>

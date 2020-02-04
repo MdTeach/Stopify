@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react";
 import { Route } from "react-router";
 //css
 import "./SongWrapper.css";
-
+import Check from './check.js'
 //functions
 import { getAllSongsInfo } from "../audio_utils/audio_utils";
 
@@ -68,8 +68,7 @@ export default props => {
     //loadSongs()
   }, []);
 
-  console.log("THis is home\n")
-  console.log(props)
+  
 
   return (
     <div className="song-wrapper">
@@ -82,8 +81,7 @@ export default props => {
           <Route exact path="/settings">
             <Settings currentUser={props.currentUser} />
           </Route>
-          <Route exact path="/search" render={() => <h1>Search</h1>} />
-          <Route exact path="/library" render={() => <h1>Library</h1>} />
+          <Route path="/album" component={Check}/>
         </div>
       </div>
       <div className="music-controller">

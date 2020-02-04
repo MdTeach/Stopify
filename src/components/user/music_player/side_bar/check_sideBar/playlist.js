@@ -12,8 +12,7 @@ export default ()=>{
         .then((querySnapshot)=>{
             const playlist=querySnapshot.docs.map((el)=>el.data())
             setAllPlaylist(playlist)
-            console.log(playlist)
-            console.log(allPlaylist)
+           
         })
         .catch((error)=>{
             console.log("error",error)

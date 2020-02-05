@@ -41,7 +41,7 @@ const useStyles=makeStyles({
     }, 
     dialogBox:{
         backgroundColor:"gray",
-        width:"1100"
+        
     },
     cancelButton:{
         borderRadius:30,
@@ -50,6 +50,7 @@ const useStyles=makeStyles({
         outline:"none !important"
     },
     createButton:{
+        color:"white",
         borderRadius:30,
         backgroundColor:"#1ed760",
         outline:"none !important",
@@ -83,10 +84,10 @@ export default ()=>{
     const [open,setOpen]=useState(false);
    
     const [Name,setName]=useState("");
-    const [buttonState,setButtonState]=useState(false)
+    
 
     const handleTextChange=(e)=>{
-        setButtonState(true);
+       
         setName(e.target.value)
     }
 
@@ -159,7 +160,7 @@ export default ()=>{
         
         { !allowLibrary && blackBox() }
         {allowLibrary && greenBox()}
-        <Link to='/library' style={{textDecoration:'none'}}>
+        <Link to='/library/playlist' style={{textDecoration:'none'}}>
         <Button className={classes.Button} startIcon={<ListOutlinedIcon style={{fontSize:30}}/>} onClick={Library} >
             Library
         </Button>
@@ -186,7 +187,7 @@ export default ()=>{
             </DialogContent>
             <DialogActions>
             <Button variant="outlined" className={classes.cancelButton} onClick={handleClose}>Cancel</Button>
-            <Link to='/search' style={{textDecoration:"none"}}>
+            <Link to='/library/playlist' style={{textDecoration:"none"}}>
             <Button variant="contained" onClick={createPlaylist} className={classes.createButton}>Create</Button>
             </Link>
             </DialogActions>

@@ -14,6 +14,13 @@ import {FireStore as db} from '../../../../../utils/firebase.js'
 import {AuthContext} from '../../../../../auth/Auth.js'
 import Playlist from './playlist.js'
 
+import TextField from '@material-ui/core/TextField';
+import Dialog from '@material-ui/core/Dialog';
+import DialogActions from '@material-ui/core/DialogActions';
+import DialogContent from '@material-ui/core/DialogContent';
+import DialogContentText from '@material-ui/core/DialogContentText';
+import DialogTitle from '@material-ui/core/DialogTitle';
+
 
 const useStyles=makeStyles({
     Button:{
@@ -31,34 +38,26 @@ const useStyles=makeStyles({
         fontSize:"13px",
         marginTop:"10px",
         marginLeft:"18px"
-    },
-    playlist:{
-        borderRadius:10,
-        outline:'0 !important',
-        marginLeft:"18px",
+    }, 
+    dialogBox:{
         backgroundColor:"gray",
-        border:0,
-        width:"170px",
-        textAlign:"center"
+        width:"1100"
+    },
+    cancelButton:{
+        borderRadius:30,
+        borderColor:"white",
+        color:"white",
+        outline:"none !important"
     },
     createButton:{
-        marginLeft:"5px",
-        marginTop:"-3px",
-        fontSize:"30px",
+        borderRadius:30,
+        backgroundColor:"#1ed760",
+        outline:"none !important",
         '&:hover':{
-            color:"#1ed760",
-            cursor:"pointer"
+            backgroundColor:"#1ed760",
         }
-    }, 
-    cancelButton:{
-        marginLeft:"5px",
-        marginTop:"-3px",
-        fontSize:"30px",
-        '&:hover':{
-            color:"red",
-            cursor:"pointer"
-        }
-    }
+    },
+    
 
 })
 
@@ -81,17 +80,29 @@ export default ()=>{
     const [allowHome,setAllowHome]=useState(true);
     const [allowSearch,setAllowSearch]=useState(false);
     const [allowLibrary,setAllowLibrary]=useState(false);
-    const [allowPlaylist,setAllowPlaylist]=useState(false);
+    const [open,setOpen]=useState(false);
+   
     const [Name,setName]=useState("");
+    const [buttonState,setButtonState]=useState(false)
 
     const handleTextChange=(e)=>{
+        setButtonState(true);
         setName(e.target.value)
+    }
+
+    const handleClickOpen=()=>{
+        setOpen(true);
+    }
+
+    const handleClose=()=>{
+        setOpen(false);
     }
 
     
     const createPlaylist=()=>{
-       setAllowPlaylist(false);
        
+       setOpen(false);
+       if(Name.length>0){
         db.collection("userPlaylist").add({
             playlistName:Name,
             uid:currentUser.uid,
@@ -104,6 +115,7 @@ export default ()=>{
         .catch((error)=>{
             console.error("Error adding the document",error);
         })
+    }
 
     
     }
@@ -155,16 +167,32 @@ export default ()=>{
         <br/>
         <br/>
         <Typography>Playlist</Typography>
-        <Button className={classes.playlistButton} startIcon={<AddCircleOutlineOutlinedIcon style={{fontSize:30}}/>} onClick={()=>{setAllowPlaylist(true)}}>
+        <Button className={classes.playlistButton} startIcon={<AddCircleOutlineOutlinedIcon style={{fontSize:30}}/>} onClick={handleClickOpen}>
             Create Playlist
         </Button>
-        {allowPlaylist &&
-        <div>
-        <input type="text" onChange={handleTextChange} placeholder="Playlist Name" required className={classes.playlist}/>
-        {Name.length?<CheckCircleIcon className={classes.createButton} onClick={createPlaylist}/>
-        :<CancelIcon className={classes.cancelButton} onClick={()=>{setAllowPlaylist(false)}}/>}
-        </div>
-        }
+        <Dialog open={open} onClose={handleClose}  fullWidth>
+            <div className={classes.dialogBox}>
+            <DialogTitle>Create New Playlist</DialogTitle>
+            <DialogContent>
+            <TextField
+            autoFocus
+            margin="dense"
+            id="name"
+            label="Playlist Name"
+            type="text"
+            onChange={handleTextChange}
+            fullWidth
+          />
+            </DialogContent>
+            <DialogActions>
+            <Button variant="outlined" className={classes.cancelButton} onClick={handleClose}>Cancel</Button>
+            <Link to='/search' style={{textDecoration:"none"}}>
+            <Button variant="contained" onClick={createPlaylist} className={classes.createButton}>Create</Button>
+            </Link>
+            </DialogActions>
+            </div>
+        </Dialog>
+        
         <Playlist/>
         </div>
         

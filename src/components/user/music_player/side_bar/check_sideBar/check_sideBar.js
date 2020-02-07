@@ -13,6 +13,7 @@ import "./sideBar.css";
 import { FireStore as db } from "../../../../../utils/firebase.js";
 import { AuthContext } from "../../../../../auth/Auth.js";
 import Playlist from "./playlist.js";
+
 import TextField from "@material-ui/core/TextField";
 import Dialog from "@material-ui/core/Dialog";
 import DialogActions from "@material-ui/core/DialogActions";
@@ -124,6 +125,7 @@ export default () => {
     setAllowSearch(false);
     setAllowHome(false);
   };
+
   return (
     <div>
       {!allowHome && blackBox()}
@@ -135,6 +137,19 @@ export default () => {
           onClick={Home}
         >
           Home
+        </Button>
+      </Link>
+      <br />
+
+      {!allowSearch && blackBox()}
+      {allowSearch && greenBox()}
+      <Link to="/search" style={{ textDecoration: "none" }}>
+        <Button
+          className={classes.Button}
+          startIcon={<SearchOutlinedIcon style={{ fontSize: 30 }} />}
+          onClick={Search}
+        >
+          Search
         </Button>
       </Link>
       <br />

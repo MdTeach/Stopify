@@ -2,7 +2,8 @@ import React, { useEffect, useState } from "react";
 import { Route } from "react-router";
 //css
 import "./SongWrapper.css";
-import Check from './check.js'
+import CardDetails from './cardDetails'
+import Library from './library/library'
 //functions
 import { getAllSongsInfo } from "../audio_utils/audio_utils";
 
@@ -81,7 +82,8 @@ export default props => {
           <Route exact path="/settings">
             <Settings currentUser={props.currentUser} />
           </Route>
-          <Route path="/album" component={Check}/>
+          <Route path="/album" component={CardDetails}/>
+          <Route  path='/library' component={Library}/>
         </div>
       </div>
       <div className="music-controller">

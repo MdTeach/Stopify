@@ -1,11 +1,50 @@
-import React from "react";
-
+import React,{useState} from "react";
+import Menu from '@material-ui/core/Menu';
+import MenuItem from '@material-ui/core/MenuItem';
 import logo from "../../landing_page/images/logo2.png";
 import { handleLogout } from "../../../utils/firebase_login";
 import { Link } from "react-router-dom";
 import "./user_header.css";
+import {withStyles,makeStyles} from '@material-ui/core/styles'
+
+
+const StyledMenuItem = withStyles(theme => ({
+  root: {
+      backgroundColor:"#363636",
+      color:"gray",
+      margin:-8,
+      paddingRight:95,
+
+    '&:hover': {
+      backgroundColor: "#363636",
+      color:"white"
+    },
+  },
+}))(MenuItem);
+
+const useStyles=makeStyles({
+  menu:{
+    marginLeft:20,
+    marginTop:35
+    
+  }
+})
+
+
+
+
+
 
 export default props => {
+  const classes=useStyles();
+  const [anchorEl,setAnchorEl]=React.useState(null);
+    const open=Boolean(anchorEl);
+    const handleClick=e=>{
+        setAnchorEl(e.currentTarget);
+    }
+    const handleClose=e=>{
+        setAnchorEl(null)
+    }
   return (
     <nav className="top ">
       <div className="logo_content">
@@ -31,8 +70,8 @@ export default props => {
             </svg>
           </button>
         </div>
-        <Link to="/settings">
-          <button className="welcome">
+        
+          <button className="welcome" onClick={handleClick}>
             <img
               className="profilepic"
               src={props.currentUser.photoURL}
@@ -40,7 +79,13 @@ export default props => {
             />
             <b id="pp_username">{props.currentUser.displayName}</b>
           </button>
-        </Link>
+          <Menu anchorEl={anchorEl} keepMounted open={open} className={classes.menu} onClose={handleClose}  >
+          <Link to="/" style={{textDecoration:"none"}}>
+                    <StyledMenuItem onClick={handleLogout}>Logout</StyledMenuItem>
+                    </Link>
+                    
+          </Menu>
+        
       </div>
     </nav>
   );

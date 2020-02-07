@@ -13,7 +13,7 @@ import SideBar from "../side_bar/check_sideBar/check_sideBar.js";
 import MusicPlayer from "../player/MusicPlayer";
 import HorizontalMusicContainer from "../horizontal_music_container/HorizontalMusicContainer";
 import CircularLoading from "../../../extra/CircularLoading/CircularLoading";
-import Settings from "../../user_info/user_info";
+
 
 export default props => {
   const [isfetchingSongs, setFetchingSongs] = useState(true);
@@ -79,9 +79,6 @@ export default props => {
         </div>
         <div className="music_lists">
           <Route exact path="/" component={loadingIcon} />
-          <Route exact path="/settings">
-            <Settings currentUser={props.currentUser} />
-          </Route>
           <Route path="/album" component={CardDetails}/>
           <Route  path='/library' component={Library}/>
         </div>

@@ -7,8 +7,6 @@ import ListOutlinedIcon from '@material-ui/icons/ListOutlined';
 import {Link} from 'react-router-dom'
 import {Typography} from '@material-ui/core'
 import AddCircleOutlineOutlinedIcon from '@material-ui/icons/AddCircleOutlineOutlined';
-import CheckCircleIcon from '@material-ui/icons/CheckCircle';
-import CancelIcon from '@material-ui/icons/Cancel';
 import './sideBar.css'
 import {FireStore as db} from '../../../../../utils/firebase.js'
 import {AuthContext} from '../../../../../auth/Auth.js'

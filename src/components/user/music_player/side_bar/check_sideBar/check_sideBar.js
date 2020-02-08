@@ -167,7 +167,7 @@ export default () => {
             >
               Cancel
             </Button>
-            <Link to="/library/playlist" style={{ textDecoration: "none" }}>
+            <Link to="/library" style={{ textDecoration: "none" }}>
               <Button
                 variant="contained"
                 onClick={createPlaylist}

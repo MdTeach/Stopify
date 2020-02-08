@@ -42,7 +42,7 @@ const useStyles = makeStyles({
   buttonText:{
       marginLeft:"9px",
       marginTop:"3px"
-  },
+ },
   playlistButton: {
     color: "white",
     textTransform: "none",
@@ -71,16 +71,7 @@ const useStyles = makeStyles({
   }
 });
 
-/*const blackBox = () => (
-  <svg viewBox="0 0 20 30" height="30px" width="20px">
-    <rect width="4px" height="50px" fill="Black" />
-  </svg>
-);
-const greenBox = () => (
-  <svg viewBox="0 0 20 30" height="30px" width="20px">
-    <rect width="4px" height="50px" fill="#1ed760" />
-  </svg>
-);*/
+
 
 export default () => {
   const { currentUser } = useContext(AuthContext);
@@ -137,7 +128,7 @@ export default () => {
        
       </NavLink>
       
-      <NavLink to="/library/playlist" style={{ textDecoration: "none" }} className={classes.Button} activeClassName={classes.activeButton}>
+      <NavLink to="/library" style={{ textDecoration: "none" }} className={classes.Button} activeClassName={classes.activeButton}>
        <ListOutlinedIcon style={{ fontSize: 30 }} />
           
          <div className={classes.buttonText} > Library </div>

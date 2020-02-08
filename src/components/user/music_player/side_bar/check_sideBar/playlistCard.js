@@ -27,7 +27,7 @@ export default (props)=>{
     const classes=useStyles();
     return(
         <div className={classes.cardHolder}>
-        <NavLink to={"/library/playlist/"+props.data.playlistName} style={{textDecoration:"none"}} className={classes.card} activeClassName={classes.activeCard}>{props.data["playlistName"]}</NavLink>
+        <NavLink to={"/userPlaylist/"+props.data.playlistName} style={{textDecoration:"none"}} className={classes.card} activeClassName={classes.activeCard}>{props.data["playlistName"]}</NavLink>
         </div>
     )
 }

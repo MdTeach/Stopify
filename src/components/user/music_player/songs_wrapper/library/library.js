@@ -6,6 +6,7 @@ import Playlist from './playlist/playlist'
 import LikedSongs from './likedSongs/likedSongs'
 
 
+
 const useStyles=makeStyles({
     navLink:{
     marginLeft:35,
@@ -29,11 +30,11 @@ export default ()=>{
     return(
         <div style={{color:"white",paddingTop:"20px"}}>
             <div classes={classes.appBar}>
-                <NavLink to="/library/playlist" style={{textDecoration:"none"}} className={classes.navLink} activeClassName={classes.chosen} >Playlists</NavLink>
+                <NavLink exact to="/library" style={{textDecoration:"none"}} className={classes.navLink} activeClassName={classes.chosen} >Playlists</NavLink>
                 <NavLink to="/library/likedSongs" style={{textDecoration:"none"}} className={classes.navLink} activeClassName={classes.chosen}>Liked Songs</NavLink>
             </div>
             <div style={{paddingTop:"30px"}}>
-                <Route path="/library/playlist" component={Playlist}/>
+                <Route exact path="/library" component={Playlist}/>
                 <Route path="/library/likedSongs" component={LikedSongs}/>
             </div>
         </div>

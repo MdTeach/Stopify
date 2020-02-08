@@ -1,11 +1,16 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useContext } from "react";
 import { cardInfo } from "../song_card/SongCard";
 import { makeStyles } from "@material-ui/core/styles";
 import { Typography, Button } from "@material-ui/core";
 import FavoriteBorderOutlinedIcon from "@material-ui/icons/FavoriteBorderOutlined";
 import MoreHorizIcon from "@material-ui/icons/MoreHoriz";
 import MusicNoteOutlinedIcon from "@material-ui/icons/MusicNoteOutlined";
-import Divider from "@material-ui/core/Divider";
+import Favorite from '@material-ui/icons/Favorite';
+import FavoriteBorder from '@material-ui/icons/FavoriteBorder';
+import Checkbox from '@material-ui/core/Checkbox';
+import {FireStore as db} from '../../../../utils/firebase'
+import {AuthContext} from '../../../../auth/Auth'
+
 
 const useStyles = makeStyles({
   total: {
@@ -69,21 +74,22 @@ const useStyles = makeStyles({
   LowerBoxButtons: {
     display: "flex",
     flexDirection: "row",
-    justifyContent: "center"
+    justifyContent: "center",
   },
   playButtonText: {
     marginTop: -2,
     fontSize: 8
   },
   heartIcon: {
+    color:"white",
     fontSize: 15,
-    marginTop: 20,
-    marginLeft: 13
+    marginTop: 10,
+    marginLeft: 5
   },
 
   menuIcon: {
     marginTop: 17,
-    marginLeft: 13
+    marginLeft: 5
   },
   lowerBox: {
     display: "flex",
@@ -178,7 +184,7 @@ const useStyles = makeStyles({
     },
     heartIcon: {
       fontSize: 25,
-      marginTop: 20,
+      marginTop: 12,
       marginLeft: 13
     },
 
@@ -213,20 +219,72 @@ const useStyles = makeStyles({
 });
 
 export default () => {
+  const {currentUser}=useContext(AuthContext)
   const classes = useStyles();
   const [card, setCard] = useState([]);
+  const [checked,setChecked]=useState(false);
 
-  const fetchCard = () => {
+ /* const fetchCard = () => {
     const getcard = cardInfo();
-    console.log(getcard[0].imageUrl);
     setCard(getcard[0]);
-  };
-  const check = () => {
-    console.log(card.album);
-  };
+  };*/
+  
+  const songLiked=()=>{
+    if(checked==false){
+    db.collection("LikedSongs").add({
+      album:card.album,
+      artist:card.artist,
+      audioUrl:card.audioUrl,
+      genre:card.genre,
+      imageUrl:card.imageUrl,
+      name:card.name,
+      uid:currentUser.uid
+    })
+    .then(docRef=>{
+      console.log("Liked song added at",docRef.id)
+      setChecked(true);
+    })
+    .catch((error)=>{
+      console.log("Error to add Liked song",error)
+    })
+  }
+  if(checked==true){
+    db.collection("LikedSongs").where("uid","==",currentUser.uid).where("audioUrl","==",card.audioUrl).get()
+            .then((querySnapshot) => {
+                querySnapshot.forEach(function (doc) {
+                    doc.ref.delete();
+                    console.log("Liked song deleted")
+                    setChecked(false);
+                })
+            })
+            .catch(error => {
+                console.log("error", error)
+            })
+  }
+
+}
+
+  const fetchLikedSong=()=>{
+    const getcard = cardInfo();
+    setCard(getcard[0]);
+    db.collection("LikedSongs").where("uid","==",currentUser.uid).where("audioUrl","==",getcard[0].audioUrl).get()
+    .then((querySnapshot)=>{
+      console.log("fetched liked song")
+    querySnapshot.forEach(function (doc) {
+      setChecked(true);
+  });
+    })
+    .catch(error=>{
+      console.log("error",error)
+    })
+  }
+
   useEffect(() => {
-    fetchCard();
+    fetchLikedSong();
   }, []);
+ 
+  
+
   return (
     <div className={classes.total}>
       <div className={classes.upperBox} style={{ color: "white" }}>
@@ -245,7 +303,9 @@ export default () => {
               <Typography className={classes.playButtonText}>Play</Typography>
             </Button>
             <div className={classes.LowerBoxButtons}>
-              <FavoriteBorderOutlinedIcon className={classes.heartIcon} />
+            <Checkbox icon={<FavoriteBorder className={classes.heartIcon}/>} 
+            checkedIcon={<Favorite className={classes.heartIcon} />}
+            onClick={songLiked} checked={checked} />
               <MoreHorizIcon className={classes.menuIcon} />
             </div>
           </div>

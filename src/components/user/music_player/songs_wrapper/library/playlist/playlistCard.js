@@ -14,6 +14,13 @@ import DialogContent from '@material-ui/core/DialogContent';
 import DialogContentText from '@material-ui/core/DialogContentText';
 import DialogTitle from '@material-ui/core/DialogTitle';
 import Button from '@material-ui/core/Button'
+import {Link} from 'react-router-dom'
+
+var data=[];
+
+export const cardInfo=()=>{
+    return data; 
+  }
 
 const StyledMenuItem = withStyles(theme => ({
     root: {
@@ -106,16 +113,27 @@ export default (props)=>{
             })
 
     }
+    const cardDetails=()=>{
+        data=[];
+        data.push(props.data);
+      }
     return(
         <Card variant="outlined" className={classes.card}>
+           
             <CardContent>
+            <Link to={"/userPlaylist/"+props.data.playlistName} style={{textDecoration:'none'}}>
+                <div onClick={cardDetails}>
                 <div className={classes.iconHolder}>
                    <MusicNoteIcon className={classes.icon}/>
                 </div>
+                </div>
+                </Link>
                 <div className={classes.description}>
                 <Typography className={classes.playlistName}>{props.data["playlistName"]}</Typography>
+                
                <div style={{display:"flex"}}>
                 <Typography className={classes.user}>By{" "+currentUser.displayName}</Typography>
+                
                 <MoreVertIcon className={classes.optionIcon} onClick={handleClick}/>
                 </div>
                 <Menu anchorEl={anchorEl} keepMounted open={open} className={classes.menu} onClose={handleClose}  >

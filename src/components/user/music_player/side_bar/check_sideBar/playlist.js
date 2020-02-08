@@ -12,6 +12,7 @@ export default ()=>{
         .then((querySnapshot)=>{
             const playlist=querySnapshot.docs.map((el)=>el.data())
             setAllPlaylist(playlist)
+            console.log("sidebar loaded once")
            
         })
         .catch((error)=>{
@@ -20,7 +21,7 @@ export default ()=>{
     }
     useEffect(()=>{
         getPlaylistInfo();
-    },[allPlaylist])
+    },[])
 
     return(
        <div>

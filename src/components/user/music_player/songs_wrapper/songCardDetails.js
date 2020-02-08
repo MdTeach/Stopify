@@ -2,7 +2,6 @@ import React, { useState, useEffect, useContext } from "react";
 import { cardInfo } from "../song_card/SongCard";
 import { makeStyles } from "@material-ui/core/styles";
 import { Typography, Button } from "@material-ui/core";
-import FavoriteBorderOutlinedIcon from "@material-ui/icons/FavoriteBorderOutlined";
 import MoreHorizIcon from "@material-ui/icons/MoreHoriz";
 import MusicNoteOutlinedIcon from "@material-ui/icons/MusicNoteOutlined";
 import Favorite from '@material-ui/icons/Favorite';

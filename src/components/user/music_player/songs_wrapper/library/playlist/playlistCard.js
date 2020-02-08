@@ -39,7 +39,7 @@ const StyledMenuItem = withStyles(theme => ({
 
 const useStyles=makeStyles({
     card:{
-        height:"15em",
+        height:"17em",
         width:"12em",
         marginLeft:20,
         backgroundColor:"#242323",
@@ -62,7 +62,7 @@ const useStyles=makeStyles({
         fontWeight:"bolder"
     },
     description:{
-        marginTop:"10px",
+        marginTop:"20px",
         display:"flex",
         flexDirection:"column"
     },

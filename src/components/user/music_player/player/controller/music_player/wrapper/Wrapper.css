@@ -1,0 +1,18 @@
+.wrapper{
+    width: 90%;
+    padding: .5em;
+    background-color:#282828;
+    display: flex;
+}
+
+.left-part{
+    flex: 4;
+    text-align: left;
+    display: flex;
+    flex-direction: column;
+}
+
+.right-part{
+    flex: 1;
+    text-align: right;
+}

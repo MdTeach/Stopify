@@ -7,7 +7,7 @@ import image4 from "./images/image4.jpg";
 import image5 from "./images/image5.jpg";
 import "./styles/body_style.css";
 
-const Body = () => {
+function Body() {
   return (
     <div className="container-fluid" style={{ margin: "auto", padding: "0" }}>
       <div className="banner">
@@ -74,6 +74,6 @@ const Body = () => {
       <br />
     </div>
   );
-};
+}
 
 export default Body;

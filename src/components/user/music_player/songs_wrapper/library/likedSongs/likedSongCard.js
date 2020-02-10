@@ -1,8 +1,10 @@
-import React,{useState} from 'react';
+import React,{useState,useContext} from 'react';
 import { Card } from '@material-ui/core'
 import { makeStyles } from '@material-ui/core/styles'
 import CardContent from '@material-ui/core/CardContent';
 import PlayArrowIcon from '@material-ui/icons/PlayArrow';
+import {Link} from 'react-router-dom'
+import {CardContext} from '../../../audio_utils/card_utils'
 
 
 const useStyles = makeStyles({
@@ -50,17 +52,26 @@ const useStyles = makeStyles({
 
 export default (props) => {
     const classes = useStyles();
+    const CardDetails=useContext(CardContext)
     const [over,setOver]=useState(false)
+
+    const cardDetails=()=>{
+        CardDetails.feedSong(props.data)
+    }
     return (
         <Card variant="outlined" className={classes.card}
          onMouseOver={()=>{setOver(true)}} onMouseLeave={()=>{setOver(false)}} >
             <CardContent>
+            <Link to={"/album/" + props.data.name} style={{ textDecoration: "none" }}>
+                <div onClick={cardDetails}>
                 <img
                     className={classes.songImage}
                     src={props.data.imageUrl}
                     alt={props.data.imageUrl}
                 />
                 <div className={classes.songName}>{props.data.name}</div>
+                </div>
+                </Link>
                <div style={{display:"flex"}}>
                 <div className={classes.songArtist}>{props.data.artist}</div>
                

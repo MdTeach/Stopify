@@ -3,11 +3,11 @@ import {cardInfo} from './playlist/playlistCard'
 
 export default ()=>{
     const [card, setCard] = useState([]);
-
     const fetchCard=()=>{
         const getCard=cardInfo();
         setCard(getCard[0]);
     }
+   
     useEffect(()=>{
         fetchCard();
     },[])

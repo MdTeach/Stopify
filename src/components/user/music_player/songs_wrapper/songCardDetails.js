@@ -1,7 +1,6 @@
 import React, { useState, useEffect, useContext } from "react";
-import { cardInfo } from "../song_card/SongCard";
 import { makeStyles } from "@material-ui/core/styles";
-import { Typography, Button } from "@material-ui/core";
+import { Typography, Button, Card } from "@material-ui/core";
 import MoreHorizIcon from "@material-ui/icons/MoreHoriz";
 import MusicNoteOutlinedIcon from "@material-ui/icons/MusicNoteOutlined";
 import Favorite from '@material-ui/icons/Favorite';
@@ -9,7 +8,7 @@ import FavoriteBorder from '@material-ui/icons/FavoriteBorder';
 import Checkbox from '@material-ui/core/Checkbox';
 import {FireStore as db} from '../../../../utils/firebase'
 import {AuthContext} from '../../../../auth/Auth'
-
+import {CardContext} from '../audio_utils/card_utils'
 
 const useStyles = makeStyles({
   total: {
@@ -219,17 +218,15 @@ const useStyles = makeStyles({
 
 export default () => {
   const {currentUser}=useContext(AuthContext)
+  const CardDetails=useContext(CardContext)
   const classes = useStyles();
   const [card, setCard] = useState([]);
   const [checked,setChecked]=useState(false);
-
- /* const fetchCard = () => {
-    const getcard = cardInfo();
-    setCard(getcard[0]);
-  };*/
   
   const songLiked=()=>{
+    
     if(checked==false){
+      setChecked(true);
     db.collection("LikedSongs").add({
       album:card.album,
       artist:card.artist,
@@ -241,19 +238,18 @@ export default () => {
     })
     .then(docRef=>{
       console.log("Liked song added at",docRef.id)
-      setChecked(true);
     })
     .catch((error)=>{
       console.log("Error to add Liked song",error)
     })
   }
   if(checked==true){
+    setChecked(false);
     db.collection("LikedSongs").where("uid","==",currentUser.uid).where("audioUrl","==",card.audioUrl).get()
             .then((querySnapshot) => {
                 querySnapshot.forEach(function (doc) {
                     doc.ref.delete();
                     console.log("Liked song deleted")
-                    setChecked(false);
                 })
             })
             .catch(error => {
@@ -264,7 +260,7 @@ export default () => {
 }
 
   const fetchLikedSong=()=>{
-    const getcard = cardInfo();
+    const getcard = CardDetails.songDetails;
     setCard(getcard[0]);
     db.collection("LikedSongs").where("uid","==",currentUser.uid).where("audioUrl","==",getcard[0].audioUrl).get()
     .then((querySnapshot)=>{

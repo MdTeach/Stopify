@@ -17,6 +17,7 @@ import DialogActions from "@material-ui/core/DialogActions";
 import DialogContent from "@material-ui/core/DialogContent";
 import DialogTitle from "@material-ui/core/DialogTitle";
 
+
 const useStyles = makeStyles({
     holder:{
         display:"flex",
@@ -67,6 +68,11 @@ const useStyles = makeStyles({
     outline: "none !important",
     "&:hover": {
       backgroundColor: "#1ed760"
+    }
+  },
+  "@media (max-width:921px)":{
+    Button:{
+      paddingLeft:"1em"
     }
   }
 });

@@ -1,19 +1,13 @@
-import React from "react";
+import React,{useContext} from "react";
 import "./SongCard.css";
 import { Link } from "react-router-dom";
-
+import {CardContext} from '../audio_utils/card_utils'
 import PlayPauseButton from "./button/Button";
 
-var data = [];
-
-export const cardInfo = () => {
-  return data;
-};
-
 export default props => {
+  const CardDetails=useContext(CardContext)
   const cardDetails = () => {
-    data = [];
-    data.push(props.data);
+    CardDetails.feedSong(props.data);
   };
 
   const updateCurrentMusic = () => {

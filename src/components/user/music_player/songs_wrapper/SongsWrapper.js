@@ -1,5 +1,6 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useState, useContext } from "react";
 import { Route } from "react-router";
+import {SongDetails} from '../audio_utils/card_utils'
 //css
 import "./SongWrapper.css";
 import SongCardDetails from './songCardDetails'
@@ -79,10 +80,12 @@ export default props => {
           <SideBar />
         </div>
         <div className="music_lists">
+          <SongDetails>
           <Route exact path="/" component={loadingIcon} />
           <Route path="/album" component={SongCardDetails}/>
           <Route  path='/library' component={Library}/>
           <Route path='/userPlaylist' component={PlaylistCardDetails}/>
+          </SongDetails>
         </div>
       </div>
       <div className="music-controller">

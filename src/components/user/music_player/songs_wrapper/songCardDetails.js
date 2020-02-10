@@ -1,5 +1,5 @@
 import React, { useState, useEffect, useContext } from "react";
-import { makeStyles } from "@material-ui/core/styles";
+import { makeStyles,withStyles } from "@material-ui/core/styles";
 import { Typography, Button, Card } from "@material-ui/core";
 import MoreHorizIcon from "@material-ui/icons/MoreHoriz";
 import MusicNoteOutlinedIcon from "@material-ui/icons/MusicNoteOutlined";
@@ -9,6 +9,33 @@ import Checkbox from '@material-ui/core/Checkbox';
 import {FireStore as db} from '../../../../utils/firebase'
 import {AuthContext} from '../../../../auth/Auth'
 import {CardContext} from '../audio_utils/card_utils'
+import Menu from '@material-ui/core/Menu';
+import MenuItem from '@material-ui/core/MenuItem';
+import Dialog from '@material-ui/core/Dialog'
+import DialogContent from "@material-ui/core/DialogContent";
+import DialogTitle from "@material-ui/core/DialogTitle";
+import ListCard from './listCard'
+import Snackbar from '@material-ui/core/Snackbar';
+import MuiAlert from '@material-ui/lab/Alert';
+
+function Alert(props) {
+  return <MuiAlert elevation={6} variant="filled" {...props} />;
+}
+
+const StyledMenuItem = withStyles(theme => ({
+  root: {
+      backgroundColor:"#363636",
+      color:"gray",
+      marginTop:-8,
+      marginBottom:-8,
+      marginLeft:"auto",
+
+    '&:hover': {
+      backgroundColor: "#363636",
+      color:"white"
+    },
+  },
+}))(MenuItem);
 
 const useStyles = makeStyles({
   total: {
@@ -87,7 +114,10 @@ const useStyles = makeStyles({
 
   menuIcon: {
     marginTop: 17,
-    marginLeft: 5
+    marginLeft: 5,
+    '&:hover':{
+      cursor:"pointer"
+    }
   },
   lowerBox: {
     display: "flex",
@@ -120,7 +150,19 @@ const useStyles = makeStyles({
     marginLeft: "5px",
     width: "100%"
   },
+  menu:{
+    marginLeft:10,
+    marginTop:35,
+    padding:-20, 
+  },
+  dialogBox: {
+    backgroundColor: "gray"
+  },
+  
   "@media (min-width:921px)": {
+    menu:{
+      marginTop:25,
+    },
     total: {
       width: "100%",
       WebkitTransform: "scale(1, 1)"
@@ -221,11 +263,39 @@ export default () => {
   const CardDetails=useContext(CardContext)
   const classes = useStyles();
   const [card, setCard] = useState([]);
+  const [userPlaylist,setUserPlaylist]=useState([]);
   const [checked,setChecked]=useState(false);
+  const [DialogOpen,setDialogOpen]=useState(false);
+  const [snackBarOpen,setSnackBarOpen]=useState(false);
+
+  const [anchorEl,setAnchorEl]=React.useState(null);
+    const open=Boolean(anchorEl);
+    const handleClick=e=>{
+        setAnchorEl(e.currentTarget);
+    }
+    const handleClose=e=>{
+        setAnchorEl(null)
+    }
+    const handleDialogClose=()=>{
+      setDialogOpen(false);
+      setAnchorEl(null);
+    }
+
+    const check=()=>{
+      setSnackBarOpen(true);
+    }
+    const handleSnackBarClose = (event, reason) => {
+      if (reason === 'clickaway') {
+        return;
+      }
+  
+      setSnackBarOpen(false);
+    };
+    
   
   const songLiked=()=>{
     
-    if(checked==false){
+    if(checked===false){
       setChecked(true);
     db.collection("LikedSongs").add({
       album:card.album,
@@ -243,7 +313,7 @@ export default () => {
       console.log("Error to add Liked song",error)
     })
   }
-  if(checked==true){
+  if(checked===true){
     setChecked(false);
     db.collection("LikedSongs").where("uid","==",currentUser.uid).where("audioUrl","==",card.audioUrl).get()
             .then((querySnapshot) => {
@@ -274,9 +344,26 @@ export default () => {
     })
   }
 
+  const fetchUserPlaylist=async()=>{
+    const listPlay=await db.collection("userPlaylist").where("uid","==",currentUser.uid).get()
+    const arrayListPlay=listPlay.docs.map((el)=>el.data())
+    setUserPlaylist(arrayListPlay);
+  }
+
   useEffect(() => {
     fetchLikedSong();
+    fetchUserPlaylist();
   }, []);
+
+
+  const snackBar=()=>(
+    <Snackbar anchorOrigin={{vertical:'top',horizontal:"right"}} open={snackBarOpen} autoHideDuration={6000} onClose={handleSnackBarClose}>
+        <Alert onClose={handleSnackBarClose} severity="success" >
+          Song was successfully added to your playlist.
+        </Alert>
+      </Snackbar>
+  )
+  
  
   
 
@@ -284,7 +371,7 @@ export default () => {
     <div className={classes.total}>
       <div className={classes.upperBox} style={{ color: "white" }}>
         <div className={classes.imageBox}>
-          <img src={card.imageUrl} className={classes.cardImage} />
+          <img src={card.imageUrl} className={classes.cardImage} alt={"song"} />
         </div>
         <div className={classes.u2Box}>
           <Typography className={classes.title}>{card.name}</Typography>
@@ -301,7 +388,23 @@ export default () => {
             <Checkbox icon={<FavoriteBorder className={classes.heartIcon}/>} 
             checkedIcon={<Favorite className={classes.heartIcon} />}
             onClick={songLiked} checked={checked} />
-              <MoreHorizIcon className={classes.menuIcon} />
+              <MoreHorizIcon className={classes.menuIcon} onClick={handleClick} />
+              <Menu anchorEl={anchorEl} keepMounted open={open} className={classes.menu} onClose={handleClose}  >
+                    <StyledMenuItem onClick={()=>{setDialogOpen(true)}}>Add to Playlist</StyledMenuItem>        
+          </Menu>
+          <Dialog open={DialogOpen} onClose={handleDialogClose} fullWidth>
+          <div className={classes.dialogBox}>
+            <DialogTitle>Add to Playlist</DialogTitle>
+            <DialogContent>
+              <div style={{display:"flex"}}>
+              {userPlaylist.map((el)=>
+                <ListCard key={el["keyID"]} data={el} songs={card} currentUser={currentUser} handler={handleDialogClose} check={check}/>
+              )}
+                
+              </div>
+            </DialogContent>
+            </div>
+          </Dialog>
             </div>
           </div>
         </div>
@@ -319,6 +422,7 @@ export default () => {
         </div>
         <Typography className={classes.copyright}>© {card.artist}</Typography>
       </div>
+      {snackBar()}
     </div>
   );
 };

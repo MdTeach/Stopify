@@ -1,19 +1,30 @@
-import React,{useState,useEffect} from 'react';
+import React,{useState,useEffect,useContext} from 'react';
 import {cardInfo} from './playlist/playlistCard'
+import {FireStore as db} from '../../../../../utils/firebase'
+import {AuthContext} from '../../../../../auth/Auth'
 
 export default ()=>{
     const [card, setCard] = useState([]);
-    const fetchCard=()=>{
+    const  [songs,setSongs]=useState([]);
+
+    const {currentUser}=useContext(AuthContext);
+
+
+    const fetchSong=async()=>{
         const getCard=cardInfo();
         setCard(getCard[0]);
+        const snaps=await db.collection("playlistSong").where("playlistName","==",getCard[0].playlistName).where("uid","==",currentUser.uid).get();
+        const array=snaps.docs.map((el)=>el.data());
+        setSongs(array);
     }
    
     useEffect(()=>{
-        fetchCard();
+        fetchSong();
     },[])
     return(
         <div style={{color:"white"}}>
-        {card.playlistName}
+        {songs.map((el)=>
+        <li key={el["audioUrl"]}>{el["name"]}</li>)}
         </div>
     )
 }

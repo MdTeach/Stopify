@@ -52,7 +52,7 @@ export default (props)=>{
         <div className="audio-progress">
             <div className="progress-label"> {!!currentTime ? getInMinutes(props.currentTime) : "00:00"} </div>
             <div className="slidecontainer">
-                <div className="au_progress"
+                <div className="mu_progress"
                     ref={slider} 
                     // onMouseOver={(e)=>{change(e,isMouseDown)}} 
                     onMouseDown={(e)=>{isMouseDown = true;setProgressFromMouse(e)}}

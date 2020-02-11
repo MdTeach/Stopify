@@ -19,7 +19,7 @@
 /*
  * Main
  */
- .au_progress{
+ .mu_progress{
     margin: 0;
     margin-top: 4px;
     padding: 0;
@@ -66,10 +66,10 @@
     z-index: 1;
 }
 
-.au_progress:hover >.progress_bg{
+.mu_progress:hover >.progress_bg{
     background-color: #60bb56;
 }
 
-.au_progress:hover >.progress_btn{
+.mu_progress:hover >.progress_btn{
     display: inline;
 }

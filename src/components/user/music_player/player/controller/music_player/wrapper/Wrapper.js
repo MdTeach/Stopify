@@ -42,7 +42,7 @@ export default (props)=>{
             let newTime  = e.currentTarget.currentTime; 
             setCurrentTime(newTime)
         });
-    },[0]);
+    },[audio]);
     
     return(
         <div className="wrapper">

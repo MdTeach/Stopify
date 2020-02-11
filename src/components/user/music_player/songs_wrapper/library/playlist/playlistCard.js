@@ -111,6 +111,16 @@ export default (props)=>{
             .catch(error => {
                 console.log("error", error)
             })
+        
+            db.collection("playlistSong").where("playlistName","==",props.data["playlistName"]).where("uid","==",currentUser.uid).get()
+            .then((querySnapshot)=>{
+                querySnapshot.forEach(function(doc){
+                    doc.ref.delete();
+                })
+            })
+            .catch(error=>{
+                console.log("error",error);
+            })
 
     }
     const cardDetails=()=>{

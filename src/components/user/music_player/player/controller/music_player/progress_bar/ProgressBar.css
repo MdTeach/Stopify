@@ -1,6 +1,7 @@
 .audio-progress{
     display: flex;
     width: 100%;
+    margin-top: 0.3em;
 }
 
 

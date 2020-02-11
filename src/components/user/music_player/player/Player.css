@@ -1,9 +1,17 @@
 .music-player{
   width: 100%;
-  background-color: #181818;
+  background-color:#282828;
   color: aliceblue;
   height:100px;
   display: flex;
+}
+
+/*Hiding this for small screen sizes*/
+/* Smaller devices */
+@media (max-width: 576px) {
+  .label{
+      display: none;
+  }
 }
 
 .label{

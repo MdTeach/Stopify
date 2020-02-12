@@ -11,7 +11,7 @@ import DialogContent from "@material-ui/core/DialogContent";
 import DialogTitle from "@material-ui/core/DialogTitle";
 import DialogActions from "@material-ui/core/DialogActions";
 import DialogContentText from "@material-ui/core/DialogContentText";
-import { cardInfo } from "./playlistCard";
+import {CardContext} from '../../.././audio_utils/card_utils'
 import MusicNoteIcon from "@material-ui/icons/MusicNote";
 import PlaylistSongCard from './playlistSongCard'
 import {Link} from 'react-router-dom'
@@ -218,6 +218,7 @@ const useStyles = makeStyles({
 
 export default () => {
   const classes = useStyles();
+  const CardDetails=useContext(CardContext);
   const [songs, setSongs] = useState([]);
   const [DialogOpen, setDialogOpen] = useState(false);
 
@@ -239,7 +240,7 @@ export default () => {
   };
 
   function toDelete() {
-    const plName=cardInfo()[0].playlistName;
+    const plName=CardDetails.playlistDetails
     handleDialogClose();
     db.collection("userPlaylist")
       .where("playlistName", "==", plName)
@@ -270,10 +271,10 @@ export default () => {
 
 
   const fetchSong = async () => {
-    const getCard = cardInfo();
+    const getCard = CardDetails.playlistDetails
     const snaps = await db
       .collection("playlistSong")
-      .where("playlistName", "==", getCard[0].playlistName)
+      .where("playlistName", "==", getCard)
       .where("uid", "==", currentUser.uid)
       .get();
     const array = snaps.docs.map(el => el.data());
@@ -292,7 +293,7 @@ export default () => {
           </div>
           <div className={classes.u2Box}>
             <Typography className={classes.plName}>
-              {cardInfo()[0].playlistName}
+              {CardDetails.playlistDetails}
             </Typography>
             <Typography className={classes.artist}>
               {"By "}
@@ -350,7 +351,7 @@ export default () => {
         <div className={classes.lowerBox}>
           {
             songs.map(el=>(
-              <PlaylistSongCard key={el["audioUrl"]} playlistName={cardInfo()[0].playlistName} data={el}/>
+              <PlaylistSongCard key={el["audioUrl"]} playlistName={CardDetails.playlistDetails} data={el}/>
             ))
           }
         </div>

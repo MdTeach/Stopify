@@ -15,12 +15,7 @@ import DialogContentText from "@material-ui/core/DialogContentText";
 import DialogTitle from "@material-ui/core/DialogTitle";
 import Button from "@material-ui/core/Button";
 import { Link } from "react-router-dom";
-
-var data = [];
-
-export const cardInfo = () => {
-  return data;
-};
+import {CardContext} from '../../../audio_utils/card_utils'
 
 const StyledMenuItem = withStyles(theme => ({
   root: {
@@ -86,6 +81,7 @@ const useStyles = makeStyles({
 
 export default props => {
   const { currentUser } = useContext(AuthContext);
+  const CardDetails=useContext(CardContext);
   const classes = useStyles();
   const [anchorEl, setAnchorEl] = React.useState(null);
   const open = Boolean(anchorEl);
@@ -132,8 +128,9 @@ export default props => {
   }
 
   const cardDetails = () => {
-    data = [];
-    data.push(props.data);
+    CardDetails.feedPlaylist(props.data.playlistName)
+    /*data = [];
+    data.push(props.data);*/
   };
   return (
     <Card variant="outlined" className={classes.card}>

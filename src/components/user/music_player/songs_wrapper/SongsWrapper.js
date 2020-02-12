@@ -75,22 +75,22 @@ export default props => {
 
   return (
     <div className="song-wrapper">
+      <SongDetails>
       <div className="sidebar-and-songs">
         <div className="side-bar">
           <SideBar />
         </div>
         <div className="music_lists">
-          <SongDetails>
           <Route exact path="/" component={loadingIcon} />
           <Route path="/album" component={SongCardDetails}/>
           <Route  path='/library' component={Library}/>
           <Route path='/userPlaylist' component={PlaylistCardDetails}/>
-          </SongDetails>
         </div>
       </div>
       <div className="music-controller">
         <MusicPlayer currentPlaying={currentPlaying} />
       </div>
+      </SongDetails>
     </div>
   );
 };

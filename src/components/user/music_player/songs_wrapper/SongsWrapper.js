@@ -4,7 +4,7 @@ import {SongDetails} from '../audio_utils/card_utils'
 //css
 import "./SongWrapper.css";
 import SongCardDetails from './songCardDetails'
-import PlaylistCardDetails from './library/playlistCardDetails'
+import PlaylistCardDetails from './library/playlist/playlistCardDetails'
 import Library from './library/library'
 //functions
 import { getAllSongsInfo } from "../audio_utils/audio_utils";

@@ -102,6 +102,7 @@ export default props => {
   };
 
   function toDelete() {
+    handleDialogClose();
     db.collection("userPlaylist")
       .where("playlistName", "==", props.data["playlistName"])
       .get()

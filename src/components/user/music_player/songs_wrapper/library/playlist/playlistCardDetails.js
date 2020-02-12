@@ -1,14 +1,9 @@
 import React, { useState, useEffect, useContext } from "react";
 import { makeStyles, withStyles } from "@material-ui/core/styles";
-import { Typography, Button, Card } from "@material-ui/core";
+import { Typography, Button} from "@material-ui/core";
 import MoreHorizIcon from "@material-ui/icons/MoreHoriz";
-import MusicNoteOutlinedIcon from "@material-ui/icons/MusicNoteOutlined";
-import Favorite from "@material-ui/icons/Favorite";
-import FavoriteBorder from "@material-ui/icons/FavoriteBorder";
-import Checkbox from "@material-ui/core/Checkbox";
-import { FireStore as db } from "../../../../../utils/firebase";
-import { AuthContext } from "../../../../../auth/Auth";
-import { CardContext } from "../../audio_utils/card_utils";
+import { FireStore as db } from "../../../../../../utils/firebase";
+import { AuthContext } from "../../../../../../auth/Auth";
 import Menu from "@material-ui/core/Menu";
 import MenuItem from "@material-ui/core/MenuItem";
 import Dialog from "@material-ui/core/Dialog";
@@ -16,16 +11,10 @@ import DialogContent from "@material-ui/core/DialogContent";
 import DialogTitle from "@material-ui/core/DialogTitle";
 import DialogActions from "@material-ui/core/DialogActions";
 import DialogContentText from "@material-ui/core/DialogContentText";
-import ListCard from "../listCard";
-import Snackbar from "@material-ui/core/Snackbar";
-import MuiAlert from "@material-ui/lab/Alert";
-import { cardInfo } from "./playlist/playlistCard";
-
+import { cardInfo } from "./playlistCard";
 import MusicNoteIcon from "@material-ui/icons/MusicNote";
-
-function Alert(props) {
-  return <MuiAlert elevation={6} variant="filled" {...props} />;
-}
+import PlaylistSongCard from './playlistSongCard'
+import {Link} from 'react-router-dom'
 
 const StyledMenuItem = withStyles(theme => ({
   root: {
@@ -44,7 +33,7 @@ const StyledMenuItem = withStyles(theme => ({
 
 const useStyles = makeStyles({
   total: {
-    paddingTop: "30px",
+    paddingTop:"30px",
     width: "100%",
     WebkitTransform: "scale(0.8, 0.8)"
   },
@@ -229,7 +218,6 @@ const useStyles = makeStyles({
 
 export default () => {
   const classes = useStyles();
-  const [card, setCard] = useState([]);
   const [songs, setSongs] = useState([]);
   const [DialogOpen, setDialogOpen] = useState(false);
 
@@ -237,7 +225,6 @@ export default () => {
   const open = Boolean(anchorEl);
   const { currentUser } = useContext(AuthContext);
 
-  const [snackBarOpen, setSnackBarOpen] = useState(false);
   const handleClick = e => {
     setAnchorEl(e.currentTarget);
   };
@@ -251,17 +238,39 @@ export default () => {
     setAnchorEl(null);
   };
 
-  const handleSnackBarClose = (event, reason) => {
-    if (reason === "clickaway") {
-      return;
-    }
+  function toDelete() {
+    const plName=cardInfo()[0].playlistName;
+    handleDialogClose();
+    db.collection("userPlaylist")
+      .where("playlistName", "==", plName)
+      .get()
+      .then(querySnapshot => {
+        querySnapshot.forEach(function(doc) {
+          doc.ref.delete();
+          console.log("deleted");
+        });
+      })
+      .catch(error => {
+        console.log("error", error);
+      });
 
-    setSnackBarOpen(false);
-  };
+    db.collection("playlistSong")
+      .where("playlistName", "==", plName)
+      .where("uid", "==", currentUser.uid)
+      .get()
+      .then(querySnapshot => {
+        querySnapshot.forEach(function(doc) {
+          doc.ref.delete();
+        });
+      })
+      .catch(error => {
+        console.log("error", error);
+      });
+  }
+
 
   const fetchSong = async () => {
     const getCard = cardInfo();
-    setCard(getCard[0]);
     const snaps = await db
       .collection("playlistSong")
       .where("playlistName", "==", getCard[0].playlistName)
@@ -271,26 +280,11 @@ export default () => {
     setSongs(array);
   };
 
-  const snackBar = () => (
-    <Snackbar
-      anchorOrigin={{ vertical: "top", horizontal: "right" }}
-      open={snackBarOpen}
-      autoHideDuration={6000}
-      onClose={handleSnackBarClose}
-    >
-      <Alert onClose={handleSnackBarClose} severity="success">
-        Song was successfully added to your playlist.
-      </Alert>
-    </Snackbar>
-  );
-
   useEffect(() => {
     fetchSong();
   }, []);
   return (
     <div style={{ color: "white" }}>
-      {/*songs.map((el)=>
-        <li key={el["audioUrl"]}>{el["name"]}</li>)*/}
       <div className={classes.total}>
         <div className={classes.upperBox} style={{ color: "white" }}>
           <div className={classes.imageBox}>
@@ -341,9 +335,11 @@ export default () => {
                     <Button onClick={handleDialogClose} color="primary">
                       Disagree
                     </Button>
-                    <Button color="primary" autoFocus>
+                    <Link to="/library" style={{textDecoration:"none"}}>
+                    <Button color="primary" autoFocus onClick={toDelete}>
                       Agree
                     </Button>
+                    </Link>
                   </DialogActions>
                 </Dialog>
               </div>
@@ -351,8 +347,13 @@ export default () => {
           </div>
         </div>
         <hr className={classes.horizontal} />
-        <div className={classes.lowerBox}>{/*Side Content goes here */}</div>
-        {snackBar()}
+        <div className={classes.lowerBox}>
+          {
+            songs.map(el=>(
+              <PlaylistSongCard key={el["audioUrl"]} playlistName={cardInfo()[0].playlistName} data={el}/>
+            ))
+          }
+        </div>
       </div>
     </div>
   );

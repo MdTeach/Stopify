@@ -1,4 +1,4 @@
-import React, { useEffect, useState, useContext } from "react";
+import React, { useEffect, useState } from "react";
 import { Route } from "react-router";
 import {SongDetails} from '../audio_utils/card_utils'
 //css
@@ -17,7 +17,7 @@ import HorizontalMusicContainer from "../horizontal_music_container/HorizontalMu
 import CircularLoading from "../../../extra/CircularLoading/CircularLoading";
 
 
-export default props => {
+export default () => {
   const [isfetchingSongs, setFetchingSongs] = useState(true);
   const [allSongs, setAllSongs] = useState([]);
   const [currentPlaying, setCurrentPlaying] = useState({});

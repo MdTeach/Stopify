@@ -30,8 +30,7 @@ const useStyles = makeStyles({
 });
 
 const customHistory = createBrowserHistory();
-const val = customHistory.length;
-let currentURL = document.location.href;
+
 
 export default props => {
   const classes = useStyles();

@@ -13,7 +13,7 @@ export default (props)=>{
         :
         <div className="current-music-label">
             <div className="muic-thumb-nail-div">
-                <img className="muic-thumb-nail" src={data["imageUrl"]}/>
+                <img className="muic-thumb-nail"alt={data["imageUrl"]} src={data["imageUrl"]}/>
             </div>
             <div className="labels">
                 <div className="song_name">

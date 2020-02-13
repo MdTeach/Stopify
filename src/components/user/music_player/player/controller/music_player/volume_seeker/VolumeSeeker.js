@@ -39,7 +39,6 @@ export default (props)=>{
         }
     }
 
-    console.log("Vol Re",currentVolume)
     setProgress(currentVolume)
     return(
         <div className="audio-progress">

@@ -11,7 +11,7 @@ import VolumeSeeker from '../volume_seeker/VolumeSeeker'
 import './Wrapper.css'
 
 export default (props)=>{
-    const audio = props.audio
+    const audio = props.audioInstance
     
     const [currentTime,setCurrentTime] = useState(0) 
     const [currentVolume,setCurrentVolume] = useState(0);
@@ -31,8 +31,7 @@ export default (props)=>{
     }
 
     useEffect(() => {
-        //audio.play()
-
+        
         //set the current time
         setCurrentTime(audio.currentTime)
         setCurrentVolume(audio.volume)

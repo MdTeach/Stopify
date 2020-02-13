@@ -14,6 +14,11 @@ export default props => {
     props.changeMusic(props.data);
   };
 
+  
+  const handleClick = ()=>{
+      updateCurrentMusic();
+  }
+
   return (
     <div className="song-card">
       <Link to={"/album/" + props.data.name} style={{ textDecoration: "none" }}>
@@ -34,6 +39,8 @@ export default props => {
       <PlayPauseButton
         updateCurrentMusic={updateCurrentMusic}
         isPlaying={props.data === props.currentPlaying}
+        handleClick = {handleClick}
+        isPaused = {props.audioInstance}
       />
     </div>
   );

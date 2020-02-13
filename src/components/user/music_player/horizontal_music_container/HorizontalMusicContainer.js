@@ -15,7 +15,8 @@ export default (props)=>{
                         data={data} 
                         changeMusic={props.changeMusic} 
                         currentPlaying = {props.currentPlaying}
-                        />
+                        audioInstance={props.audioInstance}
+                    />
                 )
             }
             </div>

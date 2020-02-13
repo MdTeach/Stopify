@@ -22,6 +22,8 @@ export default props => {
   const [allSongs, setAllSongs] = useState([]);
   const [currentPlaying, setCurrentPlaying] = useState({});
 
+  const [audio, setAudio] = useState(null)
+
   //get all the song infos
   const fetchSongs = async () => {
     //getting the songs as array
@@ -32,20 +34,28 @@ export default props => {
 
     //set our songs data
     setAllSongs(songs);
+
+    //set the default audio to the first song
+    setAudio(new Audio(songs[0].audioUrl))
+
   };
 
   //change the playing the song
   const changeMusic = newMusic => {
     if (newMusic["audioUrl"] == currentPlaying["audioUrl"]) {
-      //pause the music
+      audio.paused ? audio.play() : audio.pause()
       //setCurrentPlaying({});
     } else {
       //change the music
       setCurrentPlaying(newMusic);
+      //setAudio(new Audio(newMusic.audioUrl))
+      audio.src = newMusic.audioUrl;
+      audio.play();
     }
   };
 
-  const loadingIcon = () => {
+  //shows the music in card 
+  const MusicLists = () => {
     return (
       <React.Fragment>
         {//Loading data
@@ -59,6 +69,7 @@ export default props => {
             changeMusic={changeMusic}
             title="All Songs"
             currentPlaying={currentPlaying}
+            audioInstance={!!audio ? audio.paused : true}
           />
         )}
       </React.Fragment>
@@ -66,7 +77,6 @@ export default props => {
   };
 
   useEffect(() => {
-    console.log("Calling..");
     fetchSongs();
     //loadSongs()
   }, []);
@@ -81,14 +91,14 @@ export default props => {
           <SideBar />
         </div>
         <div className="music_lists">
-          <Route exact path="/" component={loadingIcon} />
+          <Route exact path="/" component={MusicLists} />
           <Route path="/album" component={SongCardDetails}/>
           <Route  path='/library' component={Library}/>
           <Route path='/userPlaylist' component={PlaylistCardDetails}/>
         </div>
       </div>
       <div className="music-controller">
-        <MusicPlayer currentPlaying={currentPlaying} />
+        <MusicPlayer currentPlaying={currentPlaying} audioInstance={audio}/>
       </div>
       </SongDetails>
     </div>

@@ -32,8 +32,21 @@ export default () => {
         console.log("error", error);
       });
   };
+
+  
+
   useEffect(() => {
     getPlaylistInfo();
+
+    //set the listener as user add or deletes items to the playlist
+    db.collection("userPlaylist")
+    .where("uid", "==", currentUser.uid)
+    .onSnapshot(function(_) {
+        getPlaylistInfo()
+    }, function(error) {
+        console.log(error,"Error")
+    });
+
   }, []);
 
   return (

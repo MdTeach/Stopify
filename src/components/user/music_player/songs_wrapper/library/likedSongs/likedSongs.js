@@ -33,6 +33,14 @@ export default ()=>{
 
     useEffect(()=>{
         getLikedSongs();
+        //set the listener as user add or deletes items to the playlist
+        db.collection("LikedSongs")
+        .where("uid", "==", currentUser.uid)
+        .onSnapshot(function(_) {
+            getLikedSongs()
+        }, function(error) {
+            console.log(error,"Error")
+        })
     },[]);
 
     return(

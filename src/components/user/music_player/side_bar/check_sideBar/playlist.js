@@ -1,4 +1,5 @@
 import React,{useState,useEffect,useContext} from 'react'
+
 import {FireStore as db} from '../../../../../utils/firebase.js'
 import {AuthContext} from '../../../../../auth/Auth.js'
 import PlaylistCard from './playlistCard'
@@ -17,16 +18,26 @@ export default ()=>{
         })
         .catch((error)=>{
             console.log("error",error)
-        })
+        })  
     }
+
+
 
     useEffect(()=>{
         getPlaylistInfo();
+        //set the listener as user add or deletes items to the playlist
+        db.collection("userPlaylist")
+        .where("uid", "==", currentUser.uid)
+        .onSnapshot(function(_) {
+            getPlaylistInfo()
+        }, function(error) {
+            console.log(error,"Error")
+        });
     },[])
 
     return(
        <div>
-          {
+            {
                 allPlaylist.map((sample)=>
                 <PlaylistCard key={sample["keyID"]} data={sample}/>)
             }

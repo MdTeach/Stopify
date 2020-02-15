@@ -1,11 +1,11 @@
-import React,{useContext} from "react";
+import React, { useContext } from "react";
 import "./SongCard.css";
 import { Link } from "react-router-dom";
-import {CardContext} from '../audio_utils/card_utils'
+import { CardContext } from "../audio_utils/card_utils";
 import PlayPauseButton from "./button/Button";
 
 export default props => {
-  const CardDetails=useContext(CardContext)
+  const CardDetails = useContext(CardContext);
   const cardDetails = () => {
     CardDetails.feedSong(props.data);
   };
@@ -14,10 +14,9 @@ export default props => {
     props.changeMusic(props.data);
   };
 
-  
-  const handleClick = ()=>{
-      updateCurrentMusic();
-  }
+  const handleClick = () => {
+    updateCurrentMusic();
+  };
 
   return (
     <div className="song-card">
@@ -37,10 +36,11 @@ export default props => {
         </div>
       </Link>
       <PlayPauseButton
+        data={props.data}
         updateCurrentMusic={updateCurrentMusic}
-        isPlaying={props.data === props.currentPlaying}
-        handleClick = {handleClick}
-        isPaused = {props.audioInstance}
+        isPlaying={props.data.name === props.currentPlaying.name}
+        handleClick={handleClick}
+        isPaused={props.audioInstance}
       />
     </div>
   );

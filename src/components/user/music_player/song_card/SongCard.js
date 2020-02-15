@@ -29,7 +29,7 @@ export default props => {
           />
           <div className="song-name">
             {props.data.name.length >= 20
-              ? props.data.name.substr(0, 20) + "..."
+              ? props.data.name.substr(0, 17) + "..."
               : props.data.name}
           </div>
           <div className="song-author">{props.data.artist}</div>

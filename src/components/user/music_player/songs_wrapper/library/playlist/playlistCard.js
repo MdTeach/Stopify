@@ -15,7 +15,7 @@ import DialogContentText from "@material-ui/core/DialogContentText";
 import DialogTitle from "@material-ui/core/DialogTitle";
 import Button from "@material-ui/core/Button";
 import { Link } from "react-router-dom";
-import {CardContext} from '../../../audio_utils/card_utils'
+import { CardContext } from "../../../audio_utils/card_utils";
 
 const StyledMenuItem = withStyles(theme => ({
   root: {
@@ -51,7 +51,7 @@ const useStyles = makeStyles({
   icon: {
     fontSize: 120,
     fontWeight: "500",
-    color: "white"
+    color: "rgb(240, 240, 240)"
   },
   playlistName: {
     color: "white",
@@ -81,7 +81,7 @@ const useStyles = makeStyles({
 
 export default props => {
   const { currentUser } = useContext(AuthContext);
-  const CardDetails=useContext(CardContext);
+  const CardDetails = useContext(CardContext);
   const classes = useStyles();
   const [anchorEl, setAnchorEl] = React.useState(null);
   const open = Boolean(anchorEl);
@@ -128,7 +128,7 @@ export default props => {
   }
 
   const cardDetails = () => {
-    CardDetails.feedPlaylist(props.data.playlistName)
+    CardDetails.feedPlaylist(props.data.playlistName);
     /*data = [];
     data.push(props.data);*/
   };
@@ -142,7 +142,7 @@ export default props => {
           <div onClick={cardDetails}>
             <div className={classes.iconHolder}>
               <p className={classes.icon}>
-                {props.data["playlistName"].substring(0, 1)}
+                {props.data["playlistName"].substring(0, 1).toUpperCase()}
               </p>
             </div>
           </div>

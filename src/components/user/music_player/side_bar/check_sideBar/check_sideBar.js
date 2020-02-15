@@ -1,56 +1,61 @@
-import React,{useState,useContext} from 'react';
-import HomeOutlinedIcon from '@material-ui/icons/HomeOutlined';
-import Button from '@material-ui/core/Button'
-import {makeStyles} from '@material-ui/core/styles'
-import SearchOutlinedIcon from '@material-ui/icons/SearchOutlined';
-import ListOutlinedIcon from '@material-ui/icons/ListOutlined';
-import {NavLink,Link} from 'react-router-dom'
-import {Typography} from '@material-ui/core'
-import AddCircleOutlineOutlinedIcon from '@material-ui/icons/AddCircleOutlineOutlined';
-import './sideBar.css'
-import {FireStore as db} from '../../../../../utils/firebase.js'
-import {AuthContext} from '../../../../../auth/Auth.js'
-import Playlist from './playlist.js'
+import React, { useState, useContext } from "react";
+import HomeOutlinedIcon from "@material-ui/icons/HomeOutlined";
+import Button from "@material-ui/core/Button";
+import { makeStyles } from "@material-ui/core/styles";
+import SearchOutlinedIcon from "@material-ui/icons/SearchOutlined";
+import ListOutlinedIcon from "@material-ui/icons/ListOutlined";
+import { NavLink, Link } from "react-router-dom";
+import { Typography } from "@material-ui/core";
+import AddCircleOutlineOutlinedIcon from "@material-ui/icons/AddCircleOutlineOutlined";
+import "./sideBar.css";
+import { FireStore as db } from "../../../../../utils/firebase.js";
+import { AuthContext } from "../../../../../auth/Auth.js";
+import Playlist from "./playlist.js";
 import TextField from "@material-ui/core/TextField";
 import Dialog from "@material-ui/core/Dialog";
 import DialogActions from "@material-ui/core/DialogActions";
 import DialogContent from "@material-ui/core/DialogContent";
 import DialogTitle from "@material-ui/core/DialogTitle";
 
-
 const useStyles = makeStyles({
-    holder:{
-        display:"flex",
-        flexDirection:"column",
-        
-    },
+  holder: {
+    display: "flex",
+    flexDirection: "column",
+    WebkitTransform: "scale(0.8, 0.8)"
+  },
   Button: {
     color: "gray",
     textTransform: "none",
     outline: "0 !important",
     fontSize: "13px",
     marginTop: "10px",
-    paddingLeft:"2em",
-    display:"flex",
-    '&:hover':{
-        color:"white"
+    paddingLeft: "1em",
+    display: "flex",
+    "&:hover": {
+      color: "white"
     }
   },
-  activeButton:{
-    color:"white",
-    borderLeft:" 3px solid #1ed760 ",
+  playlistTypo: {
+    fontSize: "13px",
+    paddingLeft: "30px",
+    color: "gray"
   },
-  buttonText:{
-      marginLeft:"9px",
-      marginTop:"3px"
- },
+  activeButton: {
+    color: "white",
+    borderLeft: " 3px solid #1ed760 "
+  },
+  buttonText: {
+    marginLeft: "9px",
+    marginTop: "3px"
+  },
   playlistButton: {
     color: "white",
     textTransform: "none",
     outline: "0 !important",
     fontSize: "13px",
     marginTop: "10px",
-    marginLeft: "18px"
+    marginLeft: "8px",
+    WebkitTransform: "scale(0.8, 0.8)"
   },
   dialogBox: {
     backgroundColor: "gray"
@@ -70,14 +75,33 @@ const useStyles = makeStyles({
       backgroundColor: "#1ed760"
     }
   },
-  "@media (max-width:921px)":{
-    Button:{
-      paddingLeft:"1em"
+  horizontal: {
+    margin: "0px 20px 6px 8px",
+    border: "0.5px solid rgb(110, 110, 110)"
+  },
+  "@media (min-width:921px)": {
+    holder: {
+      display: "flex",
+      flexDirection: "column",
+      WebkitTransform: "scale(1, 1)"
+    },
+    Button: {
+      paddingLeft: "2em"
+    },
+    playlistButton: {
+      WebkitTransform: "scale(1, 1)",
+      marginLeft: "20px"
+    },
+    playlistTypo: {
+      fontSize: "13px",
+      paddingLeft: "25px"
+    },
+    horizontal: {
+      margin: "10px 25px 10px 25px",
+      border: "0.5px solid rgb(110, 110, 110)"
     }
   }
 });
-
-
 
 export default () => {
   const { currentUser } = useContext(AuthContext);
@@ -118,32 +142,42 @@ export default () => {
   };
   return (
     <div>
-        <div className={classes.holder}>
-      <NavLink exact to ="/" style={{ textDecoration: "none" }} className={classes.Button} activeClassName={classes.activeButton}  >
-        <HomeOutlinedIcon style={{ fontSize: 30 }} />
-        <div className={classes.buttonText} >
-          Home
-          </div>
-      </NavLink>
-      <NavLink to="/search" style={{ textDecoration: "none" }} className={classes.Button} activeClassName={classes.activeButton}>
-       
-          
-        <SearchOutlinedIcon style={{ fontSize: 30 }} />
-    
-        <div className={classes.buttonText} > Search </div>
-       
-      </NavLink>
-      
-      <NavLink to="/library" style={{ textDecoration: "none" }} className={classes.Button} activeClassName={classes.activeButton}>
-       <ListOutlinedIcon style={{ fontSize: 30 }} />
-          
-         <div className={classes.buttonText} > Library </div>
-        
-      </NavLink>
+      <div className={classes.holder}>
+        <NavLink
+          exact
+          to="/"
+          style={{ textDecoration: "none" }}
+          className={classes.Button}
+          activeClassName={classes.activeButton}
+        >
+          <HomeOutlinedIcon style={{ fontSize: 30 }} />
+          <div className={classes.buttonText}>Home</div>
+        </NavLink>
+        <NavLink
+          to="/search"
+          style={{ textDecoration: "none" }}
+          className={classes.Button}
+          activeClassName={classes.activeButton}
+        >
+          <SearchOutlinedIcon style={{ fontSize: 30 }} />
+
+          <div className={classes.buttonText}> Search </div>
+        </NavLink>
+
+        <NavLink
+          to="/library"
+          style={{ textDecoration: "none" }}
+          className={classes.Button}
+          activeClassName={classes.activeButton}
+        >
+          <ListOutlinedIcon style={{ fontSize: 30 }} />
+
+          <div className={classes.buttonText}> Library </div>
+        </NavLink>
       </div>
       <br />
-      
-      <Typography>Playlist</Typography>
+
+      <Typography className={classes.playlistTypo}>Playlist</Typography>
       <Button
         className={classes.playlistButton}
         startIcon={<AddCircleOutlineOutlinedIcon style={{ fontSize: 30 }} />}
@@ -185,7 +219,7 @@ export default () => {
           </DialogActions>
         </div>
       </Dialog>
-
+      <hr className={classes.horizontal} />
       <Playlist />
     </div>
   );

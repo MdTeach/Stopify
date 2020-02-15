@@ -53,8 +53,8 @@ export default props => {
       .then(querySnapshot => {
         const song = querySnapshot.docs[0];
         song.ref.delete();
-        addRecent();
       });
+    setTimeout(addRecent, 1000);
   };
 
   const addRecent = () => {

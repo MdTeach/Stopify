@@ -36,6 +36,7 @@ export default () => {
         .where("uid", "==", currentUser.uid)
         .get();
       const recsongs = snaps.docs.map(el => el.data());
+
       return recsongs;
     } catch (error) {
       return { error: error };

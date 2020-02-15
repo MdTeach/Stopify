@@ -4,6 +4,7 @@ import PlayIcon from "./Play";
 import PauseIcon from "./Pause";
 import { FireStore as db } from "../../../../../utils/firebase.js";
 import { AuthContext } from "../../../../../auth/Auth";
+import { firestore } from "firebase";
 
 export default props => {
   const [isPaused, setPause] = useState(props.isPaused);
@@ -44,6 +45,18 @@ export default props => {
     checkPresent();
   }, []);
 
+  const updateRecent = () => {
+    db.collection("recentSongs")
+      .where("uid", "==", currentUser.uid)
+      .where("name", "==", props.data.name)
+      .get()
+      .then(querySnapshot => {
+        const song = querySnapshot.docs[0];
+        song.ref.delete();
+        addRecent();
+      });
+  };
+
   const addRecent = () => {
     db.collection("recentSongs")
       .add({
@@ -65,6 +78,8 @@ export default props => {
     setPause(isPaused ? false : true);
     if (!present) {
       addRecent();
+    } else {
+      updateRecent();
     }
   };
 

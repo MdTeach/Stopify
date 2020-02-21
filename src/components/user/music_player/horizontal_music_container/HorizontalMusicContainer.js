@@ -6,7 +6,7 @@ import SongCard from "../song_card/SongCard";
 export default props => {
   return (
     <div className="horizontal-container">
-      <div className="title">{props.title}</div>
+      {(props.data.length > 0) ? <div className="title">{props.title}</div> : <div></div>}
       <div className="card-container">
         {props.data.map(data => (
           <SongCard

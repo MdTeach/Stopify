@@ -12,9 +12,6 @@ export default props => {
           <SongCard
             key={data["audioUrl"] + data["uid"]}
             data={data}
-            changeMusic={props.changeMusic}
-            currentPlaying={props.currentPlaying}
-            audioInstance={props.audioInstance}
           />
         ))}
       </div>

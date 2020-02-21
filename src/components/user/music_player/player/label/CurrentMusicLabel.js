@@ -10,7 +10,7 @@ export default props => {
   const CardDetails = useContext(CardContext);
   const cardDetails = () => {
     CardDetails.feedSong(props.data);
-  };
+  }; 
 
   const isDataAvialbel = Object.keys(data).length === 0 ? false : true;
   return !isDataAvialbel ? (

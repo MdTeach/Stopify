@@ -1,9 +1,11 @@
 import React, { useEffect, useState, useContext } from "react";
 import { Route } from "react-router";
 
-import { SongDetails } from "../audio_utils/card_utils";
 import { FireStore as db } from "../../../../utils/firebase";
+
+//providers
 import { AuthContext } from "../../../../auth/Auth.js";
+import {CardContext} from '../audio_utils/card_utils'
 
 //css
 import "./SongWrapper.css";
@@ -26,11 +28,11 @@ import CircularLoading from "../../../extra/CircularLoading/CircularLoading";
 
 export default () => {
   const [isfetchingSongs, setFetchingSongs] = useState(true);
-  const [allSongs, setAllSongs] = useState([]);
   const [allRecentSongs, setAllRecentSongs] = useState([]);
-  const [currentPlaying, setCurrentPlaying] = useState({});
+  const [allSongs, setAllSongs] = useState([]);
+  
   const { currentUser } = useContext(AuthContext);
-  const [audio, setAudio] = useState(null);
+  const songeContext = useContext(CardContext);
 
   document.addEventListener("contextmenu", function(e) {
     e.preventDefault();
@@ -66,22 +68,9 @@ export default () => {
     setAllRecentSongs(rsongs);
 
     //initall set the current playing song to the 0 index
-    setAudio(new Audio(songs[0].audioUrl));
+    songeContext.setAudio(new Audio(songs[0].audioUrl));
   };
 
-  //change the playing the song
-  const changeMusic = newMusic => {
-    if (newMusic["audioUrl"] === currentPlaying["audioUrl"]) {
-      audio.paused ? audio.play() : audio.pause();
-      //setCurrentPlaying({});
-    } else {
-      //change the music
-      setCurrentPlaying(newMusic);
-      //setAudio(new Audio(newMusic.audioUrl))
-      audio.src = newMusic.audioUrl;
-      audio.play();
-    }
-  };
 
   //shows the music in card
   const MusicLists = () => {
@@ -99,18 +88,15 @@ export default () => {
             ) : (
               <RecentSongs
                 data={allRecentSongs}
-                changeMusic={changeMusic}
-                currentPlaying={currentPlaying}
-                audioInstance={!!audio ? audio.paused : true}
+                changeMusic={songeContext.changeMusic}
+                currentPlaying={songeContext.currentPlaying}
+                audioInstance={!!songeContext.audio ? songeContext.audio.paused : true}
               />
             )}
 
             <HorizontalMusicContainer
               data={allSongs}
-              changeMusic={changeMusic}
               title="All Songs"
-              currentPlaying={currentPlaying}
-              audioInstance={!!audio ? audio.paused : true}
             />
           </div>
         )}
@@ -138,27 +124,25 @@ export default () => {
 
   return (
     <div className="song-wrapper">
-      <SongDetails>
-        <div className="sidebar-and-songs">
-          <div className="side-bar">
-            <SideBar />
-          </div>
-          <div className="music_lists">
-            <Route exact path="/" component={MusicLists} />
-            <Route path="/album" component={SongCardDetails} />
-            <Route path="/library" component={Library} />
-            
-            <Route path="/search">
-              <Search allSongs={allSongs}/>
-            </Route> 
-            
-            <Route path="/userPlaylist" component={PlaylistCardDetails} />
-          </div>
+      <div className="sidebar-and-songs">
+        <div className="side-bar">
+          <SideBar />
         </div>
-        <div className="music-controller">
-          <MusicPlayer currentPlaying={currentPlaying} audioInstance={audio} />
+        <div className="music_lists">
+          <Route exact path="/" component={MusicLists} />
+          <Route path="/album" component={SongCardDetails} />
+          <Route path="/library" component={Library} />
+          
+          <Route path="/search">
+            <Search allSongs={allSongs}/>
+          </Route> 
+          
+          <Route path="/userPlaylist" component={songeContext.PlaylistCardDetails} />
         </div>
-      </SongDetails>
+      </div>
+      <div className="music-controller">
+        <MusicPlayer currentPlaying={songeContext.currentPlaying} audioInstance={songeContext.audio} />
+      </div>
     </div>
   );
 };

@@ -1,17 +1,21 @@
 import React, { useContext } from "react";
-import "./SongCard.css";
+
 import { Link } from "react-router-dom";
 import { CardContext } from "../audio_utils/card_utils";
 import PlayPauseButton from "./button/Button";
 
+//css
+import "./SongCard.css";
+
 export default props => {
   const CardDetails = useContext(CardContext);
+  
   const cardDetails = () => {
     CardDetails.feedSong(props.data);
   };
 
   const updateCurrentMusic = () => {
-    props.changeMusic(props.data);
+    CardDetails.changeMusic(props.data);
   };
 
   const handleClick = () => {
@@ -38,9 +42,9 @@ export default props => {
       <PlayPauseButton
         data={props.data}
         updateCurrentMusic={updateCurrentMusic}
-        isPlaying={props.data.name === props.currentPlaying.name}
+        isPlaying={props.data.name === CardDetails.currentPlaying.name}
         handleClick={handleClick}
-        isPaused={props.audioInstance}
+        isPaused={CardDetails.audio.paused}
       />
     </div>
   );

@@ -267,9 +267,10 @@ export default () => {
   const [checked, setChecked] = useState(false);
   const [DialogOpen, setDialogOpen] = useState(false);
   const [snackBarOpen, setSnackBarOpen] = useState(false);
-
+  const [isPlaying, setIsPlaying] = useState(false);
   const [anchorEl, setAnchorEl] = React.useState(null);
   const open = Boolean(anchorEl);
+  
   const handleClick = e => {
     setAnchorEl(e.currentTarget);
   };
@@ -357,9 +358,28 @@ export default () => {
     setUserPlaylist(arrayListPlay);
   };
 
+  //check if the song is playing and pause accordingly
+  const setPlayPauseStatus = ()=>{
+    if(CardDetails.audio.paused){
+      setIsPlaying(false)
+    }else{
+      setIsPlaying(false)
+      if(card["audioUrl"] === CardDetails.audio.src){
+        setIsPlaying(true)
+      }
+    }
+  }
+
+  const handlePlay = ()=>{
+    CardDetails.changeMusic(card);
+    setPlayPauseStatus()
+    
+  }
+
   useEffect(() => {
     fetchLikedSong();
     fetchUserPlaylist();
+    setPlayPauseStatus();
   }, []);
 
   const snackBar = () => (
@@ -389,8 +409,10 @@ export default () => {
           </Typography>
           <Typography className={classes.description}>2019 . 1 SONG</Typography>
           <div className={classes.u2BoxLower}>
-            <Button className={classes.playButton}>
-              <Typography className={classes.playButtonText}>Play</Typography>
+            <Button className={classes.playButton} onClick={handlePlay}>
+              <Typography className={classes.playButtonText}>
+                {isPlaying ? "Pause" : "Play"}
+              </Typography>
             </Button>
             <div className={classes.LowerBoxButtons}>
               <Checkbox

@@ -1,17 +1,22 @@
 import React, { useEffect, useState, useContext } from "react";
 import { Route } from "react-router";
+
 import { SongDetails } from "../audio_utils/card_utils";
 import { FireStore as db } from "../../../../utils/firebase";
 import { AuthContext } from "../../../../auth/Auth.js";
+
 //css
 import "./SongWrapper.css";
-import SongCardDetails from "./songCardDetails";
-import PlaylistCardDetails from "./library/playlist/playlistCardDetails";
-import Library from "./library/library";
+
 //functions
 import { getAllSongsInfo } from "../audio_utils/audio_utils";
 
 //components
+import SongCardDetails from "./songCardDetails";
+import PlaylistCardDetails from "./library/playlist/playlistCardDetails";
+import Library from "./library/library";
+import Search from "../search/Search"
+
 //import SongCard from '../song_card/SongCard'
 import SideBar from "../side_bar/check_sideBar/check_sideBar.js";
 import MusicPlayer from "../player/MusicPlayer";
@@ -60,6 +65,7 @@ export default () => {
     setAllSongs(songs);
     setAllRecentSongs(rsongs);
 
+    //initall set the current playing song to the 0 index
     setAudio(new Audio(songs[0].audioUrl));
   };
 
@@ -141,6 +147,11 @@ export default () => {
             <Route exact path="/" component={MusicLists} />
             <Route path="/album" component={SongCardDetails} />
             <Route path="/library" component={Library} />
+            
+            <Route path="/search">
+              <Search allSongs={allSongs}/>
+            </Route> 
+            
             <Route path="/userPlaylist" component={PlaylistCardDetails} />
           </div>
         </div>

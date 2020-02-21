@@ -3,6 +3,8 @@ import { FireStore as db } from "../../../../../../utils/firebase";
 import { AuthContext } from "../../../../../../auth/Auth";
 import { makeStyles } from "@material-ui/core/styles";
 import LikedSongCard from "./likedSongCard";
+import SongCard from "../../../song_card/SongCard"
+
 
 const useStyles = makeStyles({
   container: {
@@ -47,7 +49,7 @@ export default () => {
   return (
     <div className={classes.container}>
       {likedSongs.map(el => (
-        <LikedSongCard key={el["audioUrl"]} data={el} />
+        <SongCard key={el["audioUrl"]} data={el} />
       ))}
     </div>
   );

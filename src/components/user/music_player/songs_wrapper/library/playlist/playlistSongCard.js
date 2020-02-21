@@ -1,6 +1,7 @@
-import React, { useState, useContext } from "react";
+import React, { useState, useContext,useEffect} from "react";
 import { Card } from "@material-ui/core";
 import PlayArrowIcon from "@material-ui/icons/PlayArrow";
+import PauseIcon from '@material-ui/icons/Pause';
 import MoreHorizIcon from "@material-ui/icons/MoreHoriz";
 import MusicNoteOutlinedIcon from "@material-ui/icons/MusicNoteOutlined";
 import { makeStyles, withStyles } from "@material-ui/core/styles";
@@ -95,6 +96,31 @@ export default props => {
   const CardDetails = useContext(CardContext);
   const [anchorEl, setAnchorEl] = useState(null);
   const open = Boolean(anchorEl);
+  const [isPlaying, setIsPlaying] = useState(false);
+
+  
+  //check if the icon  is playing and pause accordingly
+  const setPlayPauseStatus = ()=>{
+    if(CardDetails.audio.paused){
+      setIsPlaying(false)
+    }else{
+      setIsPlaying(false)
+      if(props.data["audioUrl"] === CardDetails.audio.src){
+        setIsPlaying(true)
+      }else{
+        setIsPlaying(false)
+      }
+    }
+    props.changeParentLabel();
+  }
+
+  const handlePlay = ()=>{
+    if(props.data){
+      CardDetails.changeMusic(props.data);
+      setPlayPauseStatus()
+    }
+  }
+
 
   const handleMenuOpen = e => {
     setAnchorEl(e.currentTarget);
@@ -121,6 +147,10 @@ export default props => {
       });
   };
 
+  useEffect(() => {
+    setPlayPauseStatus();
+  });
+
   return (
     <Card
       className={classes.card}
@@ -133,9 +163,17 @@ export default props => {
       }}
     >
       <CardContent>
-        <div className={classes.content}>
-          {!over && <MusicNoteOutlinedIcon className={classes.musicIcon} />}
-          {over && <PlayArrowIcon className={classes.musicIcon} />}
+        <div className={classes.content} onClick={handlePlay}>
+          {
+          !over ?
+            <MusicNoteOutlinedIcon className={classes.musicIcon} />
+            :
+            isPlaying ? 
+              <PauseIcon className={classes.musicIcon} />
+            :
+              <PlayArrowIcon className={classes.musicIcon} />
+          }
+          
           <div className={classes.holder}>
             <div className={classes.songName}>{props.data.name}</div>
             <div style={{ display: "flex" }}>

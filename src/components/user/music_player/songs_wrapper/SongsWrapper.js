@@ -137,7 +137,7 @@ export default () => {
             <Search allSongs={allSongs}/>
           </Route> 
           
-          <Route path="/userPlaylist" component={songeContext.PlaylistCardDetails} />
+          <Route path="/userPlaylist" component={PlaylistCardDetails} />
         </div>
       </div>
       <div className="music-controller">

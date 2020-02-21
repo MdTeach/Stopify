@@ -14,18 +14,18 @@ export const SongDetails=({ children })=>{
     const [song,setSong]=useState([])
     const [playlistName,setPlaylistName]=useState("");
 
-
+ 
     //change the playing the song
     const changeMusic = newMusic => {
         if (newMusic["audioUrl"] === currentPlaying["audioUrl"]) {
-        audio.paused ? audio.play() : audio.pause();
-        //setCurrentPlaying({});
+            audio.paused ? audio.play() : audio.pause();
+            //setCurrentPlaying({});
         } else {
-        //change the music
-        setCurrentPlaying(newMusic);
-        //setAudio(new Audio(newMusic.audioUrl))
-        audio.src = newMusic.audioUrl;
-        audio.play();
+            //change the music
+            setCurrentPlaying(newMusic);
+            //setAudio(new Audio(newMusic.audioUrl))
+            audio.src = newMusic.audioUrl;
+            audio.play();
         }
     };
 

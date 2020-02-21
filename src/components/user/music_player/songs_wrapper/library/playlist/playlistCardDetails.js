@@ -221,7 +221,7 @@ export default () => {
   const CardDetails=useContext(CardContext);
   const [songs, setSongs] = useState([]);
   const [DialogOpen, setDialogOpen] = useState(false);
-
+  const [isPlaying, setIsPlaying] = useState(false);
   const [anchorEl, setAnchorEl] = React.useState(null);
   const open = Boolean(anchorEl);
   const { currentUser } = useContext(AuthContext);
@@ -281,8 +281,30 @@ export default () => {
     setSongs(array);
   };
 
+  //check if the playlist song is playing and pause accordingly
+  const setPlayPauseStatus = ()=>{
+    if(CardDetails.audio.paused){
+      setIsPlaying(false)
+    }else{
+      setIsPlaying(false)
+      for(let song of songs){
+        if(song["audioUrl"] === CardDetails.audio.src){
+          setIsPlaying(true)
+        }
+      }
+    }
+  }
+
+  const handlePlay = ()=>{
+    if(songs.length>0){
+      CardDetails.changeMusic(songs[0]);
+      setPlayPauseStatus()
+    }
+  }
+
   useEffect(() => {
     fetchSong();
+    setPlayPauseStatus();
   }, []);
   return (
     <div style={{ color: "white" }}>
@@ -301,8 +323,10 @@ export default () => {
             </Typography>
 
             <div className={classes.u2BoxLower}>
-              <Button className={classes.playButton}>
-                <Typography className={classes.playButtonText}>Play</Typography>
+              <Button className={classes.playButton} onClick={handlePlay}>
+                <Typography className={classes.playButtonText}>
+                  {isPlaying ? "Pause" : "Play"}
+                </Typography>
               </Button>
               <div className={classes.LowerBoxButtons}>
                 <MoreHorizIcon
@@ -351,7 +375,11 @@ export default () => {
         <div className={classes.lowerBox}>
           {
             songs.map(el=>(
-              <PlaylistSongCard key={el["audioUrl"]} playlistName={CardDetails.playlistDetails} data={el}/>
+              <PlaylistSongCard 
+                key={el["audioUrl"]} 
+                playlistName={CardDetails.playlistDetails} 
+                data={el}
+                changeParentLabel={setPlayPauseStatus}/>
             ))
           }
         </div>

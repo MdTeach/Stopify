@@ -129,11 +129,11 @@ export default () => {
           <SideBar />
         </div>
         <div className="music_lists">
-          {/* <Route exact path="/" component={MusicLists} /> */}
+          <Route exact path="/" component={MusicLists} />
           <Route path="/album" component={SongCardDetails} />
           <Route path="/library" component={Library} />
           
-          <Route path="/">
+          <Route exact path="/search">
             <Search allSongs={allSongs}/>
           </Route> 
           

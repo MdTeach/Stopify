@@ -1,20 +1,28 @@
-.wrapper{
-    width: 100%;
-    padding: .5em;
-    background-color:#282828;
-    display: flex;
-    margin: 0;
-    margin-top: 1em;
+.wrapper {
+  width: 100%;
+  padding: 0.5em;
+  background-color: #282828;
+  display: flex;
+  margin: 0;
+  margin-top: 0.3em;
+  transform: scale(0.9, 0.9);
 }
 
-.left-part{
-    flex: 4;
-    text-align: left;
-    display: flex;
-    flex-direction: column;
+.left-part {
+  flex: 4;
+  text-align: left;
+  display: flex;
+  flex-direction: column;
 }
 
-.right-part{
-    flex: 1;
-    text-align: right;
+.right-part {
+  margin-top: 0.7em;
+  flex: 1;
+  text-align: right;
+}
+
+@media (min-width: 921px) {
+  .wrapper {
+    transform: scale(1, 1);
+  }
 }

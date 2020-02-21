@@ -76,7 +76,7 @@ const useStyles = makeStyles({
     }
   },
   horizontal: {
-    margin: "0px 20px 6px 8px",
+    margin: "0px 12px 6px 15px",
     border: "0.5px solid rgb(110, 110, 110)"
   },
   "@media (min-width:921px)": {

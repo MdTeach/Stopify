@@ -10,20 +10,8 @@ export default props => {
   const [isPaused, setPause] = useState(props.isPaused);
   //const { recentSongs } = useContext(RecentContext);
   const { currentUser } = useContext(AuthContext);
-  const [present, setPresent] = useState(false);
-  /*const getAllRecent = async () => {
-    try {
-      const snaps = await db
-        .collection("recentSongs")
-        .where("uid", "==", currentUser.uid)
-        .get();
-      const recsongs = snaps.docs.map(el => el.data());
-      setRecent(recsongs);
-    } catch (error) {
-      return { error: error };
-    }
-  };
-*/
+  const [present, setPresent] = useState(null);
+
   const checkPresent = async () => {
     try {
       const snaps = await db
@@ -54,7 +42,7 @@ export default props => {
         const song = querySnapshot.docs[0];
         song.ref.delete();
       });
-    setTimeout(addRecent, 1000);
+    setTimeout(addRecent, 800);
   };
 
   const addRecent = () => {
@@ -66,7 +54,8 @@ export default props => {
         genre: props.data.genre,
         imageUrl: props.data.imageUrl,
         name: props.data.name,
-        uid: currentUser.uid
+        uid: currentUser.uid,
+        timestamp: firestore.FieldValue.serverTimestamp()
       })
       .catch(error => {
         console.log(error);

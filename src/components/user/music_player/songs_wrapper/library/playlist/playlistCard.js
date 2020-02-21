@@ -51,7 +51,8 @@ const useStyles = makeStyles({
   icon: {
     fontSize: 120,
     fontWeight: "500",
-    color: "rgb(240, 240, 240)"
+    color: "rgb(222, 222, 222)",
+    textShadow: "2px 2px 5px #000000;"
   },
   playlistName: {
     color: "white",

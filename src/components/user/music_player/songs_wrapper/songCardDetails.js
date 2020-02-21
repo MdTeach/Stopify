@@ -1,22 +1,22 @@
 import React, { useState, useEffect, useContext } from "react";
-import { makeStyles,withStyles } from "@material-ui/core/styles";
+import { makeStyles, withStyles } from "@material-ui/core/styles";
 import { Typography, Button, Card } from "@material-ui/core";
 import MoreHorizIcon from "@material-ui/icons/MoreHoriz";
 import MusicNoteOutlinedIcon from "@material-ui/icons/MusicNoteOutlined";
-import Favorite from '@material-ui/icons/Favorite';
-import FavoriteBorder from '@material-ui/icons/FavoriteBorder';
-import Checkbox from '@material-ui/core/Checkbox';
-import {FireStore as db} from '../../../../utils/firebase'
-import {AuthContext} from '../../../../auth/Auth'
-import {CardContext} from '../audio_utils/card_utils'
-import Menu from '@material-ui/core/Menu';
-import MenuItem from '@material-ui/core/MenuItem';
-import Dialog from '@material-ui/core/Dialog'
+import Favorite from "@material-ui/icons/Favorite";
+import FavoriteBorder from "@material-ui/icons/FavoriteBorder";
+import Checkbox from "@material-ui/core/Checkbox";
+import { FireStore as db } from "../../../../utils/firebase";
+import { AuthContext } from "../../../../auth/Auth";
+import { CardContext } from "../audio_utils/card_utils";
+import Menu from "@material-ui/core/Menu";
+import MenuItem from "@material-ui/core/MenuItem";
+import Dialog from "@material-ui/core/Dialog";
 import DialogContent from "@material-ui/core/DialogContent";
 import DialogTitle from "@material-ui/core/DialogTitle";
-import ListCard from './listCard'
-import Snackbar from '@material-ui/core/Snackbar';
-import MuiAlert from '@material-ui/lab/Alert';
+import ListCard from "./listCard";
+import Snackbar from "@material-ui/core/Snackbar";
+import MuiAlert from "@material-ui/lab/Alert";
 
 function Alert(props) {
   return <MuiAlert elevation={6} variant="filled" {...props} />;
@@ -24,17 +24,17 @@ function Alert(props) {
 
 const StyledMenuItem = withStyles(theme => ({
   root: {
-      backgroundColor:"#363636",
-      color:"gray",
-      marginTop:-8,
-      marginBottom:-8,
-      marginLeft:"auto",
+    backgroundColor: "#363636",
+    color: "gray",
+    marginTop: -8,
+    marginBottom: -8,
+    marginLeft: "auto",
 
-    '&:hover': {
+    "&:hover": {
       backgroundColor: "#363636",
-      color:"white"
-    },
-  },
+      color: "white"
+    }
+  }
 }))(MenuItem);
 
 const useStyles = makeStyles({
@@ -99,14 +99,14 @@ const useStyles = makeStyles({
   LowerBoxButtons: {
     display: "flex",
     flexDirection: "row",
-    justifyContent: "center",
+    justifyContent: "center"
   },
   playButtonText: {
     marginTop: -2,
     fontSize: 8
   },
   heartIcon: {
-    color:"white",
+    color: "white",
     fontSize: 15,
     marginTop: 10,
     marginLeft: 5
@@ -115,8 +115,8 @@ const useStyles = makeStyles({
   menuIcon: {
     marginTop: 17,
     marginLeft: 5,
-    '&:hover':{
-      cursor:"pointer"
+    "&:hover": {
+      cursor: "pointer"
     }
   },
   lowerBox: {
@@ -150,18 +150,18 @@ const useStyles = makeStyles({
     marginLeft: "5px",
     width: "100%"
   },
-  menu:{
-    marginLeft:10,
-    marginTop:35,
-    padding:-20, 
+  menu: {
+    marginLeft: 10,
+    marginTop: 35,
+    padding: -20
   },
   dialogBox: {
     backgroundColor: "gray"
   },
-  
+
   "@media (min-width:921px)": {
-    menu:{
-      marginTop:25,
+    menu: {
+      marginTop: 25
     },
     total: {
       width: "100%",
@@ -259,113 +259,121 @@ const useStyles = makeStyles({
 });
 
 export default () => {
-  const {currentUser}=useContext(AuthContext)
-  const CardDetails=useContext(CardContext)
+  const { currentUser } = useContext(AuthContext);
+  const CardDetails = useContext(CardContext);
   const classes = useStyles();
   const [card, setCard] = useState([]);
-  const [userPlaylist,setUserPlaylist]=useState([]);
-  const [checked,setChecked]=useState(false);
-  const [DialogOpen,setDialogOpen]=useState(false);
-  const [snackBarOpen,setSnackBarOpen]=useState(false);
+  const [userPlaylist, setUserPlaylist] = useState([]);
+  const [checked, setChecked] = useState(false);
+  const [DialogOpen, setDialogOpen] = useState(false);
+  const [snackBarOpen, setSnackBarOpen] = useState(false);
 
-  const [anchorEl,setAnchorEl]=React.useState(null);
-    const open=Boolean(anchorEl);
-    const handleClick=e=>{
-        setAnchorEl(e.currentTarget);
-    }
-    const handleClose=e=>{
-        setAnchorEl(null)
-    }
-    const handleDialogClose=()=>{
-      setDialogOpen(false);
-      setAnchorEl(null);
+  const [anchorEl, setAnchorEl] = React.useState(null);
+  const open = Boolean(anchorEl);
+  const handleClick = e => {
+    setAnchorEl(e.currentTarget);
+  };
+  const handleClose = e => {
+    setAnchorEl(null);
+  };
+  const handleDialogClose = () => {
+    setDialogOpen(false);
+    setAnchorEl(null);
+  };
+
+  const check = () => {
+    setSnackBarOpen(true);
+  };
+  const handleSnackBarClose = (event, reason) => {
+    if (reason === "clickaway") {
+      return;
     }
 
-    const check=()=>{
-      setSnackBarOpen(true);
-    }
-    const handleSnackBarClose = (event, reason) => {
-      if (reason === 'clickaway') {
-        return;
-      }
-  
-      setSnackBarOpen(false);
-    };
-    
-  
-  const songLiked=()=>{
-    
-    if(checked===false){
+    setSnackBarOpen(false);
+  };
+
+  const songLiked = () => {
+    if (checked === false) {
       setChecked(true);
-    db.collection("LikedSongs").add({
-      album:card.album,
-      artist:card.artist,
-      audioUrl:card.audioUrl,
-      genre:card.genre,
-      imageUrl:card.imageUrl,
-      name:card.name,
-      uid:currentUser.uid
-    })
-    .then(docRef=>{
-      console.log("Liked song added at",docRef.id)
-    })
-    .catch((error)=>{
-      console.log("Error to add Liked song",error)
-    })
-  }
-  if(checked===true){
-    setChecked(false);
-    db.collection("LikedSongs").where("uid","==",currentUser.uid).where("audioUrl","==",card.audioUrl).get()
-            .then((querySnapshot) => {
-                querySnapshot.forEach(function (doc) {
-                    doc.ref.delete();
-                    console.log("Liked song deleted")
-                })
-            })
-            .catch(error => {
-                console.log("error", error)
-            })
-  }
+      db.collection("LikedSongs")
+        .add({
+          album: card.album,
+          artist: card.artist,
+          audioUrl: card.audioUrl,
+          genre: card.genre,
+          imageUrl: card.imageUrl,
+          name: card.name,
+          uid: currentUser.uid
+        })
+        .then(docRef => {
+          console.log("Liked song added at", docRef.id);
+        })
+        .catch(error => {
+          console.log("Error to add Liked song", error);
+        });
+    }
+    if (checked === true) {
+      setChecked(false);
+      db.collection("LikedSongs")
+        .where("uid", "==", currentUser.uid)
+        .where("audioUrl", "==", card.audioUrl)
+        .get()
+        .then(querySnapshot => {
+          querySnapshot.forEach(function(doc) {
+            doc.ref.delete();
+            console.log("Liked song deleted");
+          });
+        })
+        .catch(error => {
+          console.log("error", error);
+        });
+    }
+  };
 
-}
-
-  const fetchLikedSong=()=>{
+  const fetchLikedSong = () => {
     const getcard = CardDetails.songDetails;
     setCard(getcard[0]);
-    db.collection("LikedSongs").where("uid","==",currentUser.uid).where("audioUrl","==",getcard[0].audioUrl).get()
-    .then((querySnapshot)=>{
-      console.log("fetched liked song")
-    querySnapshot.forEach(function (doc) {
-      setChecked(true);
-  });
-    })
-    .catch(error=>{
-      console.log("error",error)
-    })
-  }
+    db.collection("LikedSongs")
+      .where("uid", "==", currentUser.uid)
+      .where("audioUrl", "==", getcard[0].audioUrl)
+      .get()
+      .then(querySnapshot => {
+        console.log("fetched liked song");
+        querySnapshot.forEach(function(doc) {
+          setChecked(true);
+        });
+      })
+      .catch(error => {
+        console.log("error", error);
+      });
+  };
 
-  const fetchUserPlaylist=async()=>{
-    const listPlay=await db.collection("userPlaylist").where("uid","==",currentUser.uid).get()
-    const arrayListPlay=listPlay.docs.map((el)=>el.data())
+  const fetchUserPlaylist = async () => {
+    const listPlay = await db
+      .collection("userPlaylist")
+      .where("uid", "==", currentUser.uid)
+      .get();
+    const arrayListPlay = listPlay.docs.map(el => el.data());
     setUserPlaylist(arrayListPlay);
-  }
+  };
 
   useEffect(() => {
     fetchLikedSong();
     fetchUserPlaylist();
   }, []);
 
-
-  const snackBar=()=>(
-    <Snackbar anchorOrigin={{vertical:'top',horizontal:"right"}} open={snackBarOpen} autoHideDuration={6000} onClose={handleSnackBarClose}>
-        <Alert onClose={handleSnackBarClose} severity="success" >
-          Song was successfully added to your playlist.
-        </Alert>
-      </Snackbar>
-  )
-  
- 
-  
+  const snackBar = () => (
+    <Snackbar
+      anchorOrigin={{ vertical: "top", horizontal: "right" }}
+      open={snackBarOpen}
+      autoHideDuration={6000}
+      onClose={handleSnackBarClose}
+    >
+      <Alert onClose={handleSnackBarClose} severity="success">
+        Song was successfully added to your playlist.
+      </Alert>
+    </Snackbar>
+  );
 
   return (
     <div className={classes.total}>
@@ -385,26 +393,50 @@ export default () => {
               <Typography className={classes.playButtonText}>Play</Typography>
             </Button>
             <div className={classes.LowerBoxButtons}>
-            <Checkbox icon={<FavoriteBorder className={classes.heartIcon}/>} 
-            checkedIcon={<Favorite className={classes.heartIcon} />}
-            onClick={songLiked} checked={checked} />
-              <MoreHorizIcon className={classes.menuIcon} onClick={handleClick} />
-              <Menu anchorEl={anchorEl} keepMounted open={open} className={classes.menu} onClose={handleClose}  >
-                    <StyledMenuItem onClick={()=>{setDialogOpen(true)}}>Add to Playlist</StyledMenuItem>        
-          </Menu>
-          <Dialog open={DialogOpen} onClose={handleDialogClose} fullWidth>
-          <div className={classes.dialogBox}>
-            <DialogTitle>Add to Playlist</DialogTitle>
-            <DialogContent>
-              <div style={{display:"flex"}}>
-              {userPlaylist.map((el)=>
-                <ListCard key={el["keyID"]} data={el} songs={card} currentUser={currentUser} handler={handleDialogClose} check={check}/>
-              )}
-                
-              </div>
-            </DialogContent>
-            </div>
-          </Dialog>
+              <Checkbox
+                icon={<FavoriteBorder className={classes.heartIcon} />}
+                checkedIcon={<Favorite className={classes.heartIcon} />}
+                onClick={songLiked}
+                checked={checked}
+              />
+              <MoreHorizIcon
+                className={classes.menuIcon}
+                onClick={handleClick}
+              />
+              <Menu
+                anchorEl={anchorEl}
+                keepMounted
+                open={open}
+                className={classes.menu}
+                onClose={handleClose}
+              >
+                <StyledMenuItem
+                  onClick={() => {
+                    setDialogOpen(true);
+                  }}
+                >
+                  Add to Playlist
+                </StyledMenuItem>
+              </Menu>
+              <Dialog open={DialogOpen} onClose={handleDialogClose} fullWidth>
+                <div className={classes.dialogBox}>
+                  <DialogTitle>Add to Playlist</DialogTitle>
+                  <DialogContent>
+                    <div style={{ display: "flex" }}>
+                      {userPlaylist.map(el => (
+                        <ListCard
+                          key={el["keyID"]}
+                          data={el}
+                          songs={card}
+                          currentUser={currentUser}
+                          handler={handleDialogClose}
+                          check={check}
+                        />
+                      ))}
+                    </div>
+                  </DialogContent>
+                </div>
+              </Dialog>
             </div>
           </div>
         </div>

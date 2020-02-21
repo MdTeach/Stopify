@@ -27,8 +27,11 @@ export default () => {
   const { currentUser } = useContext(AuthContext);
   const [audio, setAudio] = useState(null);
 
-  //get all the song infos
+  document.addEventListener("contextmenu", function(e) {
+    e.preventDefault();
+  });
 
+  //get all the song infos
   const getAllRecentSongsInfo = async () => {
     try {
       const snaps = await db

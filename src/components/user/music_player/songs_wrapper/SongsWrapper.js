@@ -1,8 +1,6 @@
 import React, { useEffect, useState, useContext } from "react";
 import { Route } from "react-router";
 
-import { FireStore as db } from "../../../../utils/firebase";
-
 //providers
 import { AuthContext } from "../../../../auth/Auth.js";
 import {CardContext} from '../audio_utils/card_utils'
@@ -11,7 +9,11 @@ import {CardContext} from '../audio_utils/card_utils'
 import "./SongWrapper.css";
 
 //functions
-import { getAllSongsInfo } from "../audio_utils/audio_utils";
+import { 
+  getAllSongsInfo, 
+  getAllRecentSongsInfo,
+  subscriptionToRecentSongChanges 
+} from "../audio_utils/audio_utils";
 
 //components
 import SongCardDetails from "./songCardDetails";
@@ -23,11 +25,11 @@ import Search from "../search/Search"
 import SideBar from "../side_bar/check_sideBar/check_sideBar.js";
 import MusicPlayer from "../player/MusicPlayer";
 import HorizontalMusicContainer from "../horizontal_music_container/HorizontalMusicContainer";
-import RecentSongs from "./RecentSongs";
 import CircularLoading from "../../../extra/CircularLoading/CircularLoading";
 
 export default () => {
   const [isfetchingSongs, setFetchingSongs] = useState(true);
+  
   const [allRecentSongs, setAllRecentSongs] = useState([]);
   const [allSongs, setAllSongs] = useState([]);
   
@@ -38,27 +40,14 @@ export default () => {
     e.preventDefault();
   });
 
-  //get all the song infos
-  const getAllRecentSongsInfo = async () => {
-    try {
-      const snaps = await db
-        .collection("recentSongs")
-        .where("uid", "==", currentUser.uid)
-        .get();
-      const recsongs = snaps.docs.map(el => el.data());
-
-      return recsongs;
-    } catch (error) {
-      return { error: error };
-    }
-  };
+  
 
   const fetchSongs = async () => {
     //getting the songs as array
     //const songs = await getAllSongsInfo();
     const [songs, rsongs] = await Promise.all([
       getAllSongsInfo(),
-      getAllRecentSongsInfo()
+      getAllRecentSongsInfo(currentUser)
     ]);
 
     setFetchingSongs(false);
@@ -86,11 +75,9 @@ export default () => {
             {allRecentSongs.length === 0 ? (
               ""
             ) : (
-              <RecentSongs
+              <HorizontalMusicContainer
+                title="Recent Songs"
                 data={allRecentSongs}
-                changeMusic={songeContext.changeMusic}
-                currentPlaying={songeContext.currentPlaying}
-                audioInstance={!!songeContext.audio ? songeContext.audio.paused : true}
               />
             )}
 
@@ -106,20 +93,19 @@ export default () => {
 
   useEffect(() => {
     fetchSongs();
-    //loadSongs()
-    db.collection("recentSongs")
-      .where("uid", "==", currentUser.uid)
-      .onSnapshot(
-        async function(_) {
-          const rsongs = await getAllRecentSongsInfo();
-          setAllRecentSongs(rsongs);
-          //fetchSongs();
-          //console.log("Recent", allRecentSongs);
-        },
-        function(error) {
-          console.log(error, "Error");
-        }
-      );
+    
+    
+    //add the listener when new song is added
+    subscriptionToRecentSongChanges(currentUser,async()=>{
+      const rsongs = await getAllRecentSongsInfo(currentUser);
+      try {
+        rsongs.sort((b,a)=> a.timestamp.seconds -b.timestamp.seconds)  
+      } catch (error) {
+        console.log(error)
+      }
+      setAllRecentSongs(rsongs);
+    })
+    ;
   }, []);
 
   return (

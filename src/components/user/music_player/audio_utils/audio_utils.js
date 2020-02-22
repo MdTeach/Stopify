@@ -18,4 +18,36 @@ const getAllSongsInfo = async () => {
   }
 };
 
-export { getAllSongsInfo };
+/**
+ * Returns the all recent songs infos from the database
+ */
+const getAllRecentSongsInfo = async (currentUser) => {
+  try {
+    const snaps = await db
+      .collection("recentSongs")
+      .where("uid", "==", currentUser.uid)
+      //
+      .get();
+    const recsongs = snaps.docs.map(el => el.data());
+
+    return recsongs;
+  } catch (error) {
+    return { error: error };
+  }
+};
+
+
+const subscriptionToRecentSongChanges = (currentUser,callback)=>{
+  db.collection("recentSongs")
+      .where("uid", "==", currentUser.uid)
+      .onSnapshot(
+        async function(_) {
+          callback();
+        },
+        function(error) {
+          console.log(error, "Error");
+        }
+  )
+}
+
+export { getAllSongsInfo, getAllRecentSongsInfo,subscriptionToRecentSongChanges};

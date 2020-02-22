@@ -3,23 +3,23 @@ import { Route } from "react-router";
 
 //providers
 import { AuthContext } from "../../../../auth/Auth.js";
-import {CardContext} from '../audio_utils/card_utils'
+import { CardContext } from "../audio_utils/card_utils";
 
 //css
 import "./SongWrapper.css";
 
 //functions
-import { 
-  getAllSongsInfo, 
+import {
+  getAllSongsInfo,
   getAllRecentSongsInfo,
-  subscriptionToRecentSongChanges 
+  subscriptionToRecentSongChanges
 } from "../audio_utils/audio_utils";
 
 //components
 import SongCardDetails from "./songCardDetails";
 import PlaylistCardDetails from "./library/playlist/playlistCardDetails";
 import Library from "./library/library";
-import Search from "../search/Search"
+import Search from "../search/Search";
 
 //import SongCard from '../song_card/SongCard'
 import SideBar from "../side_bar/check_sideBar/check_sideBar.js";
@@ -29,18 +29,16 @@ import CircularLoading from "../../../extra/CircularLoading/CircularLoading";
 
 export default () => {
   const [isfetchingSongs, setFetchingSongs] = useState(true);
-  
+
   const [allRecentSongs, setAllRecentSongs] = useState([]);
   const [allSongs, setAllSongs] = useState([]);
-  
+
   const { currentUser } = useContext(AuthContext);
   const songeContext = useContext(CardContext);
 
   document.addEventListener("contextmenu", function(e) {
     e.preventDefault();
   });
-
-  
 
   const fetchSongs = async () => {
     //getting the songs as array
@@ -60,14 +58,13 @@ export default () => {
     songeContext.setAudio(new Audio(songs[0].audioUrl));
   };
 
-
   //shows the music in card
   const MusicLists = () => {
     return (
       <React.Fragment>
         {//Loading data
         isfetchingSongs === true ? (
-          <CircularLoading />
+          <CircularLoading style={{ paddingTop: 10 }} />
         ) : allSongs.length === 0 ? (
           <h4>No data</h4>
         ) : (
@@ -81,10 +78,7 @@ export default () => {
               />
             )}
 
-            <HorizontalMusicContainer
-              data={allSongs}
-              title="All Songs"
-            />
+            <HorizontalMusicContainer data={allSongs} title="All Songs" />
           </div>
         )}
       </React.Fragment>
@@ -93,19 +87,17 @@ export default () => {
 
   useEffect(() => {
     fetchSongs();
-    
-    
+
     //add the listener when new song is added
-    subscriptionToRecentSongChanges(currentUser,async()=>{
+    subscriptionToRecentSongChanges(currentUser, async () => {
       const rsongs = await getAllRecentSongsInfo(currentUser);
       try {
-        rsongs.sort((b,a)=> a.timestamp.seconds -b.timestamp.seconds)  
+        rsongs.sort((b, a) => a.timestamp.seconds - b.timestamp.seconds);
       } catch (error) {
-        console.log(error)
+        console.log(error);
       }
       setAllRecentSongs(rsongs);
-    })
-    ;
+    });
   }, []);
 
   return (
@@ -118,16 +110,19 @@ export default () => {
           <Route exact path="/" component={MusicLists} />
           <Route path="/album" component={SongCardDetails} />
           <Route path="/library" component={Library} />
-          
+
           <Route exact path="/search">
-            <Search allSongs={allSongs}/>
-          </Route> 
-          
+            <Search allSongs={allSongs} />
+          </Route>
+
           <Route path="/userPlaylist" component={PlaylistCardDetails} />
         </div>
       </div>
       <div className="music-controller">
-        <MusicPlayer currentPlaying={songeContext.currentPlaying} audioInstance={songeContext.audio} />
+        <MusicPlayer
+          currentPlaying={songeContext.currentPlaying}
+          audioInstance={songeContext.audio}
+        />
       </div>
     </div>
   );

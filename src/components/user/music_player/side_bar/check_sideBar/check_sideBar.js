@@ -6,7 +6,8 @@ import SearchOutlinedIcon from "@material-ui/icons/SearchOutlined";
 import ListOutlinedIcon from "@material-ui/icons/ListOutlined";
 import { NavLink, Link } from "react-router-dom";
 import { Typography } from "@material-ui/core";
-import AddCircleOutlineOutlinedIcon from "@material-ui/icons/AddCircleOutlineOutlined";
+import AddBoxSharpIcon from "@material-ui/icons/AddBoxSharp";
+import FavoriteOutlinedIcon from "@material-ui/icons/FavoriteOutlined";
 import "./sideBar.css";
 import { FireStore as db } from "../../../../../utils/firebase.js";
 import { AuthContext } from "../../../../../auth/Auth.js";
@@ -24,50 +25,88 @@ const useStyles = makeStyles({
     WebkitTransform: "scale(0.8, 0.8)"
   },
   Button: {
-    color: "gray",
+    color: "#919191",
     textTransform: "none",
     outline: "0 !important",
-    fontSize: "13px",
+    fontSize: "14px",
     marginTop: "10px",
+    paddingLeft: "0.75em",
+    display: "flex",
+    fontWeight: 600,
+    transitionDuration: "0.3s",
+    "&:hover": {
+      color: "white"
+    }
+  },
+  likeButton: {
+    color: "#919191",
+    textTransform: "none",
+    outline: "0 !important",
+    fontSize: "14px",
+    marginTop: "2px",
+    marginBottom: "5px",
     paddingLeft: "1em",
     display: "flex",
+    fontWeight: 600,
+    WebkitTransform: "scale(0.8, 0.8)",
     "&:hover": {
       color: "white"
     }
   },
   playlistTypo: {
-    fontSize: "13px",
-    paddingLeft: "30px",
-    color: "gray"
+    fontSize: "11px",
+    paddingLeft: "16px",
+    color: "gray",
+    letterSpacing: "1.5px"
   },
   activeButton: {
     color: "white",
-    borderLeft: " 3px solid #1ed760 "
+    borderLeft: " 3px solid #1ed760 ",
+    fontWeight: 600
+  },
+  activeLikeButton: {
+    color: "white",
+    fontWeight: 600
   },
   buttonText: {
     marginLeft: "9px",
     marginTop: "3px"
   },
+  likeText: {
+    marginLeft: "9px",
+    marginTop: "-2px"
+  },
   playlistButton: {
-    color: "white",
+    color: "#919191",
     textTransform: "none",
     outline: "0 !important",
     fontSize: "13px",
+    fontWeight: 600,
     marginTop: "10px",
     marginLeft: "8px",
-    WebkitTransform: "scale(0.8, 0.8)"
+    transitionDuration: "0.3s",
+    WebkitTransform: "scale(0.8, 0.8)",
+    "&:hover": {
+      color: "white"
+    }
   },
   dialogBox: {
-    backgroundColor: "gray"
+    backgroundColor: "white"
   },
   cancelButton: {
     borderRadius: 30,
-    borderColor: "white",
-    color: "white",
+    padding: "7px 30px 7px 30px",
+    fontSize: "12px",
+    fontWeight: 600,
+    border: "1.5px solid black",
+    color: "black",
     outline: "none !important"
   },
   createButton: {
     color: "white",
+    padding: "7px 30px 7px 30px",
+    fontSize: "12px",
+    fontWeight: 600,
     borderRadius: 30,
     backgroundColor: "#1ed760",
     outline: "none !important",
@@ -90,15 +129,26 @@ const useStyles = makeStyles({
     },
     playlistButton: {
       WebkitTransform: "scale(1, 1)",
-      marginLeft: "20px"
+      marginLeft: "20px",
+      fontSize: "14px"
     },
     playlistTypo: {
-      fontSize: "13px",
+      fontSize: "11px",
       paddingLeft: "25px"
     },
     horizontal: {
       margin: "10px 25px 10px 25px",
       border: "0.5px solid rgb(110, 110, 110)"
+    },
+    likeText: {
+      marginTop: "5px",
+      fontSize: "14px"
+    },
+    likeButton: {
+      marginTop: "10px",
+      paddingLeft: "1.75em",
+      fontWeight: 700,
+      transform: "scale(1, 1)"
     }
   }
 });
@@ -177,14 +227,24 @@ export default () => {
       </div>
       <br />
 
-      <Typography className={classes.playlistTypo}>Playlist</Typography>
+      <Typography className={classes.playlistTypo}>PLAYLISTS</Typography>
       <Button
         className={classes.playlistButton}
-        startIcon={<AddCircleOutlineOutlinedIcon style={{ fontSize: 30 }} />}
+        startIcon={<AddBoxSharpIcon style={{ fontSize: 35 }} />}
         onClick={handleClickOpen}
       >
         Create Playlist
       </Button>
+      <NavLink
+        to="/library/likedSongs"
+        style={{ textDecoration: "none" }}
+        className={classes.likeButton}
+        activeClassName={classes.activeLikeButton}
+      >
+        <FavoriteOutlinedIcon style={{ fontSize: 35 }} />
+
+        <div className={classes.likeText}> Liked Songs </div>
+      </NavLink>
       <Dialog open={open} onClose={handleClose} fullWidth>
         <div className={classes.dialogBox}>
           <DialogTitle>Create New Playlist</DialogTitle>

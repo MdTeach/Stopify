@@ -10,9 +10,10 @@ const useStyles = makeStyles({
     marginLeft: "2em"
   },
   card: {
-    fontSize: "13px",
+    fontSize: "14px",
     paddingBottom: "5px",
     color: "gray",
+    fontWeight: 600,
     "&:hover": {
       color: "white"
     }

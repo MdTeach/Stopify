@@ -1,5 +1,6 @@
 .horizontal-container {
   display: block;
+  margin-left: 5px;
 }
 
 .title {
@@ -18,9 +19,13 @@
 }
 
 @media (min-width: 921px) {
+  .horizontal-container {
+    display: block;
+    margin-left: 15px;
+  }
   .title {
     padding-top: 10px;
-    margin-left: 20px;
+    margin-left: 10px;
     margin-bottom: 10px;
     font-size: 2em;
   }

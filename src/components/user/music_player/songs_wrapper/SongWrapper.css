@@ -1,3 +1,20 @@
+::-webkit-scrollbar {
+  width: 15px;
+  height: 15px !important;
+}
+
+::-webkit-scrollbar-track {
+  background-color: #282828;
+}
+
+::-webkit-scrollbar-thumb {
+  background: rgb(105, 105, 105);
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: rgb(66, 66, 66);
+}
+
 .song-wrapper {
   background-image: linear-gradient(to right, rgb(20, 20, 20), rgb(12, 12, 12));
   padding-top: 45px;
@@ -26,10 +43,11 @@
   display: flex;
   width: 70%;
   flex: 6;
-  padding-bottom: 600px;
+  padding-bottom: 300px;
   background-image: linear-gradient(to right, rgb(20, 20, 20), rgb(12, 12, 12));
   height: 100%;
 }
+
 .settings {
   top: 0;
   right: 0;

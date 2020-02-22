@@ -1,3 +1,10 @@
 .SearchWrapper{
-    color: red;
+    width: 90%;
+    color: #7f7f7f;
+}
+
+.notFoundLabel{
+    width: 100%;
+    text-align: center;
+    margin-top: 15%;
 }

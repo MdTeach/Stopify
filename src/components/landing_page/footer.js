@@ -14,9 +14,8 @@ export default () => {
         <Link to="/about">About</Link>
         <Link to="/contact">Contacts</Link>
       </div>
-      <Link to="/">About</Link>
-      <Link to="/">Help</Link>
-      <Link to="/">Developers</Link>
+      <Link to="/about">About |</Link>
+      <Link to="/contact">Developers</Link>
     </div>
   );
 };

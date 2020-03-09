@@ -1,16 +1,15 @@
 .footer_part {
-  min-height:120px;
+  min-height: 120px;
   color: white;
   background-color: black;
   padding: 10px;
   text-align: center;
 }
 
-.contents{
+.contents {
   text-align: center;
   width: 100%;
 }
-
 
 .contents a {
   color: white;
@@ -25,18 +24,14 @@
   text-decoration: none;
 }
 
-
-
-
 /* Larger devices (landscape phones, 576px and up) */
 @media (min-width: 576px) {
   .footer_part {
-    min-height:100px;
+    min-height: 100px;
     color: white;
+    background-image: url("./user_background.jpg");
     background-color: black;
     padding: 10px;
     text-align: center;
   }
-
-  
 }

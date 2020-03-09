@@ -1,0 +1,15 @@
+.contact {
+  padding-top: 12.5%;
+  margin-top: 90px;
+  text-align: center;
+  color: white;
+  height: 100vh;
+  width: auto;
+  background-image: url("home_background.jpeg");
+  background-position: center center;
+  background-repeat: no-repeat;
+  background-size: cover;
+}
+.contact.li {
+  text-align: center;
+}

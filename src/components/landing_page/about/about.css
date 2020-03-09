@@ -1,0 +1,13 @@
+.about {
+  padding-top: 15%;
+  text-align: center;
+  color: white;
+  height: auto;
+  width: auto;
+  background-image: url("home_background.jpeg");
+  background-position: center center;
+  background-repeat: no-repeat;
+  background-size: cover;
+  margin-top: 90px;
+  height: 100vh;
+}

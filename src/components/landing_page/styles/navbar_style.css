@@ -1,5 +1,5 @@
 .navbar {
-  background-color: rgba(0, 0, 0, 1);
+  background-color: rgba(0, 0, 0, 0.8);
 }
 
 .navbar-dark {
@@ -10,23 +10,13 @@
   width: 150px;
   height: 48px;
 }
-/* .navbar-nav > li {
-  font-size: 18px;
-  padding-top: 0px;
-  padding-bottom: 0px;
-} */
 
-.navbar-nav > li > a {
+.navbar-nav > li {
   font-size: 18px;
   font-weight: 800;
   color: white;
+  padding-right: 5px;
 }
-
-/* nav .navbar-nav li > a:hover {
-  font-size: 20px;
-  font-weight: 700;
-  color: #1db954;
-} */
 
 .navbar-brand {
   padding-top: 0px;

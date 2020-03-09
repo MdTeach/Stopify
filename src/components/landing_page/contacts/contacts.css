@@ -1,6 +1,5 @@
 .contact {
-  padding-top: 12.5%;
-  margin-top: 80px;
+  padding-top: 20%;
   text-align: center;
   color: white;
   height: 100vh;
@@ -12,4 +11,30 @@
 }
 .contact.li {
   text-align: center;
+}
+.devText {
+  padding-top: 25px;
+  font-size: 32px;
+}
+
+.infobox {
+  transform: scale(0.7, 0.7);
+  display: flex;
+  flex-direction: column;
+  padding-top: 5px;
+  font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+}
+
+@media (min-width: 921px) {
+  .contact {
+    padding-top: 10%;
+  }
+  .infobox {
+    transform: scale(1, 1);
+    padding-top: 15px;
+  }
+  .devText {
+    padding-top: 25px;
+    font-size: 42px;
+  }
 }

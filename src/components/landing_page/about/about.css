@@ -1,5 +1,5 @@
 .about {
-  padding-top: 15%;
+  padding-top: 25%;
   text-align: center;
   color: white;
   height: auto;
@@ -8,6 +8,26 @@
   background-position: center center;
   background-repeat: no-repeat;
   background-size: cover;
-  margin-top: 60px;
   height: 100vh;
+}
+
+.text-container {
+  word-wrap: break-word;
+  transform: scale(0.7, 0.7);
+  font-size: 22px;
+  text-align: justify;
+}
+
+@media (min-width: 921px) {
+  .about {
+    padding-top: 20%;
+  }
+
+  .text-container {
+    margin: 5px 60px 5px 60px;
+    transform: scale(1, 1);
+    word-wrap: break-word;
+    font-size: 22px;
+    text-align: justify;
+  }
 }

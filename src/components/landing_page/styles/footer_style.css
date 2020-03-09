@@ -1,5 +1,5 @@
 .footer_part {
-  min-height: 120px;
+  min-height: 100px;
   color: white;
   background-color: black;
   padding: 10px;
@@ -16,22 +16,11 @@
   text-decoration: none;
   transition-duration: 0.3s;
   margin: 20px;
-  font-size: 20px;
+  font-size: 15px;
+  font-weight: 600;
 }
 
 .contents a:hover {
   color: #1db954;
   text-decoration: none;
-}
-
-/* Larger devices (landscape phones, 576px and up) */
-@media (min-width: 576px) {
-  .footer_part {
-    min-height: 100px;
-    color: white;
-    background-image: url("./user_background.jpg");
-    background-color: black;
-    padding: 10px;
-    text-align: center;
-  }
 }

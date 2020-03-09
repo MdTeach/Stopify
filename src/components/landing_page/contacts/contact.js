@@ -5,13 +5,29 @@ import "./contacts.css";
 function contact() {
   return (
     <div className="contact">
-      <h1>Developers name</h1>
+      <h1 className="devText">Developers</h1>
+      <br />
 
-      <h3>Abishek Bashyal</h3>
-      <h3>Bibek Mishra</h3>
-      <h3>Prashanna Mani Paudel</h3>
-      <h3>Gautam Buddha Shakya</h3>
-      <h3>Samip Timalsina</h3>
+      <div className="infobox">
+        <h4 className="name">Abishek Bashyal</h4>
+        <h6 className="email">(anishbasyal10@gmail.com)</h6>
+      </div>
+      <div className="infobox">
+        <h4 className="name">Bibek Mishra</h4>
+        <h6 className="email">(bibekmishra@gmail.com)</h6>
+      </div>
+      <div className="infobox">
+        <h4 className="name">Prashanna Mani Paudel</h4>
+        <h6 className="email">(prashannapaudel2@gmail.com)</h6>
+      </div>
+      <div className="infobox">
+        <h4 className="name">Gautam Buddha Shakya</h4>
+        <h6 className="email">(shakyagautam123@gmail.com)</h6>
+      </div>
+      <div className="infobox">
+        <h4 className="name">Samip Timalsena</h4>
+        <h6 className="email">(samip625@gmail.com)</h6>
+      </div>
     </div>
   );
 }

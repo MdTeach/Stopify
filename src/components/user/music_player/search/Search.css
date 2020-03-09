@@ -1,0 +1,75 @@
+.SearchWrapper {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  color: #7f7f7f;
+}
+
+.searchTop {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-top: 15px;
+  overflow: hidden;
+}
+
+.notFoundLabel {
+  width: 100%;
+  text-align: center;
+
+  margin-top: 15%;
+}
+
+.searchText {
+  font-size: 24px;
+  font-weight: 700;
+  margin-top: 20px;
+}
+
+.noResult {
+  font-size: 22px;
+  font-weight: 700;
+  color: white;
+
+  margin: 0 8px 0 8px;
+}
+
+.noResultBody {
+  padding-top: 5px;
+  font-size: 10px;
+  margin: 0 8px 0 8px;
+  letter-spacing: 0.25px;
+  font-family: "Gill Sans", "Gill Sans MT", Calibri, "Trebuchet MS", sans-serif;
+  color: white;
+}
+
+@media (min-width: 921px) {
+  .searchTop {
+    position: fixed;
+    z-index: 999;
+    margin-left: -160px;
+    margin-top: -60px;
+    margin-bottom: 20px;
+    width: 1000px;
+  }
+
+  .searchText {
+    font-size: 36px;
+    font-weight: 700;
+    color: white;
+
+    margin-top: 0px;
+  }
+
+  .noResult {
+    font-size: 28px;
+    font-weight: 700;
+    color: white;
+  }
+
+  .noResultBody {
+    padding-top: 5px;
+    font-size: 14px;
+    color: white;
+  }
+}

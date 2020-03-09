@@ -1,14 +1,14 @@
 /*Starting with the big screen*/
 .song-card {
   background-color: #242323;
-  width: 12em;
-  height: 17em;
-  padding: 1.25em;
-  margin-right: 20px;
+  width: 6em;
+  height: 8.5em;
+  padding: 0.6em;
+  margin-right: 10px;
   text-align: center;
   border-radius: 0.5em;
   cursor: pointer;
-  margin: 10px 10px 10px 10px;
+  margin: 10px 5px 10px 15px;
 }
 
 .song-card:hover .song-button {
@@ -16,30 +16,31 @@
 }
 
 .song-image {
-  width: 9.5em;
-  height: 10em;
+  width: 4.75em;
+  height: 5em;
 }
 
 .song-name {
-  padding: 8px 0px 8px 0px;
+  padding: 4px 0px 2px 0px;
   text-align: left;
   color: blanchedalmond;
-  font-family: Cambria, Cochin, Georgia, Times, "Times New Roman", serif;
-  font-size: 16px;
+  font-family: Arial, Helvetica, sans-serif;
+  font-size: 7px;
   display: flex;
   flex-wrap: wrap;
+  font-weight: bold;
 }
 
 .song-author {
-  color: blanchedalmond;
+  color: rgb(156, 156, 156);
   font-family: Cambria, Cochin, Georgia, Times, "Times New Roman", serif;
-  font-size: 14px;
+  font-size: 6px;
   float: left;
 }
 
 .song-button {
-  width: 40px;
-  height: 40px;
+  width: 30px;
+  height: 30px;
   float: right;
   border-radius: 100%;
   border: none;
@@ -47,4 +48,38 @@
   display: none;
   float: right;
   outline: none !important;
+  -webkit-transform: scale(0.5, 0.5);
+}
+
+@media (min-width: 921px) {
+  .song-card {
+    background-color: #242323;
+    width: 12em;
+    height: 17em;
+    padding: 1.25em;
+    margin-right: 20px;
+    text-align: center;
+    border-radius: 0.5em;
+    cursor: pointer;
+    margin: 10px 10px 10px 10px;
+  }
+
+  .song-image {
+    width: 9.5em;
+    height: 10em;
+  }
+
+  .song-button {
+    -webkit-transform: scale(1, 1);
+    width: 40px;
+    height: 40px;
+  }
+  .song-name {
+    padding: 8px 0px 8px 0px;
+    font-size: 14px;
+  }
+
+  .song-author {
+    font-size: 13px;
+  }
 }

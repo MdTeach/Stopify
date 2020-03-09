@@ -1,48 +1,43 @@
-.current-music-label{
-    display: flex;
-    text-align: center;
-    padding: 1em;
-    /*Vertical center*/
-    margin: 0;
-    position: absolute;
-    top: 50%;
-    -ms-transform: translateY(-50%);
-    transform: translateY(-50%);
-    cursor: pointer;
+.current-music-label {
+  display: flex;
+  text-align: center;
+  padding: 1em;
+  /*Vertical center*/
+  margin: 0;
+  position: absolute;
+  top: 50%;
+  -ms-transform: translateY(-50%);
+  transform: translateY(-50%);
+  cursor: pointer;
 }
 
-
-
-.muic-thumb-nail{
-    width: 4em;
-    height: 4em;
-    margin-right:1em;
+.muic-thumb-nail {
+  width: 4em;
+  height: 4em;
+  margin-right: 1em;
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.75), 0 6px 20px 0 rgba(0, 0, 0, 0.4);
 }
 
-
-
-.labels{
-    text-align: left;
+.labels {
+  text-align: left;
 }
 
-.song_name{
-    margin-top: .5em;
-    font-family: 'Times New Roman', Times, serif;
-    font-size: larger;
-    color:honeydew;
-    font-weight: bold;
+.song_name {
+  margin-top: 0.5em;
+  font-family: "Gill Sans", "Gill Sans MT", Calibri, "Trebuchet MS", sans-serif;
+  font-size: large;
+  color: honeydew;
+  font-weight: 500;
+  letter-spacing: 0.8px;
 }
 
-.song_name:hover{
-    text-decoration: underline;
+.song_name:hover {
+  text-decoration: underline;
 }
 
-.song_artist{
-    font-size: small;
-    color:gray;
-    font-weight: bold;
-}
-
-.song_artist:hover{
-    text-decoration: underline;
+.song_artist {
+  font-size: small;
+  color: gray;
+  font-weight: bold;
+  cursor: default;
 }

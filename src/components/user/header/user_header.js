@@ -1,11 +1,58 @@
-import React from "react";
-
+import React, { useState } from "react";
+import Menu from "@material-ui/core/Menu";
+import MenuItem from "@material-ui/core/MenuItem";
 import logo from "../../landing_page/images/logo2.png";
 import { handleLogout } from "../../../utils/firebase_login";
 import { Link } from "react-router-dom";
+import { createBrowserHistory } from "history";
 import "./user_header.css";
+import { withStyles, makeStyles } from "@material-ui/core/styles";
+
+const StyledMenuItem = withStyles(theme => ({
+  root: {
+    backgroundColor: "#363636",
+    color: "gray",
+    margin: -8,
+    paddingRight: 95,
+
+    "&:hover": {
+      backgroundColor: "#363636",
+      color: "white"
+    }
+  }
+}))(MenuItem);
+
+const useStyles = makeStyles({
+  menu: {
+    marginLeft: 20,
+    marginTop: 35
+  }
+});
+
+const customHistory = createBrowserHistory();
+
 
 export default props => {
+  const classes = useStyles();
+  const [anchorEl, setAnchorEl] = React.useState(null);
+  const open = Boolean(anchorEl);
+  const handleClick = e => {
+    setAnchorEl(e.currentTarget);
+  };
+  const handleClose = e => {
+    setAnchorEl(null);
+  };
+
+  const [current, setCurrent] = useState(0);
+
+  const goBack = () => {
+    customHistory.goBack();
+  };
+
+  const goForward = () => {
+    customHistory.goForward();
+  };
+
   return (
     <nav className="top ">
       <div className="logo_content">
@@ -13,7 +60,7 @@ export default props => {
       </div>
       <div className="middle">
         <div className="back_buttons">
-          <button id="backb">
+          <button id="backb" onClick={goBack}>
             <svg height="22" width="22" viewBox="0 0 24 24">
               <path
                 fill="white"
@@ -22,7 +69,7 @@ export default props => {
             </svg>
           </button>
 
-          <button id="backb">
+          <button id="backb" onClick={goForward}>
             <svg height="22" width="22" viewBox="0 0 24 24">
               <path
                 fill="white"
@@ -31,16 +78,26 @@ export default props => {
             </svg>
           </button>
         </div>
-        <Link to="/settings">
-          <button className="welcome">
-            <img
-              className="profilepic"
-              src={props.currentUser.photoURL}
-              alt="profile_pic"
-            />
-            <b id="pp_username">{props.currentUser.displayName}</b>
-          </button>
-        </Link>
+
+        <button className="welcome" onClick={handleClick}>
+          <img
+            className="profilepic"
+            src={props.currentUser.photoURL}
+            alt="profile_pic"
+          />
+          <b id="pp_username">{props.currentUser.displayName}</b>
+        </button>
+        <Menu
+          anchorEl={anchorEl}
+          keepMounted
+          open={open}
+          className={classes.menu}
+          onClose={handleClose}
+        >
+          <Link to="/" style={{ textDecoration: "none" }}>
+            <StyledMenuItem onClick={handleLogout}>Logout</StyledMenuItem>
+          </Link>
+        </Menu>
       </div>
     </nav>
   );

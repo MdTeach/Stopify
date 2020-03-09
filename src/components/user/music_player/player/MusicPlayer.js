@@ -1,6 +1,4 @@
 import React,{
-    useEffect,
-    useState
 } from 'react'
 
 //css
@@ -19,7 +17,7 @@ export default (props)=>{
             </div>
             
             <div className="controller">
-                <AudioController data={musicData}/>
+                <AudioController data={musicData} audioInstance={props.audioInstance}/>
             </div>
         </div>
     );

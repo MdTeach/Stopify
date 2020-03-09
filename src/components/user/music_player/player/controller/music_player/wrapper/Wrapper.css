@@ -1,0 +1,39 @@
+.wrapper {
+  width: 100%;
+  background-color: #282828;
+  display: flex;
+  margin: 0;
+  margin-top: 0.15em;
+  transform: scale(0.9, 0.9);
+}
+
+.left-part {
+  flex: 4;
+  text-align: left;
+  display: flex;
+  flex-direction: column;
+  margin-left: -10px;
+}
+
+.right-part {
+  margin-top: 0.7em;
+  flex: 1.5;
+  text-align: right;
+}
+.audio-control-button {
+  margin-left: -20px;
+}
+
+@media (min-width: 1200px) {
+  .wrapper {
+    transform: scale(1, 1);
+    padding: 0.5em 0em 0.5em 0em;
+    margin-top: 0.3em;
+  }
+  .left-part {
+    margin-left: -75px;
+  }
+  .right-part {
+    flex: 1;
+  }
+}

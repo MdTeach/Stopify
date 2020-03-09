@@ -1,15 +1,28 @@
-.music-player{
+.music-player {
   width: 100%;
-  background-color: #181818;
+  background-color: #282828;
   color: aliceblue;
-  height:100px;
+  height: 100px;
   display: flex;
+  box-shadow: 0px -10px 0px rgb(22, 22, 22);
+  z-index: 100;
 }
 
-.label{
-  flex:1
+/*Hiding this for small screen sizes*/
+/* Smaller devices */
+@media (max-width: 576px) {
+  .label {
+    display: none;
+  }
+  .music-player {
+    height: 80px;
+  }
 }
 
-.controller{
-  flex:3
+.label {
+  flex: 1;
+}
+
+.controller {
+  flex: 3;
 }

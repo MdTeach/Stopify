@@ -1,75 +1,104 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useState, useContext } from "react";
 import { Route } from "react-router";
+
+//providers
+import { AuthContext } from "../../../../auth/Auth.js";
+import { CardContext } from "../audio_utils/card_utils";
+
 //css
 import "./SongWrapper.css";
 
 //functions
-import { getAllSongsInfo } from "../audio_utils/audio_utils";
+import {
+  getAllSongsInfo,
+  getAllRecentSongsInfo,
+  subscriptionToRecentSongChanges
+} from "../audio_utils/audio_utils";
 
 //components
+import SongCardDetails from "./songCardDetails";
+import PlaylistCardDetails from "./library/playlist/playlistCardDetails";
+import Library from "./library/library";
+import Search from "../search/Search";
+
 //import SongCard from '../song_card/SongCard'
-import SideBar from "../side_bar/side_bar";
+import SideBar from "../side_bar/check_sideBar/check_sideBar.js";
 import MusicPlayer from "../player/MusicPlayer";
 import HorizontalMusicContainer from "../horizontal_music_container/HorizontalMusicContainer";
 import CircularLoading from "../../../extra/CircularLoading/CircularLoading";
-import Settings from "../../user_info/user_info";
 
-export default props => {
+export default () => {
   const [isfetchingSongs, setFetchingSongs] = useState(true);
-  const [allSongs, setAllSongs] = useState([]);
-  const [currentPlaying, setCurrentPlaying] = useState({});
 
-  //get all the song infos
+  const [allRecentSongs, setAllRecentSongs] = useState([]);
+  const [allSongs, setAllSongs] = useState([]);
+
+  const { currentUser } = useContext(AuthContext);
+  const songeContext = useContext(CardContext);
+
+  document.addEventListener("contextmenu", function(e) {
+    e.preventDefault();
+  });
+
   const fetchSongs = async () => {
     //getting the songs as array
-    const songs = await getAllSongsInfo();
+    //const songs = await getAllSongsInfo();
+    const [songs, rsongs] = await Promise.all([
+      getAllSongsInfo(),
+      getAllRecentSongsInfo(currentUser)
+    ]);
 
-    //remove the cirucalar indicator
     setFetchingSongs(false);
 
     //set our songs data
     setAllSongs(songs);
+    setAllRecentSongs(rsongs);
+
+    //initall set the current playing song to the 0 index
+    songeContext.setAudio(new Audio(songs[0].audioUrl));
   };
 
-  //change the playing the song
-  const changeMusic = newMusic => {
-    if (newMusic["audioUrl"] == currentPlaying["audioUrl"]) {
-      //pause the music
-      //setCurrentPlaying({});
-    } else {
-      //change the music
-      setCurrentPlaying(newMusic);
-    }
-  };
-
-  const loadingIcon = () => {
+  //shows the music in card
+  const MusicLists = () => {
     return (
       <React.Fragment>
         {//Loading data
         isfetchingSongs === true ? (
-          <CircularLoading />
+          <CircularLoading style={{ paddingTop: 10 }} />
         ) : allSongs.length === 0 ? (
           <h4>No data</h4>
         ) : (
-          <HorizontalMusicContainer
-            data={allSongs}
-            changeMusic={changeMusic}
-            title="All Songs"
-            currentPlaying={currentPlaying}
-          />
+          <div>
+            {allRecentSongs.length === 0 ? (
+              ""
+            ) : (
+              <HorizontalMusicContainer
+                title="Recent Songs"
+                data={allRecentSongs}
+              />
+            )}
+
+            <HorizontalMusicContainer data={allSongs} title="All Songs" />
+          </div>
         )}
       </React.Fragment>
     );
   };
 
   useEffect(() => {
-    console.log("Calling..");
     fetchSongs();
-    //loadSongs()
-  }, []);
 
-  console.log("THis is home\n")
-  console.log(props)
+    //add the listener when new song is added
+    subscriptionToRecentSongChanges(currentUser, async () => {
+      const rsongs = await getAllRecentSongsInfo(currentUser);
+      try {
+        rsongs.sort((b, a) => a.timestamp.seconds - b.timestamp.seconds);
+      } catch (error) {
+        console.log(error);
+      }
+      setAllRecentSongs(rsongs);
+    });
+  }, []);
 
   return (
     <div className="song-wrapper">
@@ -78,16 +107,22 @@ export default props => {
           <SideBar />
         </div>
         <div className="music_lists">
-          <Route exact path="/" component={loadingIcon} />
-          <Route exact path="/settings">
-            <Settings currentUser={props.currentUser} />
+          <Route exact path="/" component={MusicLists} />
+          <Route path="/album" component={SongCardDetails} />
+          <Route path="/library" component={Library} />
+
+          <Route exact path="/search">
+            <Search allSongs={allSongs} />
           </Route>
-          <Route exact path="/search" render={() => <h1>Search</h1>} />
-          <Route exact path="/library" render={() => <h1>Library</h1>} />
+
+          <Route path="/userPlaylist" component={PlaylistCardDetails} />
         </div>
       </div>
       <div className="music-controller">
-        <MusicPlayer currentPlaying={currentPlaying} />
+        <MusicPlayer
+          currentPlaying={songeContext.currentPlaying}
+          audioInstance={songeContext.audio}
+        />
       </div>
     </div>
   );

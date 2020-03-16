@@ -38,7 +38,7 @@ const Register = () => {
       <GoogleButton />
       <br />
       <br />
-      <div class="separator">OR</div>
+      <div className="separator">OR</div>
 
       <br />
       <h5>

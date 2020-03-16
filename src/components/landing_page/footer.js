@@ -9,7 +9,7 @@ export default () => {
     <div className="container-fluid footer_part">
       <div className="contents">
         <div className="logo">
-          <img src={logo} height="64" width="200" alt="Stopify" />
+          <img src={logo} height="48" width="150" alt="Stopify" />
         </div>
         <Link to="/about">About</Link>
         <Link to="/contact">Contacts</Link>

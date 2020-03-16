@@ -270,7 +270,7 @@ export default () => {
   const [isPlaying, setIsPlaying] = useState(false);
   const [anchorEl, setAnchorEl] = React.useState(null);
   const open = Boolean(anchorEl);
-  
+
   const handleClick = e => {
     setAnchorEl(e.currentTarget);
   };
@@ -359,22 +359,21 @@ export default () => {
   };
 
   //check if the song is playing and pause accordingly
-  const setPlayPauseStatus = ()=>{
-    if(CardDetails.audio.paused){
-      setIsPlaying(false)
-    }else{
-      setIsPlaying(false)
-      if(card["audioUrl"] === CardDetails.audio.src){
-        setIsPlaying(true)
+  const setPlayPauseStatus = () => {
+    if (CardDetails.audio.paused) {
+      setIsPlaying(false);
+    } else {
+      setIsPlaying(false);
+      if (card["audioUrl"] === CardDetails.audio.src) {
+        setIsPlaying(true);
       }
     }
-  }
+  };
 
-  const handlePlay = ()=>{
+  const handlePlay = () => {
     CardDetails.changeMusic(card);
-    setPlayPauseStatus()
-    
-  }
+    setPlayPauseStatus();
+  };
 
   useEffect(() => {
     fetchLikedSong();
